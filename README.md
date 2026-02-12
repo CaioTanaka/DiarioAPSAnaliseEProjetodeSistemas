@@ -1,2 +1,3 @@
-# Di-rio-APS-An-lise-e-Projeto-de-Sistemas-
-Repositório para a aula de APS
+# Diario-APS-Analise-e-Projeto-de-Sistemas-
+Grupo: APSystems 
+Repositório para registro de aulas, e diário de aula.
