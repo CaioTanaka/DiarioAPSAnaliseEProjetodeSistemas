@@ -1,0 +1,43 @@
+Aula 04-03-2026
+
+Retomada
+
+7 Estágios do SDCL (Ciclo de Vida do Desenvolvimento de Software)
+
+1 - Levantamento de Requisitos
+2 - Análise de Requisitos
+3 - Projeto
+4 - Codificação
+5 - Teste
+6 - Implantação
+7 - Manutenção (Vitalício)
+
+Modelos de SDCL
+
+Modelo Cascata - Simples, mas lento.
+Modelo Espiral - Mais interativo com o cliente, mas lento, pois o cliente pode ficar enchendo.
+Modelo Incremental - Foca em entregar valor para o cliente.
+
+Manifesto Ágil
+- Metodologia - XP
+- Framework - Scrum
+- Método - Kanbam
+
+Levantamento de Dados
+-Quadro comparativo das técnicas.
+-Boas práticas e cuidados no processoesso.
+
+Pesquisa Técnica para levantamento de Requisitos
+- Etnografia
+
+- Workshops
+
+- Prototipagem
+
+- Entrevistas
+
+- Questionários
+
+- Brainstorm
+
+- JAD (Joint Application Design)
