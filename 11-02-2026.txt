@@ -1,0 +1,42 @@
+
+Alunos:Vitor,Gabriel,Nicolas,Caio
+—------------------------------------------------------------------------------------------------------------------------
+Atividade 01 — Formação/Ecossistema
+O que as empresas buscam em um profissional?
+O que seria APS? Qual atividade seria a primordial?
+Análise e Projeto de Sistemas é uma atividade feita para compreender o negócio, a necessidade, viabilidade do projeto, e a melhor forma para uma execução rápida, atribuindo o maior valor possível para o projeto.
+A atividade primordial para isso, é a comunicação, especialmente a comunicação entre o cliente e Analista de Requisitos, pois é ele a ponte entre os devs que fazem a solução e a vontade do cliente.
+
+
+Soft skills ou habilidades técnicas?
+As duas habilidades são importantes, mas prioritariamente é necessário as soft skills, pois tendo um bom comportamento, a pessoa irá atrás de aprender habilidades técnicas. As habilidades técnicas vão sendo aprendidas, de acordo com a empresa, tecnologia.
+
+Ecossistema (rede de ações pessoais):o que é?
+São os hábitos que as pessoas têm no ambiente de trabalho, e que moldam o ambiente que vivem, seus hábitos, rotinas, gostos, ferramentas. Suas ações mentais, de relacionamento, de organização
+
+
+Uso de IA:
+Pode usar?
+Sim, entretanto é necessário utilizar a ferramenta de uma maneira correta e disciplinada, utilizando como um assistente para resolução de problemas, entender materiais e estudar.
+
+
+
+Quais os limites?
+O limite é a sua própria ética do usuário. Não permitindo que a IA faça tudo para você.
+
+Qual é a sua responsabilidade?
+Utilizar a IA apenas como auxílio e não como substituta do próprio esforço.
+
+Como as empresas trabalham em projetos?
+Equipes?
+Trabalham com divisão de tarefas, cada um é responsável por uma parte do projeto.
+
+Prática ou teoria?
+Ambas são fundamentais. Sem a teoria não há prática, mas muitas das vezes a prática supera a teoria e vice-versa.
+
+Como acontece a avaliação? Qual é a melhor, uma única avaliação ou avaliação periódica?
+		A avaliação ocorre a partir do momento em que se é planejada. Pensando em uma prática de produção é sempre utilizado uma avaliação constante.
+
+Entregas parciais constantes ou uma única entrega? Qual é a melhor?
+		Entregas parciais constantes são melhores, pois dessa maneira é possível analisar por partes o projeto, uma entrega total dificulta em uma correção se necessária.
+—------------------------------------------------------------------------------------------------------------------------
