@@ -40,6 +40,52 @@ Entregas parciais constantes ou uma única entrega? Qual é a melhor?
 		Entregas parciais constantes são melhores, pois dessa maneira é possível analisar por partes o projeto, uma entrega total dificulta em uma correção se necessária.
 —------------------------------------------------------------------------------------------------------------------------
 
+Atividade 2
+Ciclos de vida do desenvolvimento de uma Software
+
+SDLC
+os ciclos de vida de desenvolvimento de software são divididos em 
+1- Planejamento: identificação das metas e escopo do projeto
+2- Análise: revisão dos dados gerados, requisitos funcionais, não funcionais e regras de negócios
+3- Projeto: definição da arquitetura do projeto
+4- Programação: desenvolvimento da solução
+5- Testes: teste do programa para eliminação de bugs
+6- Implementação: implementar o código no ambiente de produção
+7- Manutenção: manutenção e suporte do sistema
+
+Modelos SDLC
+Cascata:
+O modelo cascata, também conhecido como ciclo de vida clássico ou tradicional, consiste em uma abordagem linear, para avançar para uma nova etapa é necessário concluir a etapa anterior. Uma boa forma de utilizar esse modelo é usá-lo para aperfeiçoar ou fazer adaptações em sistemas já existentes É uma metodologia fácil de entender, pois se utiliza o mesmo padrão na execução dos projetos. Sua estrutura padrão: Iniciação, parte em que os requisitos são apresentados para implementar no projeto. Planejamento, são listados informações importantes para a execução do projeto. Execução, nessa etapa que os planos são postos na prática. Monitoramento e Controle, etapa essencial para avaliar o desempenho do projeto e Encerramento, parte final com o objetivo de expandir o que foi e não foi realizado.
+Suas fases de execução: Requisitos, Design, Implementação, Verificação e Manutenção.
+
+
+
+Ágil:
+O ciclo de vida de desenvolvimento de software (SDLC) agile, ou chamado de método ágil, é dividido em ciclos contínuos de desenvolvimento de melhorias e entregas no software, por meio de "sprints", que geram pequenas partes do produto para serem incrementadas durante o projeto. É um ciclo de vida que responde rapidamente e facilmente a mudanças no escopo do projeto, sendo um dos maiores benefícios,  permitir que o software seja dividido em várias sprints, possibilitando mudanças durante o projeto e facilitando correções de bugs.
+Um exemplo é o scrum, na qual existem o P.O. e Scrum master, a demanda é dividida em várias sprints, que cada uma são comandadas por um Scrum master cuja função é intermediar entre o Product Owner (P.O.) com os Devs, para no final da sprint, terminar o objetivo: finalizar uma parte do software, geralmente um requisito, para assim unir ao resto dos resultados de outras sprints e gerar um software completo e com valor agregado.
+Dividido em várias etapas: Sprint Planning, Daily Scrum, Sprint Review e Sprint Retrospective
+
+
+Espiral:
+O Modelo Espiral organiza o processo de desenvolvimento em um ciclo contínuo de fases, chamado de espiral, onde cada ciclo é composto por quatro atividades principais: planejamento, análise de riscos, engenharia e avaliação.
+Esse modelo é uma escolha recomendada para projetos de software com requisitos pouco definidos no início ou com riscos elevados
+
+O ciclo espiral é dividido em quatro fases:
+
+Planejamento(Estruturação): Nesta fase, os objetivos, requisitos e restrições do projeto são definidos.
+Análise de Riscos(Estruturação): Identifica possíveis fatores que podem impactar o projeto.
+Engenharia(Execução): Ocorre o desenvolvimento e a verificação do produto, com foco na implementação de soluções técnicas que atendam aos requisitos planejados.
+Avaliação e Feedback(Finalização): Revisão do progresso da iteração, incluindo feedback dos stakeholders e a validação de que os objetivos foram atingidos.
+
+Referências:
+https://www.ibm.com/br-pt/think/topics/sdlc
+
+https://ontologia.eximia.co/frameworks/modelo-espiral/
+https://www.geeksforgeeks.org/software-engineering/software-engineering-spiral-model/
+
+https://www.devmedia.com.br/introducao-ao-modelo-cascata/29843
+https://scopi.com.br/blog/modelo-em-cascata/
+
 
 
 
