@@ -41,3 +41,12 @@ Pesquisa Técnica para levantamento de Requisitos
 - Brainstorm
 
 - JAD (Joint Application Design)
+
+Etnografia: É uma técnica observacional que busca entender como a empresa é, requisitos sociais, organizacionais, entender a cultura de trabalho e com a empresa. O pesquisador é introduzido no ambiente que o sistema vai ser utilizado, é preciso entender as nuances do sistema. É necessário executar a identificação das áreas do usuário, obter o que é a função das pessoas e do local, familiarização com o local de trabalho, fazer um levantamento do trabalho feito na empresa e a documentação, entre outros.
+Desvantagens: Leva muito tempo e pode haver erros devido a interpretação do analista.
+
+Workshops: É uma reunião de um grupo de analistas e stakeholders que vão debater por meio de um mediador as tomadas de decisões dos processos de negociação. Uma técnica é o brainstorming, utilizada e que gera documentação e elicitação dos requisitos. É necessário ter uns adendos, ter um mediador neutro e  um debate “assunto” e horários definidos.
+
+Prototipagem:É a criação de protótipos que desempenham funções específicas dos requisitos que o cliente pedir de forma a ter uma amostra do sistema e funcionalidades, além de interfaces do sistema, o objetivo é: diminuição de custos, atendimento dos requisitos do cliente e verificação pelo cliente.
+
+Brainstorming: É uma técnica de geração de ideias, que consiste na reunião de várias pessoas, onde cada uma vai contribuindo de acordo com o tema da reunião com ideias que resolvam um problema por meio de um líder. Funciona em rodadas, é um método que estimula a soluções criativas, pois desencadeia soluções não convencionais devido ao grande número de ideias que podem ir se complementando. 
