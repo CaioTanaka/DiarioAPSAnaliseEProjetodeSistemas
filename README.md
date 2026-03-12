@@ -9,6 +9,7 @@ Além de funcionar como um **material de estudo e revisão**, este repositório 
 
 ## 👥 Integrantes  
 
+* **_Amauri Rafael Antunes Rosa Silidonio_**
 * **_Caio Shoiti Berger Tanaka_**  
 * **_Gabriel Nogueira dos Santos_**  
 * **_Nicolas Santos Chaves_**
