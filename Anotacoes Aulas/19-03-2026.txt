@@ -1,0 +1,85 @@
+
+Aula 4 + e pricipalmente o refinamento das perguntas
+ 
+
+STAKEHOLDERS
+Líder
+ADM da Biblioteca - Principal para a realização das perguntas
+Usuários
+Funcionários da Biblioteca - (Plano B - Funcionário sênior para as perguntas)
+Professores
+Alunos
+
+Técnicas que serão utilizadas
+
+Técnicas: 
+Entrevista, pois a técnica será por meio controlado / feito com um funcionário da biblioteca.
+Análise de Documentos da Biblioteca
+
+
+
+PERGUNTAS PARA O QUESTIONÁRIO E DOCUMENTOS
+
+Documentos Necessários:
+Documento / Anotações sobre o processo de devolução.
+Documento / Anotações sobre o processo de empréstimo.
+Documento sobre o cadastro de um novo exemplar.
+Manual de uso / Livro que contém o treinamento para realizar a função de bibliotecário para a utilização do sistema.
+
+Estagiária
+O que te dá mais dificuldade ao usar o sistema,e o que você acha que está faltando.
+
+
+Quais informações são necessárias para o cadastro de livros atualmente no sistema e o que poderia ser melhorado? 
+
+
+Quando alguém não entrega o livro na data, essa pessoa recebe multa? é proibida de pegar outros livros ou é punida de outro jeito?
+
+
+Qual é a quantidade máxima de livros que um aluno ou professor pode emprestar?
+
+
+Quais as maiores reclamações dos alunos e professores, que você presenciou / escutou durante os empréstimos e devoluções sobre o sistema.
+
+
+Como funciona atualmente o processo de empréstimo e devolução na biblioteca? (incluindo tombo do livro e documentos gerados)
+
+Como funciona o prazo de devolução de livros para os alunos? (dias corridos ou dias úteis?)
+
+Rosa
+
+
+Existe reserva para livros? Se sim, quantos livros o usuário pode reservar e por quanto tempo o livro fica reservado?
+
+
+Existe diferença no empréstimo entre alunos e professores? Se sim, quais?
+
+
+É necessário salvar o histórico de empréstimos e devoluções para geração de relatórios?
+
+
+Como é feito o controle de prazos e multas para empréstimos atrasados?
+
+
+As informações de cadastro são as mesmas para alunos, professores e funcionários?
+
+
+Como a biblioteca lida com reservas e filas de livros de alta demanda?
+
+
+
+Ana
+Quais os principais módulos / funções utilizados no sistema atual da biblioteca?
+
+
+Qual a maior necessidade que vocês buscam no sistema? O que motivou a troca ou criação de um novo sistema?
+
+Qual é o maior risco ou problema que pode acontecer hoje na biblioteca por causa das limitações do sistema atual?
+
+
+Planejamento 
+Data: 18/03/2026
+local: Biblioteca do IF ou ambiente virtual 
+Materiais precisos: Caderno,canetas.
+Horário: 21:10 - 22:50
+Plano B: Realizar as perguntas para o funcionário Sênior da biblioteca
