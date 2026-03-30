@@ -1,0 +1,46 @@
+
+RESPOSTAS SINCRONA
+
+
+Respostas Júlia (Estagiária):
+Quero dizer: a sua aprendizagem sobre como utilizar o sistema, foi fácil ou difícil? As telas são fáceis de entender?
+
+Boa noite! Ah, que legal você perguntar isso!
+Então, assim... quando comecei aqui há 6 meses, levei um tempo para pegar o jeito mesmo. As telas são meio confusas, sabe? Tipo, para fazer um empréstimo, eu clico em um lugar, mas não fica muito claro qual é o botão certo. Às vezes eu não entendo bem pra onde vou quando clico.
+O que mais me incomoda é que... como posso dizer... parece que tá tudo meio espalhado. Não tem uma ordem lógica assim, sabe? Tipo, quando vou procurar um livro, deveria ser mais direto. E as mensagens de erro, quando acontece algo errado, não explicam muito bem o que foi que deu problema.
+*rindo* No começo eu errava bastante! Mas acho que era porque eu estava aprendendo mesmo, não necessariamente porque o sistema é super difícil. Agora que já peguei experiência, eu consigo usar normal. Mas tipo... se vem uma pessoa aqui com dúvida, eu tenho que ficar explicando bastante coisa que deveria estar mais claro na tela.
+E tem umas funcionalidades que eu ainda não entendo direito, tipo alguns relatórios que o sistema faz... isso a Ana cuida mais, então não sou a melhor pessoa pra falar.
+Vocês vão melhorar isso no novo sistema? Porque seria bem-vindo mesmo!
+
+Quando um usuário tenta pegar vários livros ao mesmo tempo, o sistema mostra alguma mensagem de limite ou bloqueio, ou ele só deixa continuar normalmente o empréstimo?
+R:Boa pergunta! Então, acho que o sistema não tem limite, não. Pelo menos eu nunca vi aparecer nenhuma mensagem de bloqueio dizendo "você já pegou muitos livros, não pode pegar mais".
+
+*pensando* Tipo, a gente tem usuários que pegam vários livros de uma vez e o sistema deixa registrar tudo normalmente. Nunca travou ou mostrou aquele aviso, sabe? Eu acho que não tem limite mesmo.
+Mas confesso que nunca parei pra pensar direito nisso... *rindo* seria uma boa pergunta pra Rosa ou Ana, que trabalham mais com a configuração geral do sistema. Elas sabem melhor quais são as regras que estão programadas lá.
+Por quê? Vocês acham que deveria ter um limite? Tipo, pra evitar que uma pessoa pegue 50 livros de uma vez? Faz sentido, né..
+ 
+Respostas Rosa:
+Boa noite, Rosa!  Ao ouvir as outras funcionárias percebi que uma reclamação recorrente é a falta de notificações do sistema atual e que atualmente são feitas por e-mails e telefone. Qual a frequência que o sistema informará para o aluno sobre as pendências / reserva?
+R: Boa noite! Olha, essa parte de notificações automáticas eu não acompanho    muito bem não. A Júlia e a Ana tocam mais nesse lado.
+O que eu sei é que a gente faz contato mesmo — ligamos e mandamos email quando tá perto de vencer ou quando a reserva chega. Mas como a gente quer automatizar isso, você precisa conversar com a Ana pra definir esses detalhes de frequência e quando exatamente o sistema avisa.
+Ela vai ter melhor noção do que o sistema faz hoje e o que a gente realmente precisa
+
+Além da multa por atrasos, existe algum tipo de penalidade para casos de devoluções com avarias nos exemplares? E como elas são cadastradas no sistema?
+R: Boa pergunta, mas sinceramente essa parte de avarias eu não lembro ao certo. A gente recebe o livro devolvido e se tiver problema, mas como isso é registrado no sistema e se tem multa específica... melhor você confirmar com a Ana.
+O que sei é a multa padrão: R$ 1,00 por dia de atraso. Mas avarias é outro assunto que eu não tenho segurança pra responder.
+
+Que tipo de informações você precisa preencher para cada um (aluno, professor e funcionário)?
+R: Olha, quando o usuário vem fazer cadastro ou renovar dados, a gente coleta o básico — nome, matrícula, email, telefone. Mas os detalhes específicos de cada campo e se muda conforme o perfil... isso é mais com a Ana ou com a Júlia, que trabalha direto com o sistema.
+Eu sei que existe diferença de privilégio entre aluno, professor e funcionário — prazos, limites de livros, tudo muda. Mas exatamente quais informações são obrigatórias ou opcionais para cada um, aí você precisa conversar com elas.
+
+Respostas Ana:
+Para a realização do cadastro de um livro, é necessário ter certas informações sobre o livro, como o título, ISBN, edição entre outras. Quais informações do livro são necessárias para realizar o tombo desse livro quando ele chega na biblioteca.? Além disso, é gerado algum código de barras, QR Code para colar no livro?
+R: 
+Título, autor, ISBN, editora, edição, ano e número de tombo gerado pelo sistema. O número de tombo é o identificador interno de cada exemplar físico.
+Sim, geramos etiqueta com código de barras pra colar na lombada. QR Code nunca usamos aqui, sempre foi código de barras mesmo.
+
+Atualmente, como o processo de reserva é feito? Quais as informações necessárias do livro para realizar a reserva manualmente no balcão da biblioteca?
+R:
+Hoje é tudo no caderno mesmo. Anotamos nome do aluno, matrícula, título do livro e data da reserva. A reserva vale 2 dias úteis, se não vier buscar, cancela.
+
+Livro de referência não entra em reserva, só consulta local

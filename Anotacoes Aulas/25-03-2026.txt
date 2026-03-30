@@ -1,0 +1,150 @@
+
+Refinamento das Perguntas / Extração de RN, RNF, RF
+
+Amauri:
+Perguntas Júlia:
+No processo de empréstimo, depois que você registra o livro para o usuário, o sistema permite fazer renovação do empréstimo? Se permite, essa renovação é feita no mesmo lugar do empréstimo ou em tela do sistema? (Amauri)
+
+Quando um usuário tenta pegar vários livros ao mesmo tempo, o sistema mostra alguma mensagem de limite ou bloqueio, ou ele só deixa continuar normalmente o empréstimo? (Amauri)
+
+Perguntas Rosa:
+Além da diferença de prazo e quantidade de livros entre alunos e professores, existe outra regra diferente entre eles, tipo renovação, reserva, multa ou prioridade em fila de reserva? (Amauri)
+
+
+Perguntas Ana:
+No novo sistema, quais funções a senhora considera essenciais que o sistema deve ter desde o início, exemplo: cadastro de usuários, acervo, empréstimo, devolução, etc? (Amauri)
+
+CAIO:
+Estagiária
+3 — Em que momento é feito o tombo do livro e quais documentos são gerados: 
+Acho que o tombo é feito quando o livro chega novo na biblioteca. A Ana cadastra o livro no sistema e coloca o número de tombo lá. Acho que tem uma etiqueta física que vai no livro também. Documento gerado... acho que fica só no sistema mesmo. Não lembro de impressão específica pra isso.
+
+PERGUNTA REFINADA ---> Para a Ana
+Para a realização do cadastro de um livro, é necessário ter certas informações sobre o livro, como o título, ISBN, edição entre outras. Quais informações do livro são necessárias para realizar o tombo desse livro quando ele chega na biblioteca.? Além disso, é gerado algum código de barras, QR Code para colar no livro?                                                                                                                      
+
+
+9 — O que te dá mais dificuldade ao usar o sistema: 
+Quando o sistema trava! Na época de prova é pior, fica muito lento e às vezes congela no meio de um registro. A gente tem que fechar e abrir de novo e torcer pra ter salvo. Isso é o que me dá mais trabalho.
+
+PERGUNTA REFINADA ---> Júlia, você citou que o sistema fica muito instável, principalmente na época de prova que vários alunos pedem livros e realizam a devolução, gostaria de saber quantas pessoas utilizam o sistema durante essa alta demanda da biblioteca?
+
+12 — O sistema atual atende bem às necessidades da biblioteca: 
+Mais ou menos. Para o básico de empréstimo e devolução funciona, mas tem muita coisa manual que poderia ser automática — reservas, notificações. E os travamentos atrapalham muito o atendimento no dia a dia.
+
+PERGUNTA REFINADA --->  Júlia, você relatou que realiza o empréstimo e devolução e que o sistema "funciona", mas a interface do sistema atual, é amigável? Quero dizer: a sua aprendizagem sobre como utilizar o sistema, foi fácil ou difícil? As telas são fáceis de entender? 
+Rosa
+
+7 — Como é feito o controle de prazos e multas:
+Quando o livro não é devolvido no prazo, o status muda pra atrasado. Na devolução a multa é gerada automaticamente — R$ 1,00 por dia, conta todos os dias. Usuário fica bloqueado até pagar.
+
+PERGUNTA REFINADA ---> Ótimo, é gerado uma suspensão para o usuário retirar livros e cadastrar para reserva, e ao mesmo tempo é aplicado uma punição, que é acumulada em R$ 1,00 por dia, certo? Porém gostaria de confirmar se a multa é contada em dias úteis ou também é aplicada aos sábados, domingos e feriados. 
+
+
+Boa noite Rosa,  ao ouvir as outras funcionárias percebi que uma reclamação recorrente é a falta de notificações do sistema atual e que atualmente são feitas por e-mails e telefone. Qual a frequência que o sistema informará para o aluno sobre as pendências / reserva?
+
+Ana
+
+4 — Qual é o maior risco por causa das limitações do sistema atual: 
+Perda de controle do acervo por travamento no meio de um registro. Reservas manuais geram conflito de fila. Ausência de notificação gera atraso sem que o usuário saiba.
+
+PERGUNTA REFINADA ---> Atualmente, como o processo de reserva é feito? Quais os documentos para o aluno ou professor, e quais as informações necessárias do livro para realizar a reserva manualmente no balcão da biblioteca? Por exemplo é utilizado um ID de cadastro de Tombo ou um ISBN do livro? O cadastro de alunos é feito por meio de um e-mail institucional e para os professores é de outro modo? 
+
+A Rosa me respondeu quanto aos prazos e limites de livro, que são diferentes para alunos e professores. Mas gostaria de saber se existe uma diferença para número de reserva para professores? Por exemplo, possibilitar a reserva de vários exemplares para a utilização em uma aula? 
+
+
+
+Se sim, existe algum prazo mínimo necessário para informar a data quando irá precisar os livros para a biblioteca se organizar? (INUTILIZADO)
+
+Rosa
+3 — Quantos livros o usuário pode reservar: (Possível pergunta que já temos que fazer)
+Não lembro o número exato. Confirme com a Ana. 
+
+4 — Por quanto tempo o livro fica reservado: (Juntar com a pergunta de cima, que é importante, "uns" não demonstra certeza)
+Uns 3 dias. Se o usuário não retirar, a reserva cai e passa pro próximo.
+
+9 — É necessário salvar histórico de empréstimos para relatórios: (Podemos perguntar sobre isso, mas não sei se é uma boa ideia...)
+Sim. Histórico por usuário é relatório importante. O sistema atual tem mas é limitado.
+
+Ana
+5 — O sistema atual atende bem às necessidades: (Cliente Desgraçada)
+Para empréstimo e devolução básicos, sim. Para o que a biblioteca precisa hoje — não. É por isso que estamos aqui.
+
+Gabriel:
+Perguntas Júlia: 5, 10 e 11 
+Júlia: O que poderia ser melhorado no cadastro dos livros?
+
+Pergunta refinada: Quais alterações são necessárias para tornar o sistema de cadastramento dos livros melhor? Qual a maior dificuldade encontrada nesse sistema atual para que precise ser efetuada essa mudança?
+
+Júlia: O que você acha que está faltando no sistema?
+
+Pergunta refinada: Na sua rotina, e pela sua experiência com o sistema, qual ou quais funções você tem em mente que estejam sendo necessárias para aplicar nesse sistema e torná-lo mais fácil de ser utilizado? 
+
+Júlia: Quais as principais reclamações dos alunos e professores?
+
+Pergunta refinada: Desde seu primeiro contato com esse sistema, no geral, quais foram os principais feedbacks negativos dos usuários, alunos, professores e funcionários?
+
+Pergunta Rosa: 8
+
+Rosa: As informações de cadastro são as mesmas para alunos, professores e funcionários?
+
+Pergunta refinada: Existe alguma diferença entre as informações de cadastro pertencentes a um aluno de um professor ou um funcionário?
+
+Pergunta Ana: 2
+
+Ana: Qual a maior necessidade que vocês buscam no sistema?
+
+Pergunta refinada: Possuindo um ótimo conhecimento do sistema, qual a principal exigência que é esperada existir no sistema?
+
+
+Perguntas organizadas(usamos IA para organizar,apenas isso)
+
+
+JÚLIA
+Amauri:
+No processo de empréstimo, depois que você registra o livro para o usuário, o sistema permite fazer renovação do empréstimo? Se permite, essa renovação é feita no mesmo lugar do empréstimo ou em tela do sistema? (Amauri)
+Quando um usuário tenta pegar vários livros ao mesmo tempo, o sistema mostra alguma mensagem de limite ou bloqueio, ou ele só deixa continuar normalmente o empréstimo? (Amauri)
+PERGUNTA REFINADA ---> Júlia, você citou que o sistema fica muito instável, principalmente na época de prova que vários alunos pedem livros e realizam a devolução, gostaria de saber quantas pessoas utilizam o sistema durante essa alta demanda da biblioteca.
+PERGUNTA REFINADA ---> Júlia, você relatou que realiza o empréstimo e devolução e que o sistema "funciona", mas a interface do sistema atual, é amigável? Quero dizer: a sua aprendizagem sobre como utilizar o sistema, foi fácil ou difícil? As telas são fáceis de entender?
+Gabriel:
+Júlia: O que poderia ser melhorado no cadastro dos livros?
+Pergunta refinada: Quais alterações são necessárias para tornar o sistema de cadastramento dos livros melhor? Qual a maior dificuldade encontrada nesse sistema atual para que precise ser efetuada essa mudança?
+Júlia: O que você acha que está faltando no sistema?
+Pergunta refinada: Na sua rotina, e pela sua experiência com o sistema atual, qual ou quais funções você tem em mente que estejam sendo necessárias para aplicar nesse sistema e torná-lo mais fácil de ser utilizado?
+Júlia: Quais as principais reclamações dos alunos e professores?
+Pergunta refinada: Desde seu primeiro contato com esse sistema, no geral, quais foram os principais feedbacks negativos dos usuários, alunos, professores e funcionários?
+
+ROSA
+Amauri:
+Além da diferença de prazo e quantidade de livros entre alunos e professores, existe outra regra diferente entre eles, tipo renovação, reserva, multa ou prioridade em fila de reserva? (Amauri)
+PERGUNTA REFINADA ---> Ótimo, é gerado uma suspensão para o usuário retirar livros e cadastrar para reserva, e ao mesmo tempo é aplicado uma punição, que é acumulada em R$ 1,00 por dia, certo? Porém gostaria de confirmar se a multa é contada em dias úteis ou também é aplicada aos sábados, domingos e feriados. E ao ouvir as outras funcionárias percebi que uma reclamação recorrente é a falta de notificações do sistema atual e que atualmente são feitas por e-mails e telefone. Qual a frequência que o sistema informaria para o aluno sobre as pendências / reserva?
+Rosa:
+3 — Quantos livros o usuário pode reservar: (Possível pergunta que já temos que fazer)
+Não lembro o número exato. Confirme com a Ana.
+4 — Por quanto tempo o livro fica reservado: (Juntar com a pergunta de cima, que é importante, "uns" não demonstra certeza)
+Uns 3 dias. Se o usuário não retirar, a reserva cai e passa pro próximo.
+9 — É necessário salvar histórico de empréstimos para relatórios: (Podemos perguntar sobre isso, mas não sei se é uma boa ideia...)
+Sim. Histórico por usuário é relatório importante. O sistema atual tem mas é limitado.
+Gabriel:
+Pergunta Rosa: 8
+Rosa: As informações de cadastro são as mesmas para alunos, professores e funcionários?
+Pergunta refinada: Existe alguma diferença entre as informações de cadastro pertencentes a um aluno de um professor ou um funcionário?
+
+ANA
+Amauri:
+No novo sistema, quais funções a senhora considera essenciais que o sistema deve ter desde o início, exemplo: cadastro de usuários, acervo, empréstimo, devolução, etc? (Amauri)
+CAIO:
+PERGUNTA REFINADA ---> Para a Ana
+Para a realização do cadastro de um livro, é necessário ter certas informações sobre o livro, como o título, ISBN, edição entre outras. Quais informações do livro são ser realizado o tombo desse livro quando ele chega na biblioteca. Além disso é gerado algum código de barras, QR Code para colar no livro?
+Ana:
+PERGUNTA REFINADA ---> Atualmente, como o processo de reserva é feito? Quais as informações necessárias do livro para realizar a reserva manualmente no balcão da biblioteca? Por exemplo, é utilizado um ID de cadastro de Tombo ou um ISBN do livro?
+Além disso, a Rosa me respondeu quanto aos prazos e limites de livro, que são diferentes para alunos e professores, existe uma diferença para número de reserva para professores? Por exemplo, possibilitar a reserva de vários exemplares para a utilização em uma aula? Se sim, existe algum prazo mínimo necessário para informar a data quando irá precisar os livros para a biblioteca se organizar?
+Ana:
+4 — Qual é o maior risco por causa das limitações do sistema atual:
+Perda de controle do acervo por travamento no meio de um registro. Reservas manuais geram conflito de fila. Ausência de notificação gera atraso sem que o usuário saiba.
+Ana:
+5 — O sistema atual atende bem às necessidades:
+Para empréstimo e devolução básicos, sim. Para o que a biblioteca precisa hoje — não. É por isso que estamos aqui.
+Gabriel:
+Pergunta Ana: 2
+Ana: Qual a maior necessidade que vocês buscam no sistema?
+Pergunta refinada: Possuindo um ótimo conhecimento do sistema, qual a principal exigência que é esperada existir no sistema?
