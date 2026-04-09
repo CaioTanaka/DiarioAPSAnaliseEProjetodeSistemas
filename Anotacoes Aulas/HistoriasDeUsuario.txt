@@ -1,0 +1,91 @@
+Histórias de usuários
+
+Módulo de cadastro (Amauri)
+
+1. Cadastro de alunos
+Como bibliotecária
+Quero cadastrar alunos com nome, telefone, email, cpf e número de matrícula
+Para registrar o aluno no sistema e gerenciar empréstimo, reserva, devolução, etc dele.
+
+2. Cadastro de professores
+Como bibliotecária
+Quero cadastrar professores com nome, telefone, email, cpf, 
+Para registrar o professor e administrar as funções que ele utiliza e liberar funções que só professores possuem como maior prazo e quantidade de empréstimo.
+
+3. Cadastro de funcionários
+Como bibliotecária
+Quero cadastrar funcionário com nome, telefone, email, cpf,  
+Para registrar o funcionário e liberar as funções que ele possui para gerenciar o acervo da biblioteca.
+
+Módulo de reserva(Nicolas)
+história de reserva:
+Como aluno 
+quero consultar
+um exemplar
+Para reservá-lo
+
+Cenários:
+
+	
+
+
+Módulo de empréstimo(Caio)
+Como [perfil]
+Quero [objetivo]
+Para [valor]
+
+
+como aluno
+quero consultar um livro
+para realizar um empréstimo
+
+Como usuário bibliotecária
+Quero realizar o empréstimo de um exemplar para um usuário que não tenha penalidades
+Para aplicar as regras de negócio de acordo com os usuários que estão utilizando.
+
+Cenários:
+Dado que o usuário,está sem penalidades, que impeçam o empréstimo
+Quando a bibliotecária confirmar o empréstimo
+Então o sistema deve realizar o empréstimo, informando informações sobre o livro, data de empréstimo, devolução.
+
+1.
+Empréstimo válido:
+
+
+
+Módulo de devolução(vitor)
+Como aluno/professor
+Quero ver quais livros preciso devolver em quais dias
+Para organizar os horários e ver se preciso estender o tempo de empréstimo
+
+1-Dado que o aluno/professor tenha livros emprestados
+Quando consultar os livros que ele tem emprestado
+Então o sistema deve informar o dia que cada livro deve ser entrega e o nome do livro
+
+2-Dado que o aluno/professor tenha devolução atrasado
+Quando consultar os livros que ele tem emprestado
+Então o sistema o informa sobre a devolução atrasada,por quantas dias esta atrasada e sua devida multa
+
+Como bibliotecária
+Quero ver se tem devoluções em atraso em geral
+Para lembrar tal usuario de devolver seu livro e barra-lo de pegar outro
+
+1-Dado que tenha devoluções atrasadas
+Quando consultar emprestimos em andamento
+Então mostrar emprestimos que passaram do limite e o nome do usuario,alem de sua multa acumulada
+
+
+Módulo de histórico(gabriel)
+
+História de Usuário
+
+Como Aluno/Professor
+Quero verificar todos os exemplares emprestados
+Para poder acessar o conteúdo adquirido desde o primeiro empréstimo
+
+Cenários
+
+Dado que o Aluno/Professor queira analisar a tela de histórico
+Quando o usuário acessar a área do histórico
+Então o sistema deve apresentar todo o registro de empréstimos deste usuário
+
