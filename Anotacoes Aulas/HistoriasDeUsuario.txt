@@ -26,6 +26,7 @@ Para reservá-lo
 
 Cenários:
 
+
 	
 
 
@@ -39,14 +40,71 @@ como aluno
 quero consultar um livro
 para realizar um empréstimo
 
+1-
 Como usuário bibliotecária
 Quero realizar o empréstimo de um exemplar para um usuário que não tenha penalidades
-Para aplicar as regras de negócio de acordo com os usuários que estão utilizando.
+Para aplicar as restrições de prazo e quantidade de livros
 
 Cenários:
-Dado que o usuário,está sem penalidades, que impeçam o empréstimo
+Dado que o usuário, está sem penalidades, que impeçam o empréstimo
 Quando a bibliotecária confirmar o empréstimo
 Então o sistema deve realizar o empréstimo, informando informações sobre o livro, data de empréstimo, devolução.
+
+Dado que o exemplar não se encontra disponível
+Quando a bibliotecária tentar realizar o empréstimo
+Então o sistema deve dar a opção de realizar a reserva do livro.
+
+Dado que o usuário é um professor
+Quando for realizar um empréstimo
+Então o sistema deve permitir o empréstimo de 5 livros, com um prazo de devolução de 15 dias.
+
+Dado que o usuário é um aluno
+Quando for realizar um empréstimo
+Então o sistema deve permitir o empréstimo de 2 livros, com um prazo de devolução de 7 dias.
+
+Dado que o aluno pode pegar emprestado
+Quando a bibliotecária acessar para cadastrar o empréstimo
+Então o sistema deve ofertar a possibilidade de procurar o livro por ISBN
+
+2-
+Como usuário bibliotecária
+Quero abater as multas de atraso do usuário bloqueado
+Para que o usuário consiga apagar as penalidades e 
+
+Cenários:
+
+
+3-
+Como usuário bibliotecária
+Quero cancelar o empréstimo de um exemplar que foi confirmado para um usuário
+Para, caso aconteça um erro durante (Livro errado / aluno) o empréstimo, seja possível cancelar.
+
+Cenários:
+Dado que seja necessário o cancelamento de um empréstimo
+Quando apertar o botão de cancelar
+Então o sistema deve automaticamente retornar o livro disponível, e avisar sobre o cancelamento do empréstimo
+
+4-
+Como usuário aluno
+Quero procurar livros para saber se estão disponíveis na biblioteca
+Para o aluno ter a condição de saber se o exemplar está disponível ou não.
+
+Cenários:
+Dado que o aluno / professor esteja em “Empréstimo”
+Quando ele entrar para procurar um livro
+Então o sistema deve ofertar categorias para realizar o filtro. Exemplo: Curso, Área.
+
+
+5-
+Como usuário bibliotecária
+Quero realizar a pesquisa de usuários pelo campo de e-mail
+Para facilitar o cadastro na página de empréstimo
+
+Cenários:
+Dado que o aluno ou professor, possua penalidades como multas
+Quando o perfil aparecer
+Então o sistema deve avisar, e dar a possibilidade de realizar o pagamento e caso seja realizado, deve permitir prosseguir o empréstimo.
+
 
 1.
 Empréstimo válido:
@@ -81,11 +139,22 @@ História de Usuário
 
 Como Aluno/Professor
 Quero verificar todos os exemplares emprestados
-Para poder acessar o conteúdo adquirido desde o primeiro empréstimo
+Para poder acessar o registro de empréstimos adquiridos desde o primeiro empréstimo
 
 Cenários
 
-Dado que o Aluno/Professor queira analisar a tela de histórico
+Dado que o aluno ou professor esteja registrado no sistema
 Quando o usuário acessar a área do histórico
 Então o sistema deve apresentar todo o registro de empréstimos deste usuário
 
+Dado que o aluno ou professor esteja registrado no sistema, mas não possua empréstimos registrados
+Quando o usuário acessar a área do histórico
+Então uma mensagem deve ser exibida pelo sistema, informando que não há empréstimos registrados
+
+Dado que o usuário possua vários empréstimos
+Quando o usuário acessar o histórico
+Então o sistema deve apresentar os registros dos empréstimos ordenados por data
+
+Dado que o aluno ou professor esteja analisando o histórico
+Quando selecionar um empréstimo
+Então o sistema deve exibir os detalhes do empréstimo selecionado
