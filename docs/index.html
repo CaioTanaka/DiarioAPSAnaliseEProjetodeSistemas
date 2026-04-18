@@ -12,11 +12,73 @@
             --bg-light: #f4f7f6;
             --text-dark: #333;
             --gray-border: #ddd;
+            --sidebar-width: 250px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-        body { background-color: var(--bg-light); color: var(--text-dark); }
+        body { background-color: var(--bg-light); color: var(--text-dark); display: flex; min-height: 100vh; }
+
+        /* Barra Lateral (Sidebar) */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: white;
+            border-right: 1px solid var(--gray-border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .user-profile {
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            background-color: #fafafa;
+        }
+
+        .user-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--gray-border);
+            margin: 0 auto 10px;
+            border: 3px solid var(--ifpr-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #999;
+            overflow: hidden;
+        }
+
+        .user-name { font-weight: bold; color: var(--ifpr-green); font-size: 1.1rem; }
+        .user-role { font-size: 0.85rem; color: #777; margin-top: 2px; }
+
+        .nav-menu { flex-grow: 1; padding: 1rem 0; overflow-y: auto; }
+        .nav-item {
+            padding: 12px 20px;
+            display: block;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            border-left: 4px solid transparent;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .nav-item:hover { background-color: #f0f0f0; color: var(--ifpr-green); }
+        .nav-item.active {
+            background-color: #eaf5ec;
+            color: var(--ifpr-green);
+            border-left-color: var(--ifpr-green);
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+        }
 
         header {
             background-color: var(--ifpr-green);
@@ -28,8 +90,9 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
 
+        /* Cards */
         .card {
             background: white;
             border-radius: 8px;
@@ -38,17 +101,19 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-top: 4px solid var(--ifpr-green);
         }
-
         .card-red { border-top: 4px solid var(--ifpr-red); }
+        .card-yellow { border-top: 4px solid #f1c40f; }
 
         h2 { margin-bottom: 1rem; font-size: 1.2rem; color: var(--ifpr-green); text-transform: uppercase; }
 
         .grid-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+        .grid-form-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        .input-group { display: flex; flex-direction: column; }
+        .input-group { display: flex; flex-direction: column; margin-bottom: 10px; }
         label { font-size: 0.85rem; margin-bottom: 5px; font-weight: bold; }
         input, select { padding: 10px; border: 1px solid var(--gray-border); border-radius: 4px; }
 
+        /* Botões */
         .btn {
             padding: 10px 20px;
             border: none;
@@ -57,11 +122,20 @@
             font-weight: bold;
             transition: 0.3s;
         }
-
         .btn-primary { background: var(--ifpr-green); color: white; }
         .btn-primary:hover { background: #288a35; }
         .btn-danger { background: var(--ifpr-red); color: white; }
         .btn-outline { background: transparent; border: 1px solid var(--ifpr-green); color: var(--ifpr-green); }
+
+        /* Tabela e Badges */
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { background: #f9f9f9; font-size: 0.9rem; }
+
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
+        .badge-success { background: #e6f4ea; color: #1e7e34; }
+        .badge-error { background: #fce8e6; color: #d93025; }
+        .badge-warn { background: #fff3cd; color: #856404; }
 
         .alert-penalty {
             background-color: #fff3f3;
@@ -75,111 +149,313 @@
             margin-top: 1rem;
         }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
-        th { background: #f9f9f9; font-size: 0.9rem; }
-
-        .badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: bold;
+        .alert-box {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .badge-success { background: #e6f4ea; color: #1e7e34; }
-        .badge-error { background: #fce8e6; color: #d93025; }
+        .alert-error { background-color: #fff3f3; border-color: #facdcd; color: var(--ifpr-red); }
 
         .footer-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem; }
+        
+        .modulo { display: none; }
+        .modulo.active { display: block; }
+
+        .barcode-box {
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo"><strong>IFPR</strong> | Biblioteca</div>
-    <nav>Módulo de Empréstimo</nav>
-</header>
-
-<div class="container">
+<div class="sidebar">
+    <div class="user-profile">
+        <div class="user-photo"><span>👤</span></div>
+        <p class="user-name">Ana Silva</p>
+        <p class="user-role">Bibliotecária</p>
+    </div>
     
-    <section class="card">
-        <h2>1. Identificar Usuário</h2>
-        <div class="grid-form">
-            <div class="input-group">
-                <label>Pesquisar por E-mail</label>
-                <input type="email" placeholder="exemplo@ifpr.edu.br">
-            </div>
-            <div class="input-group">
-                <label>Tipo de Vínculo</label>
-                <select disabled>
-                    <option>Aluno (Limite 2 livros / 7 dias)</option>
-                    <option selected>Professor (Limite 5 livros / 15 dias)</option>
-                </select>
-            </div>
-            <button class="btn btn-primary">Buscar</button>
-        </div>
-
-        <div class="alert-penalty">
-            <span><strong>Atenção:</strong> Usuário possui multa pendente de R$ 5,00.</span>
-            <button class="btn btn-danger">Abater Multa / Pagar</button>
-        </div>
-    </section>
-
-    <section class="card">
-        <h2>2. Selecionar Exemplares</h2>
-        <div class="grid-form">
-            <div class="input-group">
-                <label>ISBN ou Título</label>
-                <input type="text" placeholder="Digite o ISBN ou nome do livro...">
-            </div>
-            <div class="input-group">
-                <label>Filtrar por Categoria</label>
-                <select>
-                    <option>Todas as Áreas</option>
-                    <option>Informática</option>
-                    <option>Mecânica</option>
-                    <option>Administração</option>
-                </select>
-            </div>
-            <button class="btn btn-outline">Pesquisar</button>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>ISBN</th>
-                    <th>Status</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Engenharia de Software</td>
-                    <td>978-85-333-0227-3</td>
-                    <td><span class="badge badge-success">Disponível</span></td>
-                    <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Selecionar</button></td>
-                </tr>
-                <tr>
-                    <td>Algoritmos e Lógica</td>
-                    <td>978-85-221-1129-9</td>
-                    <td><span class="badge badge-error">Emprestado</span></td>
-                    <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">Reservar</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section class="card card-red">
-        <h2>3. Resumo do Empréstimo</h2>
-        <p><strong>Livro:</strong> Engenharia de Software</p>
-        <p><strong>Data de Devolução:</strong> 03/05/2026 <small>(Prazo de 15 dias aplicado - Professor)</small></p>
-        
-        <div class="footer-actions">
-            <button class="btn btn-danger">Cancelar Operação</button>
-            <button class="btn btn-primary">Confirmar Empréstimo</button>
-        </div>
-    </section>
-
+    <nav class="nav-menu">
+        <a class="nav-item active" onclick="switchModulo('emprestimo')">🤝 Empréstimo</a>
+        <a class="nav-item" onclick="switchModulo('cad-perfil')">👤 Cadastrar Perfis</a>
+        <a class="nav-item" onclick="switchModulo('cad-livro')">📚 Cadastrar Livros</a>
+        <a class="nav-item" onclick="switchModulo('reserva')">🔖 Reservas</a>
+        <a class="nav-item" onclick="switchModulo('devolucao')">🔄 Devoluções</a>
+        <a class="nav-item" onclick="switchModulo('historico')">📜 Histórico</a>
+    </nav>
 </div>
+
+<div class="main-content">
+    <header>
+        <div class="logo"><strong>IFPR</strong> | Biblioteca</div>
+        <div id="modulo-title">Módulo de Empréstimo</div>
+    </header>
+
+    <div class="container">
+        
+        <div id="emprestimo" class="modulo active">
+            <section class="card">
+                <h2>1. Identificar Usuário</h2>
+                <div class="grid-form">
+                    <div class="input-group">
+                        <label>Pesquisar por E-mail</label>
+                        <input type="email" placeholder="exemplo@ifpr.edu.br">
+                    </div>
+                    <div class="input-group">
+                        <label>Tipo de Vínculo</label>
+                        <select disabled>
+                            <option>Aluno (Limite 2 livros / 7 dias)</option>
+                            <option selected>Professor (Limite 5 livros / 15 dias)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">Buscar</button>
+                </div>
+                <div class="alert-penalty">
+                    <span><strong>Atenção:</strong> Usuário possui multa pendente de R$ 5,00.</span>
+                    <button class="btn btn-danger">Abater Multa / Pagar</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>2. Selecionar Exemplares</h2>
+                <div class="grid-form">
+                    <div class="input-group">
+                        <label>ISBN ou Título</label>
+                        <input type="text" placeholder="Digite o ISBN ou nome do livro...">
+                    </div>
+                    <div class="input-group">
+                        <label>Filtrar por Categoria</label>
+                        <select>
+                            <option>Todas as Áreas</option>
+                            <option>Informática</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline">Pesquisar</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr><th>Título</th><th>ISBN</th><th>Status</th><th>Ação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Engenharia de Software</td><td>978-85-333...</td><td><span class="badge badge-success">Disponível</span></td><td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 11px;">Selecionar</button></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div id="cad-perfil" class="modulo">
+            <section class="card">
+                <h2>Cadastrar Novo Perfil (Usuário)</h2>
+                <div class="grid-form-2">
+                    <div class="input-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Nome do Aluno, Professor ou Funcional">
+                    </div>
+                    <div class="input-group">
+                        <label>E-mail Institucional</label>
+                        <input type="email" placeholder="nome@ifpr.edu.br">
+                    </div>
+                    <div class="input-group">
+                        <label>Tipo de Usuário</label>
+                        <select>
+                            <option>Aluno</option>
+                            <option>Professor</option>
+                            <option>Funcionário</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Documento (CPF ou Matrícula)</label>
+                        <input type="text" placeholder="Apenas números">
+                    </div>
+                </div>
+                <div class="footer-actions">
+                    <button class="btn btn-outline">Cancelar</button>
+                    <button class="btn btn-primary">Cadastrar Perfil</button>
+                </div>
+            </section>
+        </div>
+
+        <div id="cad-livro" class="modulo">
+            <section class="card">
+                <h2>Cadastrar Obra e Exemplares</h2>
+                <div class="grid-form-2">
+                    <div class="input-group">
+                        <label>Título da Obra</label>
+                        <input type="text" placeholder="Ex: Clean Code">
+                    </div>
+                    <div class="input-group">
+                        <label>ISBN</label>
+                        <input type="text" placeholder="000-00-0000-000-0">
+                    </div>
+                    <div class="input-group">
+                        <label>Autor</label>
+                        <input type="text" placeholder="Nome do autor">
+                    </div>
+                    <div class="input-group">
+                        <label>Categoria</label>
+                        <select>
+                            <option>Informática</option>
+                            <option>Mecânica</option>
+                            <option>Administração</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="barcode-box">
+                    <small>Pré-visualização do Número de Tombo Gerado:</small><br>
+                    <strong>IFPR-2026-X99</strong>
+                </div>
+                <div class="footer-actions">
+                    <button class="btn btn-outline">Limpar</button>
+                    <button class="btn btn-primary">Salvar Livro e Gerar Exemplar</button>
+                </div>
+            </section>
+        </div>
+
+        <div id="reserva" class="modulo">
+            <section class="card">
+                <h2>🔖 Nova Reserva</h2>
+                <div class="grid-form">
+                    <div class="input-group">
+                        <label>Matrícula do Aluno</label>
+                        <input type="text" placeholder="Ex: 202300123">
+                    </div>
+                    <div class="input-group">
+                        <label>ID do Exemplar</label>
+                        <input type="text" placeholder="Código de Tombo">
+                    </div>
+                    <button class="btn btn-primary">Verificar Disponibilidade</button>
+                </div>
+                <div class="alert-box alert-error" style="margin-top: 1.5rem;">
+                    <span><strong>Bloqueio de Reserva:</strong> O aluno atingiu o limite de 2 livros simultâneos.</span>
+                </div>
+            </section>
+
+            <section class="card card-yellow">
+                <h2>Status de Exemplares para Reserva</h2>
+                <table>
+                    <thead>
+                        <tr><th>Livro</th><th>Status Atual</th><th>Ação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Algoritmos Estruturados</td>
+                            <td><span class="badge badge-error">Já Reservado</span></td>
+                            <td><button class="btn btn-outline" disabled>Indisponível</button></td>
+                        </tr>
+                        <tr>
+                            <td>Banco de Dados SQL</td>
+                            <td><span class="badge badge-success">Disponível</span></td>
+                            <td><button class="btn btn-primary">Efetuar Reserva</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
+        <div id="devolucao" class="modulo">
+            <section class="card">
+                <h2>🔄 Devolução de Exemplar</h2>
+                <div class="grid-form">
+                    <div class="input-group">
+                        <label>Pesquisar Usuário (Nome ou Matrícula)</label>
+                        <input type="text" id="searchDevolucao" placeholder="Digite para buscar...">
+                    </div>
+                    <div></div>
+                    <button class="btn btn-primary">Buscar Empréstimos</button>
+                </div>
+            </section>
+
+            <section class="card card-red">
+                <h2>Livros em Atraso / Multas</h2>
+                <table>
+                    <thead>
+                        <tr><th>Livro</th><th>Data Esperada</th><th>Dias Atraso</th><th>Multa Acumulada</th><th>Ação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cálculo Diferencial I</td>
+                            <td>10/04/2026</td>
+                            <td>8 dias</td>
+                            <td><strong>R$ 8,00</strong></td>
+                            <td>
+                                <button class="btn btn-danger" onclick="this.parentElement.parentElement.style.display='none'">Confirmar Devolução</button>
+                                <button class="btn btn-outline" onclick="alert('Multa paga!')">Quitar Multa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="card">
+                <h2>Informações de Multas Detalhadas</h2>
+                <table style="font-size: 0.85rem;">
+                    <thead>
+                        <tr><th>Data do Registro</th><th>Descrição</th><th>Valor do Dia</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>11/04/2026</td><td>Multa por atraso (Dia 1)</td><td>R$ 1,00</td></tr>
+                        <tr><td>12/04/2026</td><td>Multa por atraso (Dia 2)</td><td>R$ 1,00</td></tr>
+                        <tr style="background: #eee;"><td><strong>TOTAL</strong></td><td></td><td><strong>R$ 16,00</strong></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div id="historico" class="modulo">
+            <section class="card">
+                <h2>📜 Histórico de Empréstimos</h2>
+                <p style="margin-bottom: 1rem;"><strong>Usuário:</strong> Ricardo Oliveira (Professor)</p>
+                <table>
+                    <thead>
+                        <tr><th>Data Empréstimo</th><th>Título</th><th>Data Devolução</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>01/03/2026</td><td>Engenharia de Software</td><td>15/03/2026</td><td><span class="badge badge-success">Devolvido no Prazo</span></td></tr>
+                        <tr><td>05/04/2026</td><td>Redes de Computadores</td><td>--</td><td><span class="badge badge-warn">Em Aberto</span></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+    </div> </div> <script>
+    function switchModulo(moduloId) {
+        // Esconde todos os módulos
+        document.querySelectorAll('.modulo').forEach(m => m.classList.remove('active'));
+        // Desativa todos os itens do menu
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        
+        // Ativa o selecionado
+        const target = document.getElementById(moduloId);
+        if(target) target.classList.add('active');
+        
+        // Ativa o botão no menu lateral
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            if(item.getAttribute('onclick').includes(moduloId)) {
+                item.classList.add('active');
+            }
+        });
+        
+        // Atualiza o título do header
+        const titles = {
+            'emprestimo': 'Módulo de Empréstimo',
+            'cad-perfil': 'Cadastrar Perfis',
+            'cad-livro': 'Cadastrar Livros',
+            'reserva': 'Módulo de Reservas',
+            'devolucao': 'Módulo de Devoluções',
+            'historico': 'Módulo de Histórico'
+        };
+        document.getElementById('modulo-title').innerText = titles[moduloId] || 'Sistema de Biblioteca';
+    }
+</script>
 
 </body>
 </html>
