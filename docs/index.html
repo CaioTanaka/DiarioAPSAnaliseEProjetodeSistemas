@@ -172,6 +172,70 @@
             text-align: center;
             margin-top: 10px;
         }
+
+        /* --- Estilos Novos para a Home --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--ifpr-green);
+        }
+        .stat-card h3 { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
+        .stat-card .value { font-size: 1.8rem; font-weight: bold; color: var(--ifpr-green); }
+
+        .chart-placeholder {
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            padding-top: 20px;
+        }
+        .bar {
+            flex-grow: 1;
+            background: var(--ifpr-green);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+        }
+
+        .calendar-simple {
+            text-align: center;
+        }
+        .calendar-header { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            font-size: 0.8rem;
+        }
+        .day { padding: 5px; border-radius: 4px; }
+        .day.today { background: var(--ifpr-green); color: white; }
+
+        .notice-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .notice-item:last-child { border-bottom: none; }
+        .notice-date { font-size: 0.75rem; color: #999; }
+        .notice-text { font-size: 0.9rem; margin-top: 3px; }
     </style>
 </head>
 <body>
@@ -184,7 +248,8 @@
     </div>
     
     <nav class="nav-menu">
-        <a class="nav-item active" onclick="switchModulo('emprestimo')">🤝 Empréstimo</a>
+        <a class="nav-item active" onclick="switchModulo('home')">🏠 Home</a>
+        <a class="nav-item" onclick="switchModulo('emprestimo')">🤝 Empréstimo</a>
         <a class="nav-item" onclick="switchModulo('cad-perfil')">👤 Cadastrar Perfis</a>
         <a class="nav-item" onclick="switchModulo('cad-livro')">📚 Cadastrar Livros</a>
         <a class="nav-item" onclick="switchModulo('reserva')">🔖 Reservas</a>
@@ -196,12 +261,77 @@
 <div class="main-content">
     <header>
         <div class="logo"><strong>IFPR</strong> | Biblioteca</div>
-        <div id="modulo-title">Módulo de Empréstimo</div>
+        <div id="modulo-title">Painel Geral</div>
     </header>
 
     <div class="container">
         
-        <div id="emprestimo" class="modulo active">
+        <div id="home" class="modulo active">
+            <div class="dashboard-grid">
+                <div class="left-col">
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <h3>Livros Emprestados</h3>
+                            <div class="value">42</div>
+                            <select style="margin-top: 10px; padding: 5px; font-size: 0.8rem;">
+                                <option>Abril / 2026</option>
+                                <option>Março / 2026</option>
+                            </select>
+                        </div>
+                        <div class="stat-card" style="border-left-color: var(--ifpr-red);">
+                            <h3>Devoluções Pendentes</h3>
+                            <div class="value">07</div>
+                            <p style="font-size: 0.75rem; color: #c8191e; margin-top: 5px;">⚠️ 3 em atraso crítico</p>
+                        </div>
+                    </div>
+
+                    <section class="card">
+                        <h2>Frequência de Empréstimos (Semanal)</h2>
+                        <div class="chart-placeholder">
+                            <div class="bar" style="height: 40%;"><span class="bar-label">Seg</span></div>
+                            <div class="bar" style="height: 70%;"><span class="bar-label">Ter</span></div>
+                            <div class="bar" style="height: 90%;"><span class="bar-label">Qua</span></div>
+                            <div class="bar" style="height: 60%;"><span class="bar-label">Qui</span></div>
+                            <div class="bar" style="height: 30%;"><span class="bar-label">Sex</span></div>
+                        </div>
+                        <p style="margin-top: 30px; font-size: 0.8rem; color: #666; text-align: center;">Total de movimentações: 128 esta semana</p>
+                    </section>
+                </div>
+
+                <div class="right-col">
+                    <section class="card">
+                        <div class="calendar-simple">
+                            <div class="calendar-header">Abril 2026</div>
+                            <div class="calendar-days">
+                                <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+                                <span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                                <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span class="day today">18</span>
+                                <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card card-yellow">
+                        <h2>🔔 Avisos e Notificações</h2>
+                        <div class="notice-item">
+                            <p class="notice-date">Há 10 min</p>
+                            <p class="notice-text"><strong>Nova Reserva:</strong> João Silva reservou "Clean Code".</p>
+                        </div>
+                        <div class="notice-item">
+                            <p class="notice-date">Hoje, 08:30</p>
+                            <p class="notice-text">Sistema passará por manutenção às 22h.</p>
+                        </div>
+                        <div class="notice-item">
+                            <p class="notice-date">Ontem</p>
+                            <p class="notice-text">Relatório mensal de multas gerado.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div id="emprestimo" class="modulo">
             <section class="card">
                 <h2>1. Identificar Usuário</h2>
                 <div class="grid-form">
@@ -384,7 +514,7 @@
                             <td>Cálculo Diferencial I</td>
                             <td>10/04/2026</td>
                             <td>8 dias</td>
-                            <td><strong>R$ 8,00</strong></td>
+                            <td><strong>R$ 16,00</strong></td>
                             <td>
                                 <button class="btn btn-danger" onclick="this.parentElement.parentElement.style.display='none'">Confirmar Devolução</button>
                                 <button class="btn btn-outline" onclick="alert('Multa paga!')">Quitar Multa</button>
@@ -401,8 +531,8 @@
                         <tr><th>Data do Registro</th><th>Descrição</th><th>Valor do Dia</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>11/04/2026</td><td>Multa por atraso (Dia 1)</td><td>R$ 1,00</td></tr>
-                        <tr><td>12/04/2026</td><td>Multa por atraso (Dia 2)</td><td>R$ 1,00</td></tr>
+                        <tr><td>11/04/2026</td><td>Multa por atraso (Dia 1)</td><td>R$ 2,00</td></tr>
+                        <tr><td>12/04/2026</td><td>Multa por atraso (Dia 2)</td><td>R$ 2,00</td></tr>
                         <tr style="background: #eee;"><td><strong>TOTAL</strong></td><td></td><td><strong>R$ 16,00</strong></td></tr>
                     </tbody>
                 </table>
@@ -425,7 +555,10 @@
             </section>
         </div>
 
-    </div> </div> <script>
+    </div> 
+</div> 
+
+<script>
     function switchModulo(moduloId) {
         // Esconde todos os módulos
         document.querySelectorAll('.modulo').forEach(m => m.classList.remove('active'));
@@ -439,13 +572,15 @@
         // Ativa o botão no menu lateral
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
-            if(item.getAttribute('onclick').includes(moduloId)) {
+            // Busca o item que tem o ID do modulo no atributo onclick
+            if(item.getAttribute('onclick').includes("'" + moduloId + "'")) {
                 item.classList.add('active');
             }
         });
         
         // Atualiza o título do header
         const titles = {
+            'home': 'Painel Geral',
             'emprestimo': 'Módulo de Empréstimo',
             'cad-perfil': 'Cadastrar Perfis',
             'cad-livro': 'Cadastrar Livros',
