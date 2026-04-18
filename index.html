@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Biblioteca - IFPR</title>
+    <style>
+        :root {
+            --ifpr-green: #32a041;
+            --ifpr-red: #c8191e;
+            --ifpr-white: #ffffff;
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --gray-border: #ddd;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg-light); color: var(--text-dark); }
+
+        header {
+            background-color: var(--ifpr-green);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--ifpr-green);
+        }
+
+        .card-red { border-top: 4px solid var(--ifpr-red); }
+
+        h2 { margin-bottom: 1rem; font-size: 1.2rem; color: var(--ifpr-green); text-transform: uppercase; }
+
+        .grid-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+
+        .input-group { display: flex; flex-direction: column; }
+        label { font-size: 0.85rem; margin-bottom: 5px; font-weight: bold; }
+        input, select { padding: 10px; border: 1px solid var(--gray-border); border-radius: 4px; }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary { background: var(--ifpr-green); color: white; }
+        .btn-primary:hover { background: #288a35; }
+        .btn-danger { background: var(--ifpr-red); color: white; }
+        .btn-outline { background: transparent; border: 1px solid var(--ifpr-green); color: var(--ifpr-green); }
+
+        .alert-penalty {
+            background-color: #fff3f3;
+            border: 1px solid #facdcd;
+            color: var(--ifpr-red);
+            padding: 1rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { background: #f9f9f9; font-size: 0.9rem; }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .badge-success { background: #e6f4ea; color: #1e7e34; }
+        .badge-error { background: #fce8e6; color: #d93025; }
+
+        .footer-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><strong>IFPR</strong> | Biblioteca</div>
+    <nav>Módulo de Empréstimo</nav>
+</header>
+
+<div class="container">
+    
+    <section class="card">
+        <h2>1. Identificar Usuário</h2>
+        <div class="grid-form">
+            <div class="input-group">
+                <label>Pesquisar por E-mail</label>
+                <input type="email" placeholder="exemplo@ifpr.edu.br">
+            </div>
+            <div class="input-group">
+                <label>Tipo de Vínculo</label>
+                <select disabled>
+                    <option>Aluno (Limite 2 livros / 7 dias)</option>
+                    <option selected>Professor (Limite 5 livros / 15 dias)</option>
+                </select>
+            </div>
+            <button class="btn btn-primary">Buscar</button>
+        </div>
+
+        <div class="alert-penalty">
+            <span><strong>Atenção:</strong> Usuário possui multa pendente de R$ 5,00.</span>
+            <button class="btn btn-danger">Abater Multa / Pagar</button>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>2. Selecionar Exemplares</h2>
+        <div class="grid-form">
+            <div class="input-group">
+                <label>ISBN ou Título</label>
+                <input type="text" placeholder="Digite o ISBN ou nome do livro...">
+            </div>
+            <div class="input-group">
+                <label>Filtrar por Categoria</label>
+                <select>
+                    <option>Todas as Áreas</option>
+                    <option>Informática</option>
+                    <option>Mecânica</option>
+                    <option>Administração</option>
+                </select>
+            </div>
+            <button class="btn btn-outline">Pesquisar</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>ISBN</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Engenharia de Software</td>
+                    <td>978-85-333-0227-3</td>
+                    <td><span class="badge badge-success">Disponível</span></td>
+                    <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Selecionar</button></td>
+                </tr>
+                <tr>
+                    <td>Algoritmos e Lógica</td>
+                    <td>978-85-221-1129-9</td>
+                    <td><span class="badge badge-error">Emprestado</span></td>
+                    <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">Reservar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="card card-red">
+        <h2>3. Resumo do Empréstimo</h2>
+        <p><strong>Livro:</strong> Engenharia de Software</p>
+        <p><strong>Data de Devolução:</strong> 03/05/2026 <small>(Prazo de 15 dias aplicado - Professor)</small></p>
+        
+        <div class="footer-actions">
+            <button class="btn btn-danger">Cancelar Operação</button>
+            <button class="btn btn-primary">Confirmar Empréstimo</button>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
