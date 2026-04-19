@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Biblioteca - IFPR</title>
@@ -9,20 +10,23 @@
             --ifpr-green: #32a041;
             --ifpr-red: #c8191e;
             --ifpr-white: #ffffff;
-            --bg-light: #f4f7f6;
-            --text-dark: #333;
-            --gray-border: #ddd;
-            --sidebar-width: 250px;
+            /* Cores Dark Mode */
+            --bg-dark-body: #121212;
+            --bg-dark-card: #1e1e1e;
+            --bg-dark-sidebar: #181818;
+            --text-main: #e0e0e0;
+            --text-muted: #aaaaaa;
+            --gray-border: #333333;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-        body { background-color: var(--bg-light); color: var(--text-dark); display: flex; min-height: 100vh; }
+        body { background-color: var(--bg-dark-body); color: var(--text-main); display: flex; min-height: 100vh; }
 
         /* Barra Lateral (Sidebar) */
         .sidebar {
-            width: var(--sidebar-width);
-            background-color: white;
+            width: 250px;
+            background-color: var(--bg-dark-sidebar);
             border-right: 1px solid var(--gray-border);
             display: flex;
             flex-direction: column;
@@ -34,49 +38,49 @@
         .user-profile {
             padding: 2rem 1rem;
             text-align: center;
-            border-bottom: 1px solid #eee;
-            background-color: #fafafa;
+            border-bottom: 1px solid var(--gray-border);
+            background-color: #1a1a1a;
         }
 
         .user-photo {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background-color: var(--gray-border);
+            background-color: #2a2a2a;
             margin: 0 auto 10px;
             border: 3px solid var(--ifpr-green);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: #999;
+            color: #666;
             overflow: hidden;
         }
 
         .user-name { font-weight: bold; color: var(--ifpr-green); font-size: 1.1rem; }
-        .user-role { font-size: 0.85rem; color: #777; margin-top: 2px; }
+        .user-role { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
 
         .nav-menu { flex-grow: 1; padding: 1rem 0; overflow-y: auto; }
         .nav-item {
             padding: 12px 20px;
             display: block;
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-main);
             font-weight: 500;
             border-left: 4px solid transparent;
             transition: 0.2s;
             cursor: pointer;
         }
-        .nav-item:hover { background-color: #f0f0f0; color: var(--ifpr-green); }
+        .nav-item:hover { background-color: #252525; color: var(--ifpr-green); }
         .nav-item.active {
-            background-color: #eaf5ec;
+            background-color: #1b2e1e;
             color: var(--ifpr-green);
             border-left-color: var(--ifpr-green);
         }
 
         /* Conteúdo Principal */
         .main-content {
-            margin-left: var(--sidebar-width);
+            margin-left: 250px;
             flex-grow: 1;
         }
 
@@ -87,18 +91,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
 
         /* Cards */
         .card {
-            background: white;
+            background: var(--bg-dark-card);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             border-top: 4px solid var(--ifpr-green);
         }
         .card-red { border-top: 4px solid var(--ifpr-red); }
@@ -110,8 +114,14 @@
         .grid-form-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
         .input-group { display: flex; flex-direction: column; margin-bottom: 10px; }
-        label { font-size: 0.85rem; margin-bottom: 5px; font-weight: bold; }
-        input, select { padding: 10px; border: 1px solid var(--gray-border); border-radius: 4px; }
+        label { font-size: 0.85rem; margin-bottom: 5px; font-weight: bold; color: var(--text-muted); }
+        input, select { 
+            padding: 10px; 
+            border: 1px solid var(--gray-border); 
+            border-radius: 4px; 
+            background-color: #2a2a2a; 
+            color: white; 
+        }
 
         /* Botões */
         .btn {
@@ -129,18 +139,18 @@
 
         /* Tabela e Badges */
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
-        th { background: #f9f9f9; font-size: 0.9rem; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--gray-border); }
+        th { background: #252525; font-size: 0.9rem; color: var(--text-muted); }
 
         .badge { padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
-        .badge-success { background: #e6f4ea; color: #1e7e34; }
-        .badge-error { background: #fce8e6; color: #d93025; }
-        .badge-warn { background: #fff3cd; color: #856404; }
+        .badge-success { background: #1b2e1e; color: #73e68b; }
+        .badge-error { background: #3d1b1b; color: #ff8c8c; }
+        .badge-warn { background: #3d351b; color: #ffeb8c; }
 
         .alert-penalty {
-            background-color: #fff3f3;
-            border: 1px solid #facdcd;
-            color: var(--ifpr-red);
+            background-color: #311818;
+            border: 1px solid #5a1d1d;
+            color: #ff8c8c;
             padding: 1rem;
             border-radius: 4px;
             display: flex;
@@ -158,7 +168,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .alert-error { background-color: #fff3f3; border-color: #facdcd; color: var(--ifpr-red); }
+        .alert-error { background-color: #311818; border-color: #5a1d1d; color: #ff8c8c; }
 
         .footer-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem; }
         
@@ -166,33 +176,25 @@
         .modulo.active { display: block; }
 
         .barcode-box {
-            background: #f9f9f9;
-            border: 1px dashed #ccc;
+            background: #252525;
+            border: 1px dashed #444;
             padding: 10px;
             text-align: center;
             margin-top: 10px;
+            color: var(--text-muted);
         }
 
-        /* --- Estilos Novos para a Home --- */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-        .stats-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+        /* Dashboard */
+        .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         .stat-card {
-            background: white;
+            background: var(--bg-dark-card);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             border-left: 5px solid var(--ifpr-green);
         }
-        .stat-card h3 { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
+        .stat-card h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 5px; }
         .stat-card .value { font-size: 1.8rem; font-weight: bold; color: var(--ifpr-green); }
 
         .chart-placeholder {
@@ -207,6 +209,7 @@
             background: var(--ifpr-green);
             border-radius: 4px 4px 0 0;
             position: relative;
+            opacity: 0.8;
         }
         .bar-label {
             position: absolute;
@@ -214,12 +217,11 @@
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.7rem;
+            color: var(--text-muted);
         }
 
-        .calendar-simple {
-            text-align: center;
-        }
-        .calendar-header { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .calendar-simple { text-align: center; }
+        .calendar-header { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid var(--gray-border); padding-bottom: 5px; }
         .calendar-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -229,12 +231,9 @@
         .day { padding: 5px; border-radius: 4px; }
         .day.today { background: var(--ifpr-green); color: white; }
 
-        .notice-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
+        .notice-item { padding: 10px 0; border-bottom: 1px solid var(--gray-border); }
         .notice-item:last-child { border-bottom: none; }
-        .notice-date { font-size: 0.75rem; color: #999; }
+        .notice-date { font-size: 0.75rem; color: #666; }
         .notice-text { font-size: 0.9rem; margin-top: 3px; }
     </style>
 </head>
@@ -281,7 +280,7 @@
                         <div class="stat-card" style="border-left-color: var(--ifpr-red);">
                             <h3>Devoluções Pendentes</h3>
                             <div class="value">07</div>
-                            <p style="font-size: 0.75rem; color: #c8191e; margin-top: 5px;">⚠️ 3 em atraso crítico</p>
+                            <p style="font-size: 0.75rem; color: #ff6b6b; margin-top: 5px;">⚠️ 3 em atraso crítico</p>
                         </div>
                     </div>
 
@@ -294,7 +293,7 @@
                             <div class="bar" style="height: 60%;"><span class="bar-label">Qui</span></div>
                             <div class="bar" style="height: 30%;"><span class="bar-label">Sex</span></div>
                         </div>
-                        <p style="margin-top: 30px; font-size: 0.8rem; color: #666; text-align: center;">Total de movimentações: 128 esta semana</p>
+                        <p style="margin-top: 30px; font-size: 0.8rem; color: #888; text-align: center;">Total de movimentações: 128 esta semana</p>
                     </section>
                 </div>
 
@@ -439,8 +438,8 @@
                     </div>
                 </div>
                 <div class="barcode-box">
-                    <small>Pré-visualização do Número de Tombo Gerado:</small><br>
-                    <strong>IFPR-2026-X99</strong>
+                    <small>Pré-visualização do Código de Tombo Gerado:</small><br>
+                    <svg id="barcode"></svg>
                 </div>
                 <div class="footer-actions">
                     <button class="btn btn-outline">Limpar</button>
@@ -512,9 +511,9 @@
                     <tbody>
                         <tr>
                             <td>Cálculo Diferencial I</td>
-                            <td>10/04/2026</td>
+                            <td>06/04/2026</td>
                             <td>8 dias</td>
-                            <td><strong>R$ 16,00</strong></td>
+                            <td><strong>R$ 8,00</strong></td>
                             <td>
                                 <button class="btn btn-danger" onclick="this.parentElement.parentElement.style.display='none'">Confirmar Devolução</button>
                                 <button class="btn btn-outline" onclick="alert('Multa paga!')">Quitar Multa</button>
@@ -531,9 +530,15 @@
                         <tr><th>Data do Registro</th><th>Descrição</th><th>Valor do Dia</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>11/04/2026</td><td>Multa por atraso (Dia 1)</td><td>R$ 2,00</td></tr>
-                        <tr><td>12/04/2026</td><td>Multa por atraso (Dia 2)</td><td>R$ 2,00</td></tr>
-                        <tr style="background: #eee;"><td><strong>TOTAL</strong></td><td></td><td><strong>R$ 16,00</strong></td></tr>
+                        <tr><td>07/04/2026</td><td>Multa por atraso (Dia 1)</td><td>R$ 1,00</td></tr>
+                        <tr><td>08/04/2026</td><td>Multa por atraso (Dia 2)</td><td>R$ 1,00</td></tr>
+                        <tr><td>09/04/2026</td><td>Multa por atraso (Dia 3)</td><td>R$ 1,00</td></tr>
+                        <tr><td>10/04/2026</td><td>Multa por atraso (Dia 4)</td><td>R$ 1,00</td></tr>
+                        <tr><td>13/04/2026</td><td>Multa por atraso (Dia 5)</td><td>R$ 1,00</td></tr>
+                        <tr><td>14/04/2026</td><td>Multa por atraso (Dia 6)</td><td>R$ 1,00</td></tr>
+                        <tr><td>15/04/2026</td><td>Multa por atraso (Dia 7)</td><td>R$ 1,00</td></tr>
+                        <tr><td>16/04/2026</td><td>Multa por atraso (Dia 8)</td><td>R$ 1,00</td></tr>
+                        <tr style="background: #252525;"><td><strong>TOTAL</strong></td><td></td><td><strong>R$ 8,00</strong></td></tr>
                     </tbody>
                 </table>
             </section>
@@ -559,26 +564,37 @@
 </div> 
 
 <script>
+    //gera os códigos de barra com a biblioteca JsBarcode
+function gerarCodigoBarras(valor) {
+    JsBarcode("#barcode", valor, {
+        format: "CODE128",      // Padrão que é comum para bibliotecas
+        lineColor: "#32a041",   
+        width: 2,
+        height: 40,
+        displayValue: true,     
+        background: "transparent" 
+        });
+    
+    }
     function switchModulo(moduloId) {
-        // Esconde todos os módulos
         document.querySelectorAll('.modulo').forEach(m => m.classList.remove('active'));
-        // Desativa todos os itens do menu
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
         
-        // Ativa o selecionado
         const target = document.getElementById(moduloId);
         if(target) target.classList.add('active');
         
-        // Ativa o botão no menu lateral
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
-            // Busca o item que tem o ID do modulo no atributo onclick
             if(item.getAttribute('onclick').includes("'" + moduloId + "'")) {
                 item.classList.add('active');
             }
         });
         
-        // Atualiza o título do header
+        // Aqui chama a função de gerar código barra
+        if (moduloId === 'cad-livro') {
+            setTimeout(() => gerarCodigoBarras("IFPR-2026-X99"), 50);
+        }
+        
         const titles = {
             'home': 'Painel Geral',
             'emprestimo': 'Módulo de Empréstimo',
