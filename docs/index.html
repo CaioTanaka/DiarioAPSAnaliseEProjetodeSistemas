@@ -235,6 +235,44 @@
         .notice-item:last-child { border-bottom: none; }
         .notice-date { font-size: 0.75rem; color: #666; }
         .notice-text { font-size: 0.9rem; margin-top: 3px; }
+
+        .sub-modulo {
+            display: none;
+        }
+
+        .sub-modulo.active {
+            display: block;
+    }
+
+.sub-btn.active {
+    background: var(--ifpr-green);
+    color: white;
+}
+.sub-livro {
+    display: none;
+}
+
+.sub-livro.active {
+    display: block;
+}
+
+.sub-livro-btn.active {
+    background: var(--ifpr-green);
+    color: white;
+}
+.sub-exemplar {
+    display: none;
+}
+
+.sub-exemplar.active {
+    display: block;
+}
+
+.sub-exemplar-btn.active {
+    background: var(--ifpr-green);
+    color: white;
+}
+
     </style>
 </head>
 <body>
@@ -249,8 +287,8 @@
     <nav class="nav-menu">
         <a class="nav-item active" onclick="switchModulo('home')">🏠 Home</a>
         <a class="nav-item" onclick="switchModulo('emprestimo')">🤝 Empréstimo</a>
-        <a class="nav-item" onclick="switchModulo('cad-perfil')">👤 Cadastrar Perfis</a>
-        <a class="nav-item" onclick="switchModulo('cad-livro')">📚 Cadastrar Livros</a>
+        <a class="nav-item" onclick="switchModulo('cad-perfil')">👤 Cadastro de usuário</a>
+        <a class="nav-item" onclick="switchModulo('cad-livro')">📚 Cadastro de livro</a>
         <a class="nav-item" onclick="switchModulo('reserva')">🔖 Reservas</a>
         <a class="nav-item" onclick="switchModulo('devolucao')">🔄 Devoluções</a>
         <a class="nav-item" onclick="switchModulo('historico')">📜 Histórico</a>
@@ -380,73 +418,206 @@
             </section>
         </div>
 
-        <div id="cad-perfil" class="modulo">
-            <section class="card">
-                <h2>Cadastrar Novo Perfil (Usuário)</h2>
-                <div class="grid-form-2">
-                    <div class="input-group">
-                        <label>Nome Completo</label>
-                        <input type="text" placeholder="Nome do Aluno, Professor ou Funcional">
-                    </div>
-                    <div class="input-group">
-                        <label>E-mail Institucional</label>
-                        <input type="email" placeholder="nome@ifpr.edu.br">
-                    </div>
-                    <div class="input-group">
-                        <label>Tipo de Usuário</label>
-                        <select>
-                            <option>Aluno</option>
-                            <option>Professor</option>
-                            <option>Funcionário</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>Documento (CPF ou Matrícula)</label>
-                        <input type="text" placeholder="Apenas números">
-                    </div>
+       <div id="cad-perfil" class="modulo">
+    
+    <!-- Submenu -->
+    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <button class="btn btn-outline sub-btn active" onclick="switchSubPerfil('novo')">Cadastrar Novo Usuário</button>
+        <button class="btn btn-outline sub-btn" onclick="switchSubPerfil('lista')">Usuários Cadastrados</button>
+    </div>
+
+    <!-- CADASTRAR -->
+    <div id="sub-novo" class="sub-modulo active">
+        <section class="card">
+            <h2>Cadastrar Novo Perfil (Usuário)</h2>
+            <div class="grid-form-2">
+                <div class="input-group">
+                    <label>Nome Completo</label>
+                    <input type="text" placeholder="Nome do Aluno, Professor ou Funcional">
                 </div>
-                <div class="footer-actions">
-                    <button class="btn btn-outline">Cancelar</button>
-                    <button class="btn btn-primary">Cadastrar Perfil</button>
+                <div class="input-group">
+                    <label>E-mail Institucional</label>
+                    <input type="email" placeholder="nome@ifpr.edu.br">
                 </div>
-            </section>
-        </div>
+                <div class="input-group">
+                    <label>Tipo de Usuário</label>
+                    <select>
+                        <option>Aluno</option>
+                        <option>Professor</option>
+                        <option>Funcionário</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Documento (CPF ou Matrícula)</label>
+                    <input type="text" placeholder="Apenas números">
+                </div>
+            </div>
+            <div class="footer-actions">
+                <button class="btn btn-outline">Cancelar</button>
+                <button class="btn btn-primary">Cadastrar Perfil</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- LISTA -->
+    <div id="sub-lista" class="sub-modulo">
+        <input type="text" id="searchUsuario" placeholder="Pesquisar por nome/ email/ tipo/ documento ..." 
+    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
+        <section class="card">
+            <h2>Usuários Cadastrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana Silva</td>
+                        <td>ana@ifpr.edu.br</td>
+                        <td>Bibliotecária</td>
+                        <td>12345678900</td>
+                         <td>
+                        <button class="btn btn-primary">Editar ✏️</button>
+                        <button class="btn btn-danger">Excluir 🗑️</button>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>Caio Tanaka</td>
+                        <td>caio.tanaka@ifpr.edu.br</td>
+                        <td>Aluno</td>
+                        <td>202500123</td>
+                        <td>
+                        <button class="btn btn-primary">Editar ✏️</button>
+                        <button class="btn btn-danger">Excluir 🗑️</button>
+                        </td>   
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+</div>
 
         <div id="cad-livro" class="modulo">
-            <section class="card">
-                <h2>Cadastrar Obra e Exemplares</h2>
-                <div class="grid-form-2">
-                    <div class="input-group">
-                        <label>Título da Obra</label>
-                        <input type="text" placeholder="Ex: Clean Code">
-                    </div>
-                    <div class="input-group">
-                        <label>ISBN</label>
-                        <input type="text" placeholder="000-00-0000-000-0">
-                    </div>
-                    <div class="input-group">
-                        <label>Autor</label>
-                        <input type="text" placeholder="Nome do autor">
-                    </div>
-                    <div class="input-group">
-                        <label>Categoria</label>
-                        <select>
-                            <option>Informática</option>
-                            <option>Mecânica</option>
-                            <option>Administração</option>
-                        </select>
-                    </div>
+
+    <!-- SUBMENU -->
+   <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="btn btn-outline sub-livro-btn active" onclick="switchSubLivro('novo')">Cadastrar Novo Livro</button>
+    <button class="btn btn-outline sub-livro-btn" onclick="switchSubLivro('lista')">Livros Cadastrados</button>
+    <button class="btn btn-outline sub-exemplar-btn" onclick="switchSubExemplar('lista')">Exemplares Cadastrados</button>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="livro-novo" class="sub-livro active">
+        <section class="card">
+            <h2>Cadastrar Obra e Exemplares</h2>
+            <div class="grid-form-2">
+                <div class="input-group">
+                    <label>Título da Obra</label>
+                    <input type="text" placeholder="Ex: Clean Code">
                 </div>
-                <div class="barcode-box">
-                    <small>Pré-visualização do Código de Tombo Gerado:</small><br>
-                    <svg id="barcode"></svg>
+                <div class="input-group">
+                    <label>ISBN</label>
+                    <input type="text" placeholder="000-00-0000-000-0">
                 </div>
-                <div class="footer-actions">
-                    <button class="btn btn-outline">Limpar</button>
-                    <button class="btn btn-primary">Salvar Livro e Gerar Exemplar</button>
+                <div class="input-group">
+                    <label>Autor</label>
+                    <input type="text" placeholder="Nome do autor">
                 </div>
-            </section>
-        </div>
+                <div class="input-group">
+                    <label>Categoria</label>
+                    <select>
+                        <option>Informática</option>
+                        <option>Mecânica</option>
+                        <option>Administração</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="barcode-box">
+                <small>Pré-visualização do Código:</small><br>
+                <svg id="barcode"></svg>
+            </div>
+
+            <div class="footer-actions">
+                <button class="btn btn-outline">Limpar</button>
+                <button class="btn btn-primary">Salvar Livro</button>
+            </div>
+        </section>
+    </div>
+    <div id="livro-lista" class="sub-livro">
+        <input type="text" id="searchUsuario" placeholder="Pesquisar por titulo, ISBN, Autor, tipo..." 
+    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
+    <section class="card">
+        <h2>Livros Cadastrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>ISBN</th>
+                    <th>Autor</th>
+                    <th>Tipo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Engenharia de Software</td>
+                    <td>978-85-333...</td>
+                    <td>Robert Cecil Martin</td>
+                    <td>Informática</td>
+                    <td>
+                        <button class="btn btn-primary">Editar ✏️</button>
+                        <button class="btn btn-danger">Excluir 🗑️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+
+</div>
+<div style="display: flex; gap: 10px; margin-bottom: 15px;">
+</div>
+<div id="exemplar-lista" class="sub-exemplar">
+    <input type="text" id="searchExemplar" placeholder="Pesquisar por código, livro, ISBN ..."
+    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
+
+    <section class="card">
+        <h2>Exemplares Cadastrados</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Livro</th>
+                    <th>ISBN</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>IFPR-2026-12</td>
+                    <td>Engenharia de Software</td>
+                    <td>978-85-333...</td>
+                    <td><span class="badge badge-success">Disponível</span></td>
+                    <td>
+                        <button class="btn btn-primary">Editar ✏️</button>
+                        <button class="btn btn-danger">Excluir 🗑️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</div>
 
         <div id="reserva" class="modulo">
             <section class="card">
@@ -566,48 +737,135 @@
 <script>
 function gerarCodigoBarras(valor) {
     JsBarcode("#barcode", valor, {
-        format: "CODE128",      // Padrão comum para bibliotecas
-        lineColor: "#32a041",   // Cor verde do IFPR
+        format: "CODE128",
+        lineColor: "#32a041",
         width: 2,
         height: 40,
-        displayValue: true,     // Mostra o texto abaixo das barras
-        background: "transparent" // Combina com o Dark Mode
-        });
-        // Exemplo de uso:
-// gerarCodigoBarras("IFPR-2026-X99");
-    }
-    function switchModulo(moduloId) {
-        document.querySelectorAll('.modulo').forEach(m => m.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        
-        const target = document.getElementById(moduloId);
-        if(target) target.classList.add('active');
-        
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            if(item.getAttribute('onclick').includes("'" + moduloId + "'")) {
-                item.classList.add('active');
-            }
-        });
-        
-// --- ATUALIZAÇÃO AQUI ---
-        // Se o usuário entrar no cadastro de livros, gera o código inicial
-        if (moduloId === 'cad-livro') {
-            // Pequeno delay para garantir que o DOM renderizou o SVG
-            setTimeout(() => gerarCodigoBarras("IFPR-2026-X99"), 50);
+        displayValue: true,
+        background: "transparent"
+    });
+}
+
+function switchModulo(moduloId) {
+    
+    document.querySelectorAll('.modulo').forEach(m => m.classList.remove('active'));
+
+   
+    document.querySelectorAll('.sub-livro, .sub-exemplar, .sub-modulo')
+        .forEach(el => el.classList.remove('active'));
+
+  
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+    const target = document.getElementById(moduloId);
+    if (target) target.classList.add('active');
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+        if (item.getAttribute('onclick').includes("'" + moduloId + "'")) {
+            item.classList.add('active');
         }
-        
-        const titles = {
-            'home': 'Painel Geral',
-            'emprestimo': 'Módulo de Empréstimo',
-            'cad-perfil': 'Cadastrar Perfis',
-            'cad-livro': 'Cadastrar Livros',
-            'reserva': 'Módulo de Reservas',
-            'devolucao': 'Módulo de Devoluções',
-            'historico': 'Módulo de Histórico'
-        };
-        document.getElementById('modulo-title').innerText = titles[moduloId] || 'Sistema de Biblioteca';
+    });
+
+    if (moduloId === 'cad-livro') {
+        document.getElementById('livro-novo').classList.add('active');
+        document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn')
+            .forEach(btn => btn.classList.remove('active'));
+
+        document.querySelectorAll('.sub-livro-btn')[0].classList.add('active');
+
+        setTimeout(() => gerarCodigoBarras("IFPR-2026-X99"), 50);
     }
+
+    const titles = {
+        'home': 'Painel Geral',
+        'emprestimo': 'Módulo de Empréstimo',
+        'cad-perfil': 'Cadastro de Usuários',
+        'cad-livro': 'Cadastro de Livros',
+        'reserva': 'Módulo de Reservas',
+        'devolucao': 'Módulo de Devoluções',
+        'historico': 'Módulo de Histórico'
+    };
+
+    document.getElementById('modulo-title').innerText = titles[moduloId] || 'Sistema';
+}
+
+/* ===== PERFIL ===== */
+function switchSubPerfil(tipo) {
+    document.getElementById('sub-novo').classList.remove('active');
+    document.getElementById('sub-lista').classList.remove('active');
+
+    document.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById('sub-' + tipo).classList.add('active');
+
+    if (tipo === 'novo') {
+        document.querySelectorAll('.sub-btn')[0].classList.add('active');
+    } else {
+        document.querySelectorAll('.sub-btn')[1].classList.add('active');
+    }
+}
+
+/* ===== LIVRO ===== */
+function switchSubLivro(tipo) {
+    document.getElementById('livro-novo').classList.remove('active');
+    document.getElementById('livro-lista').classList.remove('active');
+
+    document.querySelectorAll('.sub-livro-btn').forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById('livro-' + tipo).classList.add('active');
+
+    if (tipo === 'novo') {
+        document.querySelectorAll('.sub-livro-btn')[0].classList.add('active');
+        setTimeout(() => gerarCodigoBarras("IFPR-2026-X99"), 50);
+    } else {
+        document.querySelectorAll('.sub-livro-btn')[1].classList.add('active');
+    }
+}
+document.getElementById("searchUsuario").addEventListener("keyup", function () {
+    let filtro = this.value.toLowerCase();
+    let linhas = document.querySelectorAll("#sub-lista tbody tr");
+
+    linhas.forEach(linha => {
+        let texto = linha.innerText.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});
+
+function switchSubLivro(tipo) {
+    // esconde tudo (livro + exemplar)
+    document.querySelectorAll('.sub-livro, .sub-exemplar')
+        .forEach(el => el.classList.remove('active'));
+
+    // remove seleção de TODOS botões
+    document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn')
+        .forEach(btn => btn.classList.remove('active'));
+
+    // mostra o conteúdo correto
+    document.getElementById('livro-' + tipo).classList.add('active');
+
+    // ativa botão correto
+    if (tipo === 'novo') {
+        document.querySelectorAll('.sub-livro-btn')[0].classList.add('active');
+    } else {
+        document.querySelectorAll('.sub-livro-btn')[1].classList.add('active');
+    }
+}
+function switchSubExemplar() {
+    // esconde tudo
+    document.querySelectorAll('.sub-livro, .sub-exemplar')
+        .forEach(el => el.classList.remove('active'));
+
+    // remove seleção de TODOS botões
+    document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn')
+        .forEach(btn => btn.classList.remove('active'));
+
+    // mostra exemplar
+    document.getElementById('exemplar-lista').classList.add('active');
+
+    // ativa botão exemplar
+    document.querySelector('.sub-exemplar-btn').classList.add('active');
+}
+</script>
 </script>
 
 </body>
