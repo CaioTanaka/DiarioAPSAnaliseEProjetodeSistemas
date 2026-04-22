@@ -950,17 +950,49 @@
         <div id="historico" class="modulo">
             <section class="card">
                 <h2>📜 Histórico de Empréstimos</h2>
-                <p style="margin-bottom: 1rem;"><strong>Usuário:</strong> Ricardo Oliveira (Professor)</p>
-                <table>
-                    <thead>
-                        <tr><th>Data Empréstimo</th><th>Título</th><th>Data Devolução</th><th>Status</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>01/03/2026</td><td>Engenharia de Software</td><td>15/03/2026</td><td><span class="badge badge-success">Devolvido no Prazo</span></td></tr>
-                        <tr><td>05/04/2026</td><td>Redes de Computadores</td><td>--</td><td><span class="badge badge-warn">Em Aberto</span></td></tr>
-                    </tbody>
-                </table>
+                <div class="grid-form" style="margin-bottom:0;">
+                    <div class="input-group">
+                        <label>E-mail ou Matrícula</label>
+                        <input type="text" id="inputHistoricoUsuario" placeholder="Ex: exemplo@gmail.com ou 202300123" onkeydown="if(event.key==='Enter') buscarHistorico()">
+                    </div>
+                    <div></div>
+                    <button class="btn btn-primary" onclick="buscarHistorico()">Buscar</button>
+                </div>
             </section>
+
+            <div id="historicoResultado" style="display:none;">
+                <section class="card" style="margin-bottom:0.5rem;">
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <div style="font-size:2rem;">👤</div>
+                        <div>
+                            <div style="font-weight:bold;font-size:1rem;" id="historicoNomeUsuario"></div>
+                            <div style="font-size:0.82rem;color:var(--text-muted);" id="historicoInfoUsuario"></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card">
+                    <h2>Empréstimos</h2>
+                    <table>
+                        <thead>
+                            <tr><th>Data Empréstimo</th><th>Título</th><th>Data Devolução</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="tbodyHistoricoEmprestimos"></tbody>
+                    </table>
+                </section>
+                <section id="secaoHistoricoReservas" class="card card-yellow" style="display:none;">
+                    <h2>Reservas</h2>
+                    <table>
+                        <thead>
+                            <tr><th>Livro</th><th>Autor</th><th>Posição na Fila</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="tbodyHistoricoReservas"></tbody>
+                    </table>
+                </section>
+            </div>
+
+            <div id="historicoVazio" style="display:none;padding:2rem;text-align:center;color:var(--text-muted);">
+                ⚠️ Nenhum registro encontrado para este usuário.
+            </div>
         </div>
 
     </div>
@@ -1534,25 +1566,6 @@ function finalizarAcao(mensagem) {
     document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
 }
 
-function prepararEmprestimo(tipoUsuario) {
-    tipoUsuario = tipoUsuario || 'Aluno';
-    const hoje = new Date();
-    let prazo = tipoUsuario === 'Professor' ? 15 : 7;
-    const dataDevolucao = new Date();
-    dataDevolucao.setDate(hoje.getDate() + prazo);
-    const html = `
-        <p><strong>Livro:</strong> Engenharia de Software</p>
-        <p><strong>ISBN:</strong> 978-85-333-0761-2</p>
-        <p><strong>Autor:</strong> Ian Sommerville</p>
-        <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
-        <p><strong>Usuário:</strong> Ricardo Oliveira (${tipoUsuario})</p>
-        <p><strong>Data de Devolução:</strong> <span style="color:var(--ifpr-green);font-weight:bold;">${dataDevolucao.toLocaleDateString('pt-BR')}</span></p>
-        <p><small>*Prazo de ${prazo} dias conforme regulamento.</small></p>
-    `;
-    document.getElementById('detalhes-emprestimo').innerHTML = html;
-    abrirModal('modalConfirmaEmprestimo');
-}
-
 function prepararDevolucao(atrasoDias) {
     const multa = atrasoDias * 1.00;
     const html = `
@@ -1626,8 +1639,8 @@ function prepararDevolucaoRicardo() {
 
 function prepararReserva() {
     const html = `
-        <p><strong>Livro:</strong> Clean Code</p>
-        <p><strong>Autor:</strong> Robert C. Martin</p>
+        <p><strong>Livro:</strong> Banco de Dados</p>
+        <p><strong>Autor:</strong> Ada Lovelace</p>
         <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
         <div style="background:#332b00;border:1px solid #f1c40f;padding:10px;border-radius:4px;color:#f1c40f;">
             <strong>Posição na Fila:</strong> 3º lugar
@@ -1636,6 +1649,88 @@ function prepararReserva() {
     `;
     document.getElementById('detalhes-reserva').innerHTML = html;
     abrirModal('modalConfirmaReserva');
+}
+
+/* ===== HISTÓRICO ===== */
+const historicoUsuarios = {
+    'amauri@gmail.com':  'amauri',
+    '202300042':         'amauri',
+    'ricardo@gmail.com': 'ricardo',
+    '202300099':         'ricardo',
+};
+
+const historicoData = {
+    amauri: {
+        nome: 'Amauri',
+        info: 'Aluno · Matrícula 202300042 · amauri@gmail.com',
+        emprestimos: [
+            { data: '29/03/2026', titulo: 'Cálculo Diferencial I', isbn: '978-85-216-1111-0', devolvido: '22/04/2026', status: 'atrasado', obs: '8 dias de atraso · Multa R$ 8,00' },
+        ],
+        reservas: [],
+    },
+    ricardo: {
+        nome: 'Ricardo Oliveira',
+        info: 'Professor · Matrícula 202300099 · ricardo@gmail.com',
+        emprestimos: [
+            { data: '01/03/2026', titulo: 'Engenharia de Software', isbn: '978-85-333-0761-2', devolvido: '15/03/2026', status: 'prazo', obs: '' },
+            { data: '05/04/2026', titulo: 'Redes de Computadores', isbn: '978-85-352-3973-0', devolvido: '19/04/2026', status: 'prazo', obs: '' },
+        ],
+        reservas: [
+            { titulo: 'Banco de Dados SQL', autor: 'Ada Lovelace', posicao: '3º lugar', status: 'Aguardando' },
+        ],
+    },
+};
+
+function buscarHistorico() {
+    const valor     = document.getElementById('inputHistoricoUsuario').value.trim().toLowerCase();
+    const resultado = document.getElementById('historicoResultado');
+    const vazio     = document.getElementById('historicoVazio');
+    resultado.style.display = 'none';
+    vazio.style.display     = 'none';
+
+    const chave = historicoUsuarios[valor];
+    const dados = chave ? historicoData[chave] : null;
+
+    if (!dados) {
+        if (valor !== '') vazio.style.display = 'block';
+        return;
+    }
+
+    document.getElementById('historicoNomeUsuario').innerText = dados.nome;
+    document.getElementById('historicoInfoUsuario').innerText = dados.info;
+
+    const tbodyEmp = document.getElementById('tbodyHistoricoEmprestimos');
+    tbodyEmp.innerHTML = '';
+    if (dados.emprestimos.length === 0) {
+        tbodyEmp.innerHTML = '<tr><td colspan="4" style="color:var(--text-muted);text-align:center;">Nenhum empréstimo registrado.</td></tr>';
+    } else {
+        dados.emprestimos.forEach(function(e) {
+            var badgeHtml, statusExtra = '';
+            if (e.status === 'atrasado') {
+                badgeHtml = '<span class="badge badge-error">Devolvido com Atraso</span>';
+                statusExtra = e.obs ? '<br><small style="color:#ff8c8c;">' + e.obs + '</small>' : '';
+            } else if (e.status === 'aberto') {
+                badgeHtml = '<span class="badge badge-warn">Em Aberto</span>';
+            } else {
+                badgeHtml = '<span class="badge badge-success">Devolvido no Prazo</span>';
+            }
+            tbodyEmp.innerHTML += '<tr><td>' + e.data + '</td><td>' + e.titulo + '<br><small style="color:var(--text-muted);">' + e.isbn + '</small></td><td>' + (e.devolvido || '--') + '</td><td>' + badgeHtml + statusExtra + '</td></tr>';
+        });
+    }
+
+    var secaoRes = document.getElementById('secaoHistoricoReservas');
+    var tbodyRes = document.getElementById('tbodyHistoricoReservas');
+    if (dados.reservas && dados.reservas.length > 0) {
+        tbodyRes.innerHTML = '';
+        dados.reservas.forEach(function(r) {
+            tbodyRes.innerHTML += '<tr><td>' + r.titulo + '</td><td>' + r.autor + '</td><td><span class="badge badge-warn">' + r.posicao + '</span></td><td><span class="badge badge-warn">' + r.status + '</span></td></tr>';
+        });
+        secaoRes.style.display = 'block';
+    } else {
+        secaoRes.style.display = 'none';
+    }
+
+    resultado.style.display = 'block';
 }
 </script>
 
