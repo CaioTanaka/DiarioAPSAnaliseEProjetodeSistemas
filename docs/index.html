@@ -272,11 +272,91 @@
     background: var(--ifpr-green);
     color: white;
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
 
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
     </style>
 </head>
 <body>
+<div id="modalUsuario" class="modal">
+    <div class="modal-content">
+        <h2>Editar Usuário</h2>
 
+        <input type="text" id="editNome" placeholder="Nome completo">
+        <input type="email" id="editEmail" placeholder="nome@ifpr.edu.br">
+        <select id="editTipo">
+            <option>Aluno</option>
+            <option>Professor</option>
+            <option>Funcionário</option>
+        </select>
+        <input type="email" id="editEmail" placeholder="Documento">
+
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharModal('modalUsuario')">Cancelar</button>
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+<div id="modalLivro" class="modal">
+    <div class="modal-content">
+        <h2>Editar Livro</h2>
+
+        <input type="text" id="editTitulo" placeholder="Título do livro">
+        <input type="text" id="editISBN" placeholder="ISBN (13 digitos)">
+        <input type="text" id="editAutor" placeholder="Autor">  
+        <select id="editCategoria">
+            <option>Informática</option>
+            <option>Administração</option>
+            <option>Mecânica</option>
+        </select>
+
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharModal('modalLivro')">Cancelar</button>
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+<div id="modalExemplar" class="modal">
+    <div class="modal-content">
+        <h2>Editar Exemplar</h2>
+
+        <input type="text" id="editCodigo" placeholder="Código: XXXX-XXXX-XX">
+        <input type="text" id="editCodigo" placeholder="Titulo do livro">
+        <input type="text" id="editISBN" placeholder="ISBN (13 digitos)">
+        <select id="editStatus">
+            <option>Disponível</option>
+            <option>Emprestado</option>
+        </select>
+
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharModal('modalExemplar')">Cancelar</button>
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
 <div class="sidebar">
     <div class="user-profile">
         <div class="user-photo"><span>👤</span></div>
@@ -481,9 +561,10 @@
                         <td>Bibliotecária</td>
                         <td>12345678900</td>
                          <td>
-                        <button class="btn btn-primary">Editar ✏️</button>
-                        <button class="btn btn-danger">Excluir 🗑️</button>
-                        </td>  
+                        <button class="btn btn-primary" onclick="abrirModal('modalUsuario')">Editar ✏️</button>
+                        <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
+                        Excluir 🗑️
+                        </button>
                     </tr>
                     <tr>
                         <td>Caio Tanaka</td>
@@ -491,8 +572,10 @@
                         <td>Aluno</td>
                         <td>202500123</td>
                         <td>
-                        <button class="btn btn-primary">Editar ✏️</button>
-                        <button class="btn btn-danger">Excluir 🗑️</button>
+                        <button class="btn btn-primary" onclick="abrirModal('modalUsuario')">Editar ✏️</button>
+                       <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
+                        Excluir 🗑️
+                        </button>
                         </td>   
                     </tr>
                 </tbody>
@@ -560,7 +643,7 @@
                     <th>Título</th>
                     <th>ISBN</th>
                     <th>Autor</th>
-                    <th>Tipo</th>
+                    <th>Categoria</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -571,8 +654,10 @@
                     <td>Robert Cecil Martin</td>
                     <td>Informática</td>
                     <td>
-                        <button class="btn btn-primary">Editar ✏️</button>
-                        <button class="btn btn-danger">Excluir 🗑️</button>
+                        <button class="btn btn-primary" onclick="abrirModal('modalLivro')">Editar ✏️</button>
+                       <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
+                        Excluir 🗑️
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -609,8 +694,10 @@
                     <td>978-85-333...</td>
                     <td><span class="badge badge-success">Disponível</span></td>
                     <td>
-                        <button class="btn btn-primary">Editar ✏️</button>
-                        <button class="btn btn-danger">Excluir 🗑️</button>
+                        <button class="btn btn-primary" onclick="abrirModal('modalExemplar')">Editar ✏️</button>
+                         <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
+                            Excluir 🗑️
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -733,6 +820,15 @@
 
     </div> 
 </div> 
+<div id="modalConfirmacao" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+    <div style="background:#1e1e1e; padding:20px; border-radius:8px; width:300px; text-align:center;">
+        <p style="margin-bottom:15px;">Tem certeza que deseja excluir?</p>
+
+        <button class="btn btn-danger" onclick="confirmarSim()">Sim</button>
+        <button class="btn btn-outline" onclick="fecharModal()">Cancelar</button>
+    </div>
+
+</div>
 
 <script>
 function gerarCodigoBarras(valor) {
@@ -864,6 +960,33 @@ function switchSubExemplar() {
 
     // ativa botão exemplar
     document.querySelector('.sub-exemplar-btn').classList.add('active');
+}
+let linhaSelecionada = null;
+
+/* ===== MODAL EDITAR ===== */
+function abrirModal(id) {
+    document.getElementById(id).classList.add('active');
+}
+
+function fecharModal(id) {
+    document.getElementById(id).classList.remove('active');
+}
+
+/* ===== MODAL CONFIRMAÇÃO EXCLUIR ===== */
+function abrirConfirmacao(botao) {
+    linhaSelecionada = botao.closest("tr");
+    document.getElementById("modalConfirmacao").style.display = "flex";
+}
+
+function fecharConfirmacao() {
+    document.getElementById("modalConfirmacao").style.display = "none";
+}
+
+function confirmarSim() {
+    if (linhaSelecionada) {
+        linhaSelecionada.remove();
+    }
+    fecharConfirmacao();
 }
 </script>
 </script>
