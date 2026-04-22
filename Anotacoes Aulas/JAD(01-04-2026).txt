@@ -1,0 +1,97 @@
+Grupo APSystems
+Relatório atividade JAD- 01/04/2026
+
+Lendo as respostas e observações da Lu das outras entrevistas para conseguirmos pegar lacunas/respostas que ficaram em aberto para melhorarmos e acertarmos para esse ultimo encontro.
+
+Questões enviadas para o JAD:
+1- Boa noite Ana, obtivemos os dados que são necessários para o cadastro de alunos. Mas o que muda no cadastro de professor e funcionário?
+Respostas:
+Ana ·
+Boa noite. A pergunta é razoável, mas está genérica demais para eu fechar um requisito com segurança. Cadastro de professor e funcionário pode ter campos comuns, mas também campos específicos de cada perfil. O que exatamente vocês precisam saber? Estão tentando definir um formulário único, formulários separados, ou estão mapeando quais dados são obrigatórios versus opcionais?
+
+Julia · 
+Acho que faz sentido ter pelo menos nome completo, CPF, e-mail institucional e cargo, né? Isso parece o mínimo para qualquer um dos dois. Mas não sei se professor precisa de algo a mais, tipo área de atuação ou disciplina...
+
+Rosa · 
+Com calma, Julia. Depende muito de como o sistema vai usar esses dados depois. Se professor e funcionário tiverem perfis de acesso diferentes, os dados de cadastro podem precisar refletir isso. Mas concordo que sem saber o contexto de uso fica difícil fechar uma lista.
+
+2- Boa noite Júlia, poderia me descrever passo a passo como funciona o processo de empréstimo de um exemplar?
+
+Julia · 
+Boa noite! Então, pelo que eu entendo do dia a dia, quando um aluno quer pegar um livro, ele chega na biblioteca, o operador localiza o exemplar no sistema, confirma que está disponível, registra o empréstimo vinculando o exemplar ao usuário, e aí o livro vai embora com ele. Na devolução, o operador registra a entrega, o sistema marca o exemplar como disponível de novo, e verifica se veio dentro do prazo. Se veio fora do prazo, entra a questão da multa. Acho que é isso no básico! Mas posso estar simplificando demais em algumas partes...
+R
+Rosa · 
+Julia cobriu bem o fluxo geral. Só reforço que o sistema precisa checar a situação do usuário antes de liberar o empréstimo, ou seja, se ele não tem pendência em aberto, como multa não paga ou outro empréstimo em atraso. Isso é importante para não deixar o controle furar.
+
+Ana · 
+O fluxo que a Julia descreveu está correto no básico. Mas o processo completo depende de algumas regras que vocês ainda não fecharam, como limite de exemplares por perfil de usuário, prazo de empréstimo por perfil e como exatamente a multa é calculada. Se quiserem detalhar alguma dessas etapas específicas agora, a gente consegue consolidar melhor.
+
+3- Ana,  poderia me explicar exatamente como é aplicado essa multa em relação a esses dias de atraso?
+R:
+Ana · 
+A multa é calculada em dias úteis de atraso, não em dias corridos. Então fins de semana e feriados não entram na conta. E tem um ponto importante: recesso não suspende a contagem. Se o sistema ficar fechado por recesso, os dias úteis que caírem nesse período ainda são contados normalmente. Isso costuma gerar confusão, mas é assim que funciona. O valor por dia útil de atraso vocês já têm definido, ou isso ainda está em aberto?
+
+Julia ·
+Ah, eu achei que era dias corridos! Então se o aluno devolver numa segunda depois de um fim de semana com atraso, conta só os dias úteis que passaram, não os dois dias do fim de semana. Faz sentido, mas é fácil de implementar errado se o sistema não estiver configurado certo para isso.
+
+Rosa · 
+E vale reforçar que o sistema precisa ter uma referência clara de calendário de dias úteis para calcular isso de forma confiável. Se não houver essa base, o cálculo pode sair diferente dependendo de quem está operando, o que abre margem para inconsistência.
+
+4- Caso exista algum tipo de penalidade para casos de devoluções com avarias nos exemplares, quais seriam? Como essas penalidades são tratadas no sistema?
+R:
+Ana · 
+A pergunta é pertinente, mas avaria é um caso diferente de atraso. Atraso tem cálculo automático por dias úteis, como a gente já fechou. Avaria não funciona assim. A penalidade por avaria não é calculada pelo sistema da mesma forma, ela depende de uma avaliação humana no momento da devolução. O operador precisa registrar a ocorrência, mas o sistema sozinho não detecta avaria, quem detecta é quem está recebendo o exemplar. O que precisa estar previsto no sistema é o campo ou fluxo para registrar essa ocorrência e vincular ao usuário. O que acontece depois disso, em termos de penalidade específica, vocês já têm alguma definição de regra ou ainda está em aberto?
+
+Julia · 
+Faz sentido. Então o sistema não vai automaticamente cobrar nada por avaria, ele só registra que aconteceu, e alguém decide o que fazer depois? Se for assim, precisa ter algum campo de observação ou status específico para o exemplar avariado, senão o operador devolve o livro como disponível e ninguém fica sabendo que ele voltou danificado.
+
+Rosa · 
+É exatamente esse o risco, Julia. Se não houver um status intermediário para o exemplar, tipo 'em análise' ou 'avariado', ele pode voltar para o acervo sem que ninguém tome uma ação. O sistema precisa bloquear o exemplar de novo empréstimo enquanto a situação não for resolvida. Já vi isso gerar problema quando não está previsto no fluxo.
+
+5- Poderia me informar quais os campos do cadastro que diferem cada tipo de usuário? Também poderia nos informar como os diferentes tipos de usuários afetam a utilização do sistema como a de empréstimo.
+R: 
+Ana · 
+Vou separar em duas partes porque a pergunta tem dois focos distintos. Sobre os campos de cadastro: o que diferencia os tipos de usuário no cadastro são basicamente o tipo de vínculo com a instituição, o curso ou setor de origem, e o perfil atribuído. Esses campos determinam as regras que vão se aplicar a ele no sistema. Sobre como o tipo de usuário afeta o empréstimo: o perfil do usuário define o prazo de empréstimo e o limite de exemplares que ele pode ter ao mesmo tempo. Perfis diferentes têm prazos e limites diferentes. O sistema precisa ler o perfil do usuário no momento do empréstimo e aplicar as regras correspondentes automaticamente. Vocês já têm esses valores definidos por perfil, ou ainda estão em aberto?
+
+Rosa · 
+Complementando a Ana: no dia a dia, os tipos de usuário mais comuns que a gente vê são aluno, professor e funcionário. Cada um costuma ter comportamento diferente em relação a prazo e volume de empréstimo. O cadastro precisa ter pelo menos o campo de tipo de usuário bem definido, porque se esse campo estiver errado ou vazio, o sistema pode aplicar a regra errada na hora do empréstimo, e isso gera inconsistência difícil de rastrear depois.
+
+Julia · 
+E tem uma coisa que aparece bastante na operação: quando o operador vai fazer o empréstimo, ele precisa visualizar o perfil do usuário facilmente, senão fica conferindo manual. Se o sistema já trouxer automaticamente o prazo e o limite com base no perfil cadastrado, evita muito erro humano. Acho importante que isso fique visível na tela de empréstimo, não só guardado no cadastro.
+
+Feedback da Lu:
+## Parecer da Lu
+
+### Síntese da condução
+
+A APSystems conduziu a sessão com organização razoável, distribuindo as perguntas entre as especialistas e mantendo foco em temas centrais do sistema. O ritmo foi adequado ao tempo disponível. Contudo, a equipe não aproveitou a sessão para avançar em territórios mais exigentes, concentrando-se em fluxos básicos e deixando de lado pontos de maior complexidade que permanecem em aberto.
+
+---
+
+### Acertos mais relevantes
+
+- A equipe demonstrou preparo mínimo necessário: as perguntas feitas tinham contexto e não foram totalmente vazias ou repetitivas em relação a etapas anteriores.
+- A pergunta sobre multa gerou uma confirmação importante — dias úteis, não corridos, com recesso contado — e a equipe assimilou a correção de Julia sem resistência, o que indica atenção ao processo.
+- A abordagem sobre avaria foi pertinente e resultou em uma discussão produtiva sobre o fluxo de devolução e a necessidade de status intermediário para o exemplar, um ponto operacionalmente relevante.
+- A equipe demonstrou capacidade de encadear respostas: Julia e Rosa complementaram Ana de forma coerente em mais de uma rodada.
+
+---
+
+### Fragilidades principais
+
+- A sessão não registrou nenhuma tentativa de explorar requisitos de maior complexidade. Temas como renovação bloqueada por reserva ativa, regras específicas do perfil diretor, livros de referência ou baixa de acervo não foram tocados, e o tempo foi inteiramente consumido em fluxos de nível básico.
+- A primeira pergunta, sobre campos de cadastro de professor e funcionário, foi genérica demais e não produziu nenhum requisito fechado. Ana sinalizou isso diretamente, e a equipe não reencaminhou a pergunta com precisão suficiente para aproveitar o momento.
+- A pergunta final sobre como o perfil afeta o empréstimo replicou parcialmente conteúdo já tratado em etapas anteriores, sem indicar que a equipe avançou na consolidação dos valores concretos — prazos e limites por perfil permanecem sem definição registrada.
+- A equipe não demonstrou consciência das contradições existentes entre as respostas das especialistas ao longo do processo. Nenhuma contradição foi identificada, confrontada ou resolvida nesta sessão.
+
+---
+
+### Ética e postura profissional
+
+Postura respeitosa e comunicação clara durante toda a sessão. Sem ocorrências a registrar neste critério.
+
+---
+
+### Fechamento
+
+A sessão foi conduzida de forma organizada, mas operou abaixo do potencial esperado para esta etapa. O volume de requisitos ainda em aberto — especialmente os de nível médio e difícil — indica que a equipe precisará de esforço concentrado e direcionado para consolidar o levantamento com a profundidade necessária.
