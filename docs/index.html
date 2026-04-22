@@ -10,7 +10,6 @@
             --ifpr-green: #32a041;
             --ifpr-red: #c8191e;
             --ifpr-white: #ffffff;
-            /* Cores Dark Mode */
             --bg-dark-body: #121212;
             --bg-dark-card: #1e1e1e;
             --bg-dark-sidebar: #181818;
@@ -23,7 +22,6 @@
 
         body { background-color: var(--bg-dark-body); color: var(--text-main); display: flex; min-height: 100vh; }
 
-        /* Barra Lateral (Sidebar) */
         .sidebar {
             width: 250px;
             background-color: var(--bg-dark-sidebar);
@@ -78,7 +76,6 @@
             border-left-color: var(--ifpr-green);
         }
 
-        /* Conteúdo Principal */
         .main-content {
             margin-left: 250px;
             flex-grow: 1;
@@ -96,7 +93,6 @@
 
         .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
 
-        /* Cards */
         .card {
             background: var(--bg-dark-card);
             border-radius: 8px;
@@ -123,7 +119,6 @@
             color: white; 
         }
 
-        /* Botões */
         .btn {
             padding: 10px 20px;
             border: none;
@@ -137,7 +132,6 @@
         .btn-danger { background: var(--ifpr-red); color: white; }
         .btn-outline { background: transparent; border: 1px solid var(--ifpr-green); color: var(--ifpr-green); }
 
-        /* Tabela e Badges */
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--gray-border); }
         th { background: #252525; font-size: 0.9rem; color: var(--text-muted); }
@@ -172,6 +166,7 @@
 
         .footer-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem; }
         
+        /* FIX: módulos ocultos por padrão, apenas .active visível */
         .modulo { display: none; }
         .modulo.active { display: block; }
 
@@ -184,7 +179,6 @@
             color: var(--text-muted);
         }
 
-        /* Dashboard */
         .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
         .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         .stat-card {
@@ -236,75 +230,107 @@
         .notice-date { font-size: 0.75rem; color: #666; }
         .notice-text { font-size: 0.9rem; margin-top: 3px; }
 
-        .sub-modulo {
-            display: none;
+        .sub-modulo { display: none; }
+        .sub-modulo.active { display: block; }
+
+        .sub-btn.active {
+            background: var(--ifpr-green);
+            color: white;
         }
 
-        .sub-modulo.active {
-            display: block;
-    }
+        .sub-livro { display: none; }
+        .sub-livro.active { display: block; }
+        .sub-livro-btn.active {
+            background: var(--ifpr-green);
+            color: white;
+        }
 
-.sub-btn.active {
-    background: var(--ifpr-green);
-    color: white;
-}
-.sub-livro {
-    display: none;
-}
+        .sub-exemplar { display: none; }
+        .sub-exemplar.active { display: block; }
+        .sub-exemplar-btn.active {
+            background: var(--ifpr-green);
+            color: white;
+        }
 
-.sub-livro.active {
-    display: block;
-}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
 
-.sub-livro-btn.active {
-    background: var(--ifpr-green);
-    color: white;
-}
-.sub-exemplar {
-    display: none;
-}
+        .modal-content {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-.sub-exemplar.active {
-    display: block;
-}
+        /* Modal de Sucesso */
+        .modal-sucesso-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 10px;
+        }
+        .modal-sucesso-icon.green { background: #1b2e1e; border: 2px solid var(--ifpr-green); }
+        .modal-sucesso-icon.red   { background: #3d1b1b; border: 2px solid var(--ifpr-red); }
 
-.sub-exemplar-btn.active {
-    background: var(--ifpr-green);
-    color: white;
-}
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-}
+        .modal-sucesso-titulo {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .modal-sucesso-sub {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
 
-.modal.active {
-    display: flex;
-}
+        .modal-detalhe-box {
+            background: #252525;
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 0.88rem;
+            line-height: 1.8;
+            border-left: 3px solid var(--ifpr-green);
+        }
+        .modal-detalhe-box.red-border { border-left-color: var(--ifpr-red); }
 
-.modal-content {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+        /* Animação suave dos modais */
+        .modal.active .modal-content {
+            animation: modalIn 0.2s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
     </style>
 </head>
 <body>
+
+<!-- ===== MODAIS DE EDIÇÃO ===== -->
 <div id="modalUsuario" class="modal">
     <div class="modal-content">
         <h2>Editar Usuário</h2>
-
         <input type="text" id="editNome" placeholder="Nome completo">
         <input type="email" id="editEmail" placeholder="nome@ifpr.edu.br">
         <select id="editTipo">
@@ -312,58 +338,58 @@
             <option>Professor</option>
             <option>Funcionário</option>
         </select>
-        <input type="email" id="editEmail" placeholder="Documento">
-
+        <!-- FIX: removido id="editEmail" duplicado, corrigido para editDocumento -->
+        <input type="text" id="editDocumento" placeholder="Documento">
         <div class="footer-actions">
             <button class="btn btn-outline" onclick="fecharModal('modalUsuario')">Cancelar</button>
             <button class="btn btn-primary">Salvar</button>
         </div>
     </div>
 </div>
+
 <div id="modalLivro" class="modal">
     <div class="modal-content">
         <h2>Editar Livro</h2>
-
         <input type="text" id="editTitulo" placeholder="Título do livro">
-        <input type="text" id="editISBN" placeholder="ISBN (13 digitos)">
-        <input type="text" id="editAutor" placeholder="Autor">  
+        <input type="text" id="editISBNLivro" placeholder="ISBN (13 digitos)">
+        <input type="text" id="editAutor" placeholder="Autor">
         <select id="editCategoria">
             <option>Informática</option>
             <option>Administração</option>
             <option>Mecânica</option>
         </select>
-
         <div class="footer-actions">
             <button class="btn btn-outline" onclick="fecharModal('modalLivro')">Cancelar</button>
             <button class="btn btn-primary">Salvar</button>
         </div>
     </div>
 </div>
+
 <div id="modalExemplar" class="modal">
     <div class="modal-content">
         <h2>Editar Exemplar</h2>
-
-        <input type="text" id="editCodigo" placeholder="Código: XXXX-XXXX-XX">
-        <input type="text" id="editCodigo" placeholder="Titulo do livro">
-        <input type="text" id="editISBN" placeholder="ISBN (13 digitos)">
+        <!-- FIX: removido id="editCodigo" duplicado, corrigido para editCodigoEx e editTituloEx -->
+        <input type="text" id="editCodigoEx" placeholder="Código: XXXX-XXXX-XX">
+        <input type="text" id="editTituloEx" placeholder="Titulo do livro">
+        <input type="text" id="editISBNEx" placeholder="ISBN (13 digitos)">
         <select id="editStatus">
             <option>Disponível</option>
             <option>Emprestado</option>
         </select>
-
         <div class="footer-actions">
             <button class="btn btn-outline" onclick="fecharModal('modalExemplar')">Cancelar</button>
             <button class="btn btn-primary">Salvar</button>
         </div>
     </div>
 </div>
+
+<!-- ===== SIDEBAR ===== -->
 <div class="sidebar">
     <div class="user-profile">
         <div class="user-photo"><span>👤</span></div>
         <p class="user-name">Ana Silva</p>
         <p class="user-role">Bibliotecária</p>
     </div>
-    
     <nav class="nav-menu">
         <a class="nav-item active" onclick="switchModulo('home')">🏠 Home</a>
         <a class="nav-item" onclick="switchModulo('emprestimo')">🤝 Empréstimo</a>
@@ -375,6 +401,7 @@
     </nav>
 </div>
 
+<!-- ===== CONTEÚDO PRINCIPAL ===== -->
 <div class="main-content">
     <header>
         <div class="logo"><strong>IFPR</strong> | Biblioteca</div>
@@ -382,7 +409,8 @@
     </header>
 
     <div class="container">
-        
+
+        <!-- HOME -->
         <div id="home" class="modulo active">
             <div class="dashboard-grid">
                 <div class="left-col">
@@ -448,25 +476,27 @@
             </div>
         </div>
 
+        <!-- EMPRÉSTIMO -->
+        <!-- FIX: adicionada div#emprestimo com class="modulo" que estava faltando -->
         <div id="emprestimo" class="modulo">
             <section class="card">
                 <h2>1. Identificar Usuário</h2>
                 <div class="grid-form">
                     <div class="input-group">
                         <label>Pesquisar por E-mail</label>
-                        <input type="email" placeholder="exemplo@ifpr.edu.br">
+                        <input type="email" id="inputEmailEmprestimo" placeholder="exemplo@ifpr.edu.br">
                     </div>
                     <div class="input-group">
                         <label>Tipo de Vínculo</label>
-                        <select disabled>
+                        <select disabled id="tipoVinculoEmprestimo">
                             <option>Aluno (Limite 2 livros / 7 dias)</option>
                             <option selected>Professor (Limite 5 livros / 15 dias)</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary">Buscar</button>
+                    <button class="btn btn-primary" onclick="buscarUsuarioEmprestimo()">Buscar</button>
                 </div>
-                <div class="alert-penalty">
-                    <span><strong>Atenção:</strong> Usuário possui multa pendente de R$ 5,00.</span>
+                <div id="alertaMultaEmprestimo" class="alert-penalty" style="display:none;">
+                    <span>⚠️ <strong>Atenção:</strong> Usuário possui multa pendente de <strong>R$ 5,00</strong>.</span>
                     <button class="btn btn-danger">Abater Multa / Pagar</button>
                 </div>
             </section>
@@ -492,220 +522,210 @@
                         <tr><th>Título</th><th>ISBN</th><th>Status</th><th>Ação</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Engenharia de Software</td><td>978-85-333...</td><td><span class="badge badge-success">Disponível</span></td><td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 11px;">Selecionar</button></td></tr>
+                        <tr>
+                            <td>Engenharia de Software</td>
+                            <td>978-85-333...</td>
+                            <td><span class="badge badge-success">Disponível</span></td>
+                            <!-- FIX: botão estava em <td> solto fora de tabela, agora corretamente dentro da tabela -->
+                            <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 11px;" onclick="prepararEmprestimo('Professor')">Selecionar</button></td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
         </div>
 
-       <div id="cad-perfil" class="modulo">
-    
-    <!-- Submenu -->
-    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-        <button class="btn btn-outline sub-btn active" onclick="switchSubPerfil('novo')">Cadastrar Novo Usuário</button>
-        <button class="btn btn-outline sub-btn" onclick="switchSubPerfil('lista')">Usuários Cadastrados</button>
-    </div>
-
-    <!-- CADASTRAR -->
-    <div id="sub-novo" class="sub-modulo active">
-        <section class="card">
-            <h2>Cadastrar Novo Perfil (Usuário)</h2>
-            <div class="grid-form-2">
-                <div class="input-group">
-                    <label>Nome Completo</label>
-                    <input type="text" placeholder="Nome do Aluno, Professor ou Funcional">
-                </div>
-                <div class="input-group">
-                    <label>E-mail Institucional</label>
-                    <input type="email" placeholder="nome@ifpr.edu.br">
-                </div>
-                <div class="input-group">
-                    <label>Tipo de Usuário</label>
-                    <select>
-                        <option>Aluno</option>
-                        <option>Professor</option>
-                        <option>Funcionário</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Documento (CPF ou Matrícula)</label>
-                    <input type="text" placeholder="Apenas números">
-                </div>
+        <!-- CADASTRO DE PERFIL -->
+        <div id="cad-perfil" class="modulo">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="btn btn-outline sub-btn active" onclick="switchSubPerfil('novo')">Cadastrar Novo Usuário</button>
+                <button class="btn btn-outline sub-btn" onclick="switchSubPerfil('lista')">Usuários Cadastrados</button>
             </div>
-            <div class="footer-actions">
-                <button class="btn btn-outline">Cancelar</button>
-                <button class="btn btn-primary">Cadastrar Perfil</button>
+
+            <div id="sub-novo" class="sub-modulo active">
+                <section class="card">
+                    <h2>Cadastrar Novo Perfil (Usuário)</h2>
+                    <div class="grid-form-2">
+                        <div class="input-group">
+                            <label>Nome Completo</label>
+                            <input type="text" placeholder="Nome do Aluno, Professor ou Funcional">
+                        </div>
+                        <div class="input-group">
+                            <label>E-mail Institucional</label>
+                            <input type="email" placeholder="nome@ifpr.edu.br">
+                        </div>
+                        <div class="input-group">
+                            <label>Tipo de Usuário</label>
+                            <select>
+                                <option>Aluno</option>
+                                <option>Professor</option>
+                                <option>Funcionário</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Documento (CPF ou Matrícula)</label>
+                            <input type="text" placeholder="Apenas números">
+                        </div>
+                    </div>
+                    <div class="footer-actions">
+                        <button class="btn btn-outline">Cancelar</button>
+                        <button class="btn btn-primary" onclick="confirmarCadastroUsuario()">Cadastrar Perfil</button>
+                    </div>
+                </section>
             </div>
-        </section>
-    </div>
 
-    <!-- LISTA -->
-    <div id="sub-lista" class="sub-modulo">
-        <input type="text" id="searchUsuario" placeholder="Pesquisar por nome/ email/ tipo/ documento ..." 
-    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
-        <section class="card">
-            <h2>Usuários Cadastrados</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>Documento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ana Silva</td>
-                        <td>ana@ifpr.edu.br</td>
-                        <td>Bibliotecária</td>
-                        <td>12345678900</td>
-                         <td>
-                        <button class="btn btn-primary" onclick="abrirModal('modalUsuario')">Editar ✏️</button>
-                        <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
-                        Excluir 🗑️
-                        </button>
-                    </tr>
-                    <tr>
-                        <td>Caio Tanaka</td>
-                        <td>caio.tanaka@ifpr.edu.br</td>
-                        <td>Aluno</td>
-                        <td>202500123</td>
-                        <td>
-                        <button class="btn btn-primary" onclick="abrirModal('modalUsuario')">Editar ✏️</button>
-                       <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
-                        Excluir 🗑️
-                        </button>
-                        </td>   
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </div>
+            <div id="sub-lista" class="sub-modulo">
+                <!-- FIX: id="searchUsuarioPerfil" para não conflitar com o da aba de livros -->
+                <input type="text" id="searchUsuarioPerfil" placeholder="Pesquisar por nome/ email/ tipo/ documento ..."
+                    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
+                <section class="card">
+                    <h2>Usuários Cadastrados</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Tipo</th>
+                                <th>Documento</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyUsuarios">
+                            <tr>
+                                <td>Ana Silva</td>
+                                <td>ana@ifpr.edu.br</td>
+                                <td>Bibliotecária</td>
+                                <td>12345678900</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="abrirModal('modalUsuario')">Editar ✏️</button>
+                                    <button class="btn btn-danger" onclick="abrirConfirmacao(this)">Excluir 🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Caio Tanaka</td>
+                                <td>caio.tanaka@ifpr.edu.br</td>
+                                <td>Aluno</td>
+                                <td>202500123</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="abrirModal('modalUsuario')">Editar ✏️</button>
+                                    <button class="btn btn-danger" onclick="abrirConfirmacao(this)">Excluir 🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
 
-</div>
-
+        <!-- CADASTRO DE LIVRO -->
         <div id="cad-livro" class="modulo">
-
-    <!-- SUBMENU -->
-   <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-    <button class="btn btn-outline sub-livro-btn active" onclick="switchSubLivro('novo')">Cadastrar Novo Livro</button>
-    <button class="btn btn-outline sub-livro-btn" onclick="switchSubLivro('lista')">Livros Cadastrados</button>
-    <button class="btn btn-outline sub-exemplar-btn" onclick="switchSubExemplar('lista')">Exemplares Cadastrados</button>
-    </div>
-
-    <!-- CADASTRO -->
-    <div id="livro-novo" class="sub-livro active">
-        <section class="card">
-            <h2>Cadastrar Obra e Exemplares</h2>
-            <div class="grid-form-2">
-                <div class="input-group">
-                    <label>Título da Obra</label>
-                    <input type="text" placeholder="Ex: Clean Code">
-                </div>
-                <div class="input-group">
-                    <label>ISBN</label>
-                    <input type="text" placeholder="000-00-0000-000-0">
-                </div>
-                <div class="input-group">
-                    <label>Autor</label>
-                    <input type="text" placeholder="Nome do autor">
-                </div>
-                <div class="input-group">
-                    <label>Categoria</label>
-                    <select>
-                        <option>Informática</option>
-                        <option>Mecânica</option>
-                        <option>Administração</option>
-                    </select>
-                </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="btn btn-outline sub-livro-btn active" onclick="switchSubLivro('novo')">Cadastrar Novo Livro</button>
+                <button class="btn btn-outline sub-livro-btn" onclick="switchSubLivro('lista')">Livros Cadastrados</button>
+                <button class="btn btn-outline sub-exemplar-btn" onclick="switchSubExemplar()">Exemplares Cadastrados</button>
             </div>
 
-            <div class="barcode-box">
-                <small>Pré-visualização do Código:</small><br>
-                <svg id="barcode"></svg>
+            <div id="livro-novo" class="sub-livro active">
+                <section class="card">
+                    <h2>Cadastrar Obra e Exemplares</h2>
+                    <div class="grid-form-2">
+                        <div class="input-group">
+                            <label>Título da Obra</label>
+                            <input type="text" placeholder="Ex: Clean Code">
+                        </div>
+                        <div class="input-group">
+                            <label>ISBN</label>
+                            <input type="text" placeholder="000-00-0000-000-0">
+                        </div>
+                        <div class="input-group">
+                            <label>Autor</label>
+                            <input type="text" placeholder="Nome do autor">
+                        </div>
+                        <div class="input-group">
+                            <label>Categoria</label>
+                            <select>
+                                <option>Informática</option>
+                                <option>Mecânica</option>
+                                <option>Administração</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="barcode-box">
+                        <small>Pré-visualização do Código:</small><br>
+                        <svg id="barcode"></svg>
+                    </div>
+                    <div class="footer-actions">
+                        <button class="btn btn-outline">Limpar</button>
+                        <button class="btn btn-primary" onclick="confirmarCadastroLivro()">Salvar Livro</button>
+                    </div>
+                </section>
             </div>
 
-            <div class="footer-actions">
-                <button class="btn btn-outline">Limpar</button>
-                <button class="btn btn-primary">Salvar Livro</button>
+            <div id="livro-lista" class="sub-livro">
+                <input type="text" id="searchLivro" placeholder="Pesquisar por titulo, ISBN, Autor, tipo..."
+                    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
+                <section class="card">
+                    <h2>Livros Cadastrados</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>ISBN</th>
+                                <th>Autor</th>
+                                <th>Categoria</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyLivros">
+                            <tr>
+                                <td>Engenharia de Software</td>
+                                <td>978-85-333...</td>
+                                <td>Robert Cecil Martin</td>
+                                <td>Informática</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="abrirModal('modalLivro')">Editar ✏️</button>
+                                    <button class="btn btn-danger" onclick="abrirConfirmacao(this)">Excluir 🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </div>
-        </section>
-    </div>
-    <div id="livro-lista" class="sub-livro">
-        <input type="text" id="searchUsuario" placeholder="Pesquisar por titulo, ISBN, Autor, tipo..." 
-    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
-    <section class="card">
-        <h2>Livros Cadastrados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>ISBN</th>
-                    <th>Autor</th>
-                    <th>Categoria</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Engenharia de Software</td>
-                    <td>978-85-333...</td>
-                    <td>Robert Cecil Martin</td>
-                    <td>Informática</td>
-                    <td>
-                        <button class="btn btn-primary" onclick="abrirModal('modalLivro')">Editar ✏️</button>
-                       <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
-                        Excluir 🗑️
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-</div>
 
+            <!-- FIX: movido exemplar-lista para dentro de cad-livro -->
+            <div id="exemplar-lista" class="sub-exemplar">
+                <input type="text" id="searchExemplar" placeholder="Pesquisar por código, livro, ISBN ..."
+                    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
+                <section class="card">
+                    <h2>Exemplares Cadastrados</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Livro</th>
+                                <th>ISBN</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyExemplares">
+                            <tr>
+                                <td>IFPR-2026-12</td>
+                                <td>Engenharia de Software</td>
+                                <td>978-85-333...</td>
+                                <td><span class="badge badge-success">Disponível</span></td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="abrirModal('modalExemplar')">Editar ✏️</button>
+                                    <button class="btn btn-danger" onclick="abrirConfirmacao(this)">Excluir 🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
 
-</div>
-<div style="display: flex; gap: 10px; margin-bottom: 15px;">
-</div>
-<div id="exemplar-lista" class="sub-exemplar">
-    <input type="text" id="searchExemplar" placeholder="Pesquisar por código, livro, ISBN ..."
-    style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #333; background:#2a2a2a; color:white;">
-
-    <section class="card">
-        <h2>Exemplares Cadastrados</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Livro</th>
-                    <th>ISBN</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>IFPR-2026-12</td>
-                    <td>Engenharia de Software</td>
-                    <td>978-85-333...</td>
-                    <td><span class="badge badge-success">Disponível</span></td>
-                    <td>
-                        <button class="btn btn-primary" onclick="abrirModal('modalExemplar')">Editar ✏️</button>
-                         <button class="btn btn-danger" onclick="abrirConfirmacao(this)">
-                            Excluir 🗑️
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-</div>
-</div>
-
+        <!-- RESERVAS -->
+        <!-- FIX: adicionada div#reserva com class="modulo" que estava faltando (causava sobreposição) -->
         <div id="reserva" class="modulo">
             <section class="card">
                 <h2>🔖 Nova Reserva</h2>
@@ -740,13 +760,16 @@
                         <tr>
                             <td>Banco de Dados SQL</td>
                             <td><span class="badge badge-success">Disponível</span></td>
-                            <td><button class="btn btn-primary">Efetuar Reserva</button></td>
+                            <!-- FIX: botão estava em <td> solto fora de tabela -->
+                            <td><button class="btn btn-primary" onclick="prepararReserva()">Efetuar Reserva</button></td>
                         </tr>
                     </tbody>
                 </table>
             </section>
         </div>
-        
+
+        <!-- DEVOLUÇÕES -->
+        <!-- FIX: adicionada div#devolucao com class="modulo" que estava faltando (causava sobreposição) -->
         <div id="devolucao" class="modulo">
             <section class="card">
                 <h2>🔄 Devolução de Exemplar</h2>
@@ -772,8 +795,9 @@
                             <td>06/04/2026</td>
                             <td>8 dias</td>
                             <td><strong>R$ 8,00</strong></td>
+                            <!-- FIX: botão estava em <td> solto fora de tabela -->
                             <td>
-                                <button class="btn btn-danger" onclick="this.parentElement.parentElement.style.display='none'">Confirmar Devolução</button>
+                                <button class="btn btn-danger" onclick="prepararDevolucao(8)">Confirmar Devolução</button>
                                 <button class="btn btn-outline" onclick="alert('Multa paga!')">Quitar Multa</button>
                             </td>
                         </tr>
@@ -802,6 +826,7 @@
             </section>
         </div>
 
+        <!-- HISTÓRICO -->
         <div id="historico" class="modulo">
             <section class="card">
                 <h2>📜 Histórico de Empréstimos</h2>
@@ -818,16 +843,82 @@
             </section>
         </div>
 
-    </div> 
-</div> 
-<div id="modalConfirmacao" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
-    <div style="background:#1e1e1e; padding:20px; border-radius:8px; width:300px; text-align:center;">
-        <p style="margin-bottom:15px;">Tem certeza que deseja excluir?</p>
-
-        <button class="btn btn-danger" onclick="confirmarSim()">Sim</button>
-        <button class="btn btn-outline" onclick="fecharModal()">Cancelar</button>
     </div>
+</div>
 
+<!-- ===== MODAL CONFIRMAÇÃO EXCLUSÃO ===== -->
+<div id="modalConfirmacao" class="modal">
+    <div class="modal-content" style="width: 380px;">
+        <div class="modal-sucesso-icon red">🗑️</div>
+        <div class="modal-sucesso-titulo" style="color: var(--ifpr-red);">Confirmar Exclusão</div>
+        <div class="modal-sucesso-sub">Esta ação não poderá ser desfeita.</div>
+        <div id="detalhe-exclusao" class="modal-detalhe-box red-border"></div>
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharConfirmacao()">Cancelar</button>
+            <button class="btn btn-danger" onclick="confirmarSim()">Sim, Excluir</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MODAIS DE CONFIRMAÇÃO DE AÇÃO ===== -->
+<!-- FIX: id tinha espaço "modalConfirma Emprestimo", corrigido para "modalConfirmaEmprestimo" -->
+<div id="modalConfirmaEmprestimo" class="modal">
+    <div class="modal-content" style="width: 450px;">
+        <h2>Confirmação de Empréstimo</h2>
+        <div id="detalhes-emprestimo" style="font-size: 0.9rem; line-height: 1.6;"></div>
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharModal('modalConfirmaEmprestimo')">Cancelar</button>
+            <button class="btn btn-primary" onclick="finalizarAcao('Empréstimo realizado!')">Confirmar Empréstimo</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalConfirmaDevolucao" class="modal">
+    <div class="modal-content" style="width: 450px;">
+        <h2 style="color: var(--ifpr-red);">Finalizar Devolução</h2>
+        <div id="detalhes-devolucao" style="font-size: 0.9rem; line-height: 1.6;"></div>
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharModal('modalConfirmaDevolucao')">Voltar</button>
+            <button class="btn btn-danger" onclick="finalizarAcao('Devolução processada!')">Confirmar Recebimento</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalConfirmaReserva" class="modal">
+    <div class="modal-content" style="width: 450px;">
+        <h2 style="color: #f1c40f;">Protocolo de Reserva</h2>
+        <div id="detalhes-reserva" style="font-size: 0.9rem; line-height: 1.6;"></div>
+        <div class="footer-actions">
+            <button class="btn btn-outline" onclick="fecharModal('modalConfirmaReserva')">Cancelar</button>
+            <button class="btn btn-primary" style="background: #f1c40f; color: black;" onclick="finalizarAcao('Reserva efetuada!')">Confirmar Reserva</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MODAL SUCESSO CADASTRO USUÁRIO ===== -->
+<div id="modalSucessoUsuario" class="modal">
+    <div class="modal-content" style="width: 380px;">
+        <div class="modal-sucesso-icon green">✅</div>
+        <div class="modal-sucesso-titulo" style="color: var(--ifpr-green);">Usuário Cadastrado!</div>
+        <div class="modal-sucesso-sub">O perfil foi registrado com sucesso no sistema.</div>
+        <div id="detalhe-usuario-cadastrado" class="modal-detalhe-box"></div>
+        <div class="footer-actions" style="justify-content: center;">
+            <button class="btn btn-primary" onclick="fecharModal('modalSucessoUsuario')">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MODAL SUCESSO CADASTRO LIVRO ===== -->
+<div id="modalSucessoLivro" class="modal">
+    <div class="modal-content" style="width: 380px;">
+        <div class="modal-sucesso-icon green">📚</div>
+        <div class="modal-sucesso-titulo" style="color: var(--ifpr-green);">Livro Cadastrado!</div>
+        <div class="modal-sucesso-sub">A obra foi registrada com sucesso na biblioteca.</div>
+        <div id="detalhe-livro-cadastrado" class="modal-detalhe-box"></div>
+        <div class="footer-actions" style="justify-content: center;">
+            <button class="btn btn-primary" onclick="fecharModal('modalSucessoLivro')">Fechar</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -843,32 +934,23 @@ function gerarCodigoBarras(valor) {
 }
 
 function switchModulo(moduloId) {
-    
     document.querySelectorAll('.modulo').forEach(m => m.classList.remove('active'));
-
-   
-    document.querySelectorAll('.sub-livro, .sub-exemplar, .sub-modulo')
-        .forEach(el => el.classList.remove('active'));
-
-  
+    document.querySelectorAll('.sub-livro, .sub-exemplar, .sub-modulo').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
 
     const target = document.getElementById(moduloId);
     if (target) target.classList.add('active');
 
     document.querySelectorAll('.nav-item').forEach(item => {
-        if (item.getAttribute('onclick').includes("'" + moduloId + "'")) {
+        if (item.getAttribute('onclick') && item.getAttribute('onclick').includes("'" + moduloId + "'")) {
             item.classList.add('active');
         }
     });
 
     if (moduloId === 'cad-livro') {
         document.getElementById('livro-novo').classList.add('active');
-        document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn')
-            .forEach(btn => btn.classList.remove('active'));
-
+        document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.sub-livro-btn')[0].classList.add('active');
-
         setTimeout(() => gerarCodigoBarras("IFPR-2026-X99"), 50);
     }
 
@@ -881,7 +963,6 @@ function switchModulo(moduloId) {
         'devolucao': 'Módulo de Devoluções',
         'historico': 'Módulo de Histórico'
     };
-
     document.getElementById('modulo-title').innerText = titles[moduloId] || 'Sistema';
 }
 
@@ -889,11 +970,8 @@ function switchModulo(moduloId) {
 function switchSubPerfil(tipo) {
     document.getElementById('sub-novo').classList.remove('active');
     document.getElementById('sub-lista').classList.remove('active');
-
     document.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('active'));
-
     document.getElementById('sub-' + tipo).classList.add('active');
-
     if (tipo === 'novo') {
         document.querySelectorAll('.sub-btn')[0].classList.add('active');
     } else {
@@ -903,13 +981,9 @@ function switchSubPerfil(tipo) {
 
 /* ===== LIVRO ===== */
 function switchSubLivro(tipo) {
-    document.getElementById('livro-novo').classList.remove('active');
-    document.getElementById('livro-lista').classList.remove('active');
-
-    document.querySelectorAll('.sub-livro-btn').forEach(btn => btn.classList.remove('active'));
-
+    document.querySelectorAll('.sub-livro, .sub-exemplar').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn').forEach(btn => btn.classList.remove('active'));
     document.getElementById('livro-' + tipo).classList.add('active');
-
     if (tipo === 'novo') {
         document.querySelectorAll('.sub-livro-btn')[0].classList.add('active');
         setTimeout(() => gerarCodigoBarras("IFPR-2026-X99"), 50);
@@ -917,53 +991,40 @@ function switchSubLivro(tipo) {
         document.querySelectorAll('.sub-livro-btn')[1].classList.add('active');
     }
 }
-document.getElementById("searchUsuario").addEventListener("keyup", function () {
-    let filtro = this.value.toLowerCase();
-    let linhas = document.querySelectorAll("#sub-lista tbody tr");
 
-    linhas.forEach(linha => {
-        let texto = linha.innerText.toLowerCase();
-        linha.style.display = texto.includes(filtro) ? "" : "none";
+function switchSubExemplar() {
+    document.querySelectorAll('.sub-livro, .sub-exemplar').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('exemplar-lista').classList.add('active');
+    document.querySelector('.sub-exemplar-btn').classList.add('active');
+}
+
+/* ===== BUSCA ===== */
+// FIX: id corrigido para searchUsuarioPerfil
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("searchUsuarioPerfil").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        document.querySelectorAll("#tbodyUsuarios tr").forEach(linha => {
+            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
+        });
+    });
+
+    document.getElementById("searchLivro").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        document.querySelectorAll("#tbodyLivros tr").forEach(linha => {
+            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
+        });
+    });
+
+    document.getElementById("searchExemplar").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        document.querySelectorAll("#tbodyExemplares tr").forEach(linha => {
+            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
+        });
     });
 });
 
-function switchSubLivro(tipo) {
-    // esconde tudo (livro + exemplar)
-    document.querySelectorAll('.sub-livro, .sub-exemplar')
-        .forEach(el => el.classList.remove('active'));
-
-    // remove seleção de TODOS botões
-    document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn')
-        .forEach(btn => btn.classList.remove('active'));
-
-    // mostra o conteúdo correto
-    document.getElementById('livro-' + tipo).classList.add('active');
-
-    // ativa botão correto
-    if (tipo === 'novo') {
-        document.querySelectorAll('.sub-livro-btn')[0].classList.add('active');
-    } else {
-        document.querySelectorAll('.sub-livro-btn')[1].classList.add('active');
-    }
-}
-function switchSubExemplar() {
-    // esconde tudo
-    document.querySelectorAll('.sub-livro, .sub-exemplar')
-        .forEach(el => el.classList.remove('active'));
-
-    // remove seleção de TODOS botões
-    document.querySelectorAll('.sub-livro-btn, .sub-exemplar-btn')
-        .forEach(btn => btn.classList.remove('active'));
-
-    // mostra exemplar
-    document.getElementById('exemplar-lista').classList.add('active');
-
-    // ativa botão exemplar
-    document.querySelector('.sub-exemplar-btn').classList.add('active');
-}
-let linhaSelecionada = null;
-
-/* ===== MODAL EDITAR ===== */
+/* ===== MODAIS ===== */
 function abrirModal(id) {
     document.getElementById(id).classList.add('active');
 }
@@ -972,23 +1033,204 @@ function fecharModal(id) {
     document.getElementById(id).classList.remove('active');
 }
 
-/* ===== MODAL CONFIRMAÇÃO EXCLUIR ===== */
+/* ===== CONFIRMAÇÃO EXCLUSÃO com detalhes da linha ===== */
+let linhaSelecionada = null;
+
 function abrirConfirmacao(botao) {
     linhaSelecionada = botao.closest("tr");
-    document.getElementById("modalConfirmacao").style.display = "flex";
+    const celulas = linhaSelecionada.querySelectorAll("td");
+    const col1 = celulas[0] ? celulas[0].innerText : '';
+    const col2 = celulas[1] ? celulas[1].innerText : '';
+    document.getElementById('detalhe-exclusao').innerHTML = `
+        <span style="color:var(--text-muted);font-size:0.78rem;">REGISTRO SELECIONADO</span><br>
+        <strong>${col1}</strong><br>
+        <span style="color:var(--text-muted);">${col2}</span>
+    `;
+    abrirModal('modalConfirmacao');
 }
 
 function fecharConfirmacao() {
-    document.getElementById("modalConfirmacao").style.display = "none";
+    fecharModal('modalConfirmacao');
 }
 
 function confirmarSim() {
-    if (linhaSelecionada) {
-        linhaSelecionada.remove();
-    }
+    if (linhaSelecionada) linhaSelecionada.remove();
     fecharConfirmacao();
 }
-</script>
+
+/* ===== CADASTRO DE USUÁRIO com modal de sucesso ===== */
+function confirmarCadastroUsuario() {
+    const inputs = document.querySelectorAll('#sub-novo input, #sub-novo select');
+    const nome    = inputs[0] ? inputs[0].value.trim() : '';
+    const email   = inputs[1] ? inputs[1].value.trim() : '';
+    const tipo    = inputs[2] ? inputs[2].value : '';
+    const doc     = inputs[3] ? inputs[3].value.trim() : '';
+    document.getElementById('detalhe-usuario-cadastrado').innerHTML = `
+        <span style="color:var(--text-muted);font-size:0.78rem;">DADOS DO NOVO USUÁRIO</span><br>
+        <strong>Nome:</strong> ${nome || '(não informado)'}<br>
+        <strong>E-mail:</strong> ${email || '(não informado)'}<br>
+        <strong>Tipo:</strong> ${tipo}<br>
+        <strong>Documento:</strong> ${doc || '(não informado)'}
+    `;
+    abrirModal('modalSucessoUsuario');
+}
+
+/* ===== CADASTRO DE LIVRO com modal de sucesso ===== */
+function confirmarCadastroLivro() {
+    const inputs = document.querySelectorAll('#livro-novo input, #livro-novo select');
+    const titulo    = inputs[0] ? inputs[0].value.trim() : '';
+    const isbn      = inputs[1] ? inputs[1].value.trim() : '';
+    const autor     = inputs[2] ? inputs[2].value.trim() : '';
+    const categoria = inputs[3] ? inputs[3].value : '';
+    document.getElementById('detalhe-livro-cadastrado').innerHTML = `
+        <span style="color:var(--text-muted);font-size:0.78rem;">DADOS DA OBRA CADASTRADA</span><br>
+        <strong>Título:</strong> ${titulo || '(não informado)'}<br>
+        <strong>ISBN:</strong> ${isbn || '(não informado)'}<br>
+        <strong>Autor:</strong> ${autor || '(não informado)'}<br>
+        <strong>Categoria:</strong> ${categoria}
+    `;
+    abrirModal('modalSucessoLivro');
+}
+
+/* ===== BUSCA DE USUÁRIO NO EMPRÉSTIMO ===== */
+function buscarUsuarioEmprestimo() {
+    const email = document.getElementById('inputEmailEmprestimo').value.trim().toLowerCase();
+    const alerta = document.getElementById('alertaMultaEmprestimo');
+    // Multa visível SOMENTE para amauri@gmail.com
+    alerta.style.display = (email === 'amauri@gmail.com') ? 'flex' : 'none';
+}
+
+/* ===== AÇÕES ===== */
+function finalizarAcao(mensagem) {
+    alert(mensagem);
+    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+}
+
+function prepararEmprestimo(tipoUsuario) {
+    tipoUsuario = tipoUsuario || 'Aluno';
+    const hoje = new Date();
+    let prazo = tipoUsuario === 'Professor' ? 15 : 7;
+    const dataDevolucao = new Date();
+    dataDevolucao.setDate(hoje.getDate() + prazo);
+    const html = `
+        <p><strong>Livro:</strong> Engenharia de Software</p>
+        <p><strong>ISBN:</strong> 978-85-333-0761-2</p>
+        <p><strong>Autor:</strong> Ian Sommerville</p>
+        <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
+        <p><strong>Usuário:</strong> Ricardo Oliveira (${tipoUsuario})</p>
+        <p><strong>Data de Devolução:</strong> <span style="color:var(--ifpr-green);font-weight:bold;">${dataDevolucao.toLocaleDateString('pt-BR')}</span></p>
+        <p><small>*Prazo de ${prazo} dias conforme regulamento.</small></p>
+    `;
+    document.getElementById('detalhes-emprestimo').innerHTML = html;
+    abrirModal('modalConfirmaEmprestimo');
+}
+
+function prepararDevolucao(atrasoDias) {
+    const multa = atrasoDias * 1.00;
+    const html = `
+        <p><strong>Livro:</strong> Cálculo Diferencial I</p>
+        <p><strong>ISBN:</strong> 978-85-216-1111-0</p>
+        <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
+        <p><strong>Status:</strong> <span class="badge ${atrasoDias > 0 ? 'badge-error' : 'badge-success'}">${atrasoDias > 0 ? 'Em Atraso' : 'No Prazo'}</span></p>
+        ${atrasoDias > 0 ? `<p style="color:#ff8c8c;"><strong>Dias de Atraso:</strong> ${atrasoDias} dias</p>
+        <p style="color:#ff8c8c;"><strong>Multa Gerada:</strong> R$ ${multa.toFixed(2)}</p>` : '<p>Sem pendências financeiras.</p>'}
+    `;
+    document.getElementById('detalhes-devolucao').innerHTML = html;
+    abrirModal('modalConfirmaDevolucao');
+}
+
+function prepararReserva() {
+    const html = `
+        <p><strong>Livro:</strong> Clean Code</p>
+        <p><strong>Autor:</strong> Robert C. Martin</p>
+        <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
+        <div style="background:#332b00;border:1px solid #f1c40f;padding:10px;border-radius:4px;color:#f1c40f;">
+            <strong>Posição na Fila:</strong> 3º lugar
+        </div>
+        <p style="margin-top:10px;"><small>Você será notificado por e-mail quando o exemplar estiver disponível.</small></p>
+    `;
+    document.getElementById('detalhes-reserva').innerHTML = html;
+    abrirModal('modalConfirmaReserva');
+}
+
+/* ===== BUSCA NAS TABELAS ===== */
+document.addEventListener('DOMContentLoaded', function () {
+    const inputEmail = document.getElementById('inputEmailEmprestimo');
+    if (inputEmail) {
+        inputEmail.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') buscarUsuarioEmprestimo();
+        });
+    }
+
+    document.getElementById("searchUsuarioPerfil").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        document.querySelectorAll("#tbodyUsuarios tr").forEach(linha => {
+            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
+        });
+    });
+
+    document.getElementById("searchLivro").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        document.querySelectorAll("#tbodyLivros tr").forEach(linha => {
+            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
+        });
+    });
+
+    document.getElementById("searchExemplar").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        document.querySelectorAll("#tbodyExemplares tr").forEach(linha => {
+            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
+        });
+    });
+});
+
+function prepararEmprestimo(tipoUsuario) {
+    tipoUsuario = tipoUsuario || 'Aluno';
+    const hoje = new Date();
+    let prazo = tipoUsuario === 'Professor' ? 15 : 7;
+    const dataDevolucao = new Date();
+    dataDevolucao.setDate(hoje.getDate() + prazo);
+
+    const html = `
+        <p><strong>Livro:</strong> Engenharia de Software</p>
+        <p><strong>ISBN:</strong> 978-85-333-0761-2</p>
+        <p><strong>Autor:</strong> Ian Sommerville</p>
+        <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
+        <p><strong>Usuário:</strong> Ricardo Oliveira (${tipoUsuario})</p>
+        <p><strong>Data de Devolução:</strong> <span style="color: var(--ifpr-green); font-weight: bold;">${dataDevolucao.toLocaleDateString('pt-BR')}</span></p>
+        <p><small>*Prazo de ${prazo} dias aplicado conforme regulamento.</small></p>
+    `;
+    document.getElementById('detalhes-emprestimo').innerHTML = html;
+    abrirModal('modalConfirmaEmprestimo');
+}
+
+function prepararDevolucao(atrasoDias) {
+    const multa = atrasoDias * 1.00;
+    const html = `
+        <p><strong>Livro:</strong> Cálculo Diferencial I</p>
+        <p><strong>ISBN:</strong> 978-85-216-1111-0</p>
+        <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
+        <p><strong>Status:</strong> <span class="badge ${atrasoDias > 0 ? 'badge-error' : 'badge-success'}">${atrasoDias > 0 ? 'Em Atraso' : 'No Prazo'}</span></p>
+        ${atrasoDias > 0 ? `<p style="color: #ff8c8c;"><strong>Dias de Atraso:</strong> ${atrasoDias} dias</p>
+        <p style="color: #ff8c8c;"><strong>Multa Gerada:</strong> R$ ${multa.toFixed(2)}</p>` : '<p>Sem pendências financeiras.</p>'}
+    `;
+    document.getElementById('detalhes-devolucao').innerHTML = html;
+    abrirModal('modalConfirmaDevolucao');
+}
+
+function prepararReserva() {
+    const html = `
+        <p><strong>Livro:</strong> Clean Code</p>
+        <p><strong>Autor:</strong> Robert C. Martin</p>
+        <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
+        <div style="background: #332b00; border: 1px solid #f1c40f; padding: 10px; border-radius: 4px; color: #f1c40f;">
+            <strong>Posição na Fila:</strong> 3º lugar
+        </div>
+        <p style="margin-top: 10px;"><small>Você será notificado por e-mail quando o exemplar estiver disponível.</small></p>
+    `;
+    document.getElementById('detalhes-reserva').innerHTML = html;
+    abrirModal('modalConfirmaReserva');
+}
 </script>
 
 </body>
