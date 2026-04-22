@@ -375,3 +375,66 @@ Então o sistema deve apresentar os registros dos empréstimos ordenados por dat
 Dado que o aluno ou professor esteja analisando o histórico
 Quando selecionar um empréstimo
 Então o sistema deve exibir os detalhes do empréstimo selecionado
+
+
+
+E-mail análise da Lu para as três histórias selecionadas
+
+# Devolutiva — Histórias de Usuário | Gabriel Nogueira dos Santos
+**Atividade 05 — parcial 08/04/2026**
+
+---
+
+## O que você entregou
+
+3 histórias em formato Como/Quero/Para, sem cenários Dado/Quando/Então:
+
+- cadastro de aluno (bibliotecária)
+- empréstimo (bibliotecária)
+- consulta de empréstimos (aluno/professor)
+
+---
+
+## Correções necessárias (assertivas)
+
+### 1) Sem cenários = sem comportamento do sistema
+
+Cada história precisa ter cenários. No mínimo:
+
+- 1 fluxo principal (quando funciona)
+- 1 alternativo (bloqueio/erro/regra)
+
+Sem isso, outra pessoa não consegue prototipar nem validar o que o sistema deve fazer.
+
+### 2) Ator híbrido e ator confuso
+
+- “Como usuário bibliotecária” mistura termos e não define papel real. Use um ator único (ex.: atendente/bibliotecária).
+- “Como aluno/professor” junta perfis. Se as regras mudarem por perfil, separe em histórias diferentes ou crie cenários por perfil.
+
+### 3) Regra não vai no “Quero”
+
+Na HU de empréstimo, “para um usuário que não tenha penalidades” é condição (regra), não objetivo. A condição vai no **Dado que**.
+
+E “Para aplicar restrições…” não é valor para o ator; é regra do sistema. O “Para” precisa dizer o benefício (controle do acervo, atendimento seguro, data registrada etc.).
+
+### 4) Evite “etc.” e objetivos largos demais
+
+Na HU de cadastro, “gerenciar empréstimo, reserva, devolução, etc.” abre vários módulos ao mesmo tempo. Uma HU precisa ser uma ação específica que caiba em uma tela/fluxo.
+
+---
+
+## Mini-modelo (copiar e completar)
+
+```
+Como [papel real]
+Quero [uma ação específica do sistema]
+Para [valor concreto]
+
+Dado que [...]
+Quando [...]
+Então [...]
+
+Dado que [...]
+Quando [...]
+Então [...]
+```
