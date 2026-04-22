@@ -4,46 +4,242 @@ Módulo de cadastro (Amauri)
 
 1. Cadastro de alunos
 Como bibliotecária
-Quero cadastrar alunos com nome, telefone, email, cpf e número de matrícula
-Para registrar o aluno no sistema e gerenciar empréstimo, reserva, devolução, etc dele.
+Quero cadastrar alunos 
+Para registrar o aluno para realizar empréstimos e reservas
+
+Cenários:
+Dado que a bibliotecária 
+Quando inserir todos os dados para o cadastro do aluno corretamente
+Então o sistema deve cadastrar o aluno com sucesso
+
+Dado que já exista um aluno com o mesmo CPF/Matrícula
+Quando a bibliotecária tentar cadastrar 
+Então o sistema deve exibir uma mensagem de erro
+
+Dado que a bibliotecária está preenchendo o cadastro
+Quando clicar em cancelar
+Então o sistema não deve salvar nenhuma informação
+
+Dado que o aluno foi cadastrado 
+Quando a bibliotecária realizar uma busca 
+Então o sistema deve mostrar o aluno na lista
 
 2. Cadastro de professores
 Como bibliotecária
-Quero cadastrar professores com nome, telefone, email, cpf, 
-Para registrar o professor e administrar as funções que ele utiliza e liberar funções que só professores possuem como maior prazo e quantidade de empréstimo.
+Quero cadastrar professores 
+Para aplicar regras específicas de empréstimo
+
+Cenários:
+Dado que a bibliotecária esteja na tela de cadastro
+Quando inserir todos os dados para o cadastro do usuário tipo professor corretamente
+Então o sistema deve cadastrar o professor com sucesso 
+
+Dado que já exista um professor com o mesmo CPF/registro na instituição 
+Quando a bibliotecária tentar cadastrar
+Então o sistema deve exibir uma mensagem de erro
+
+Dado que a bibliotecária está preenchendo o cadastro
+Quando clicar em cancelar
+Então o sistema não deve salvar nenhuma informação
+
+Dado que o professor foi cadastrado 
+Quando a bibliotecária realizar uma busca 
+Então o sistema deve mostrar o professor na lista
+
+Dado que o cadastro for realizado no sistema
+Quando o professor for realizar um empréstimo
+Então o sistema deve colocar a funcionalidades de professor (mais prazo e mais livros)
+
 
 3. Cadastro de funcionários
 Como bibliotecária
-Quero cadastrar funcionário com nome, telefone, email, cpf,  
-Para registrar o funcionário e liberar as funções que ele possui para gerenciar o acervo da biblioteca.
+Quero cadastrar funcionários 
+Para permitir acesso ao sistema de gestão
+
+Cenários:
+Dado que a bibliotecária está na tela de cadastro
+Quando inserir todos os dados para o cadastro do usuário tipo funcionário corretamente
+Então o sistema deve cadastrar o funcionário com sucesso
+
+Dado que já exista um funcionário com o mesmo CPF/vínculo trabalhista 
+Quando a bibliotecária tentar cadastrar
+Então o sistema deve exibir uma mensagem de erro
+
+Dado que a bibliotecária está preenchendo o cadastro
+Quando clicar em cancelar
+Então o sistema não deve salvar nenhuma informação
+
+Dado que o funcionário foi cadastrado 
+Quando a bibliotecária realizar uma busca 
+Então o sistema deve mostrar o funcionário na lista
+
+Dado que o cadastro for realizado no sistema
+Quando o funcionário acessar o sistema
+Então o sistema deve colocar a funcionalidades de funcionário de controle e gestão de acervo 
+
+4. Editar usuários
+Como bibliotecária
+Quero editar os dados cadastrados de um usuário
+Para atualizar as informações
+
+Cenários:
+Dado que a bibliotecária
+Quando seleciona um usuário e altera as informações dele
+Então o sistema deve salvar as informações
+
+Dado que a bibliotecária 
+Quando está editando um usuário e deixa campo vazio
+Então o sistema não permite salvar
+
+Dado que a bibliotecária
+Quando editar um usuário e informar email/documento em formato incorreto
+Então o sistema não permite salvar
+
+Dado que a bibliotecária 
+Quando editar um usuário e insere um email/documento que já existe
+Então o sistema não permite salvar
+
+4. Excluir usuários
+Como bibliotecária
+Quero excluir os dados cadastrados de um usuário
+Para atualizar as informações
+
+Cenários:
+Dado que a bibliotecária
+Quando seleciona um usuário e deleta ele
+Então o sistema deve atualizar e remover o usuário dos registros
+Dado que a bibliotecária selecionou excluir um usuário
+Quando cancela a operação
+Então o sistema não realiza a exclusão
+
+
+5. Cadastro de livros
+Como bibliotecária
+Quero cadastrar um livro com título, autor, ISBN, editora, edição e ano
+Para registrar a obra no acervo da biblioteca
+
+Cenários: 
+Dado que a bibliotecária esteja na tela de cadastro de livros
+Quando preencher todos os dados corretamente
+Então o sistema deve cadastrar o livro
+
+Dado já exista um livro cadastrado com o mesmo ISBN
+Quando tentar cadastrar novamente
+Então o sistema deve exibir uma mensagem de erro
+
+
+Dado que a bibliotecária esteja cadastrando o livro
+Quando clicar em cancelar
+Então o sistema não deve salvar nenhuma informação
+
+Dado que o livro foi cadastrado com sucesso
+Quando a bibliotecária realizar uma busca
+Então o livro deve aparecer no acervo
+
+
+6. Cadastro de exemplar
+Como bibliotecária
+Quero cadastrar exemplares de um livro
+Para controlar os exemplares disponíveis no acervo
+
+Dado que o livro já esteja cadastrado
+Quando a bibliotecária adicionar um exemplar
+Então o sistema deve permitir o cadastro do exemplar
+
+Dado que os dados estejam corretos
+Quando a bibliotecária confirmar o cadastro do exemplar
+Então o sistema deve gerar um número de tombo
+
+Dado que o exemplar foi cadastrado
+Quando finalizar o cadastro
+Então o sistema deve gerar um código de barras para o exemplar
+
+Dado que o livro não esteja cadastrado
+Quando tentar cadastrar um exemplar
+Então o sistema exibe uma mensagem de erro
+
+Dado que o exemplar foi cadastrado
+Quando consultar o acervo
+Então o sistema deve mostrar a quantidade atualizada de exemplares
+
+7. Editar livros
+Como bibliotecária
+Quero editar os dados de um livro
+Para manter as informações do acervo atualizadas
+
+Cenários:
+Dado que a bibliotecária
+Quando seleciona um livro/exemplar e altera as informações dele
+Então o sistema deve salvar as informações
+
+Dado que a bibliotecária 
+Quando está editando um livro/exemplar e deixa campo vazio
+Então o sistema não permite salvar
+
+Dado que a bibliotecária
+Quando editar um livro/exemplar e informar ISBN/código em formato incorreto
+Então o sistema não permite salvar
+
+Dado que a bibliotecária 
+Quando editar um livro e inserir um ISBN/código que já existe
+Então o sistema não permite salvar
+
+7. Excluir livros
+Como bibliotecária
+Quero excluir um livro/exemplar
+Para manter as informações do acervo atualizadas
+
+Cenários:
+Dado que a bibliotecária
+Quando seleciona um livro/exemplar e deleta ele
+Então o sistema deve atualizar e remover os registros
+
+Dado que a bibliotecária selecionou excluir um livro/exemplar
+Quando cancela a operação
+Então o sistema não realiza a exclusão
 
 Módulo de reserva(Nicolas)
 história de reserva:
+
 Como aluno 
-quero consultar
-um exemplar
-Para reservá-lo
+quero reservar um exemplar
+Para estudar
 
 Cenários:
+Dado que o usuário aluno queira reservar um exemplar
+Quando a bibliotecária consultar a possibilidade de reservá-lo
+E o exemplar esteja cadastrado no sistema
+Então o sistema deve cadastrar a  reserva do exemplar.
 
+Dado que o usuário aluno queira reservar um exemplar
+Quando a bibliotecária consultar a possibilidade de reservá-lo
+E não esteja cadastrado no sistema
+Então o sistema deve cancelar a ação e emitir uma mensagem de erro
 
+Dado que ele queira reservar um exemplar mas estiver com o limite de empréstimos excedido
+Quando a bibliotecária consulta a possibilidade de reserva
+Então o sistema deve bloquear a reservar
+
+Dado que o usuário aluno  queira reservar um exemplar
+Quando a bibliotecária verificar a possibilidade de reservá-lo
+E o sistema confirmar a reserva  mas der erro interno
+Então o sistema deve cancelar e enviar uma mensagem de erro interno.
+
+Dado que o usuário aluno queira reservar um exemplar, mas ele possui pendências 
+Quando a bibliotecária consulta a possibilidade de reservá-lo
+E o sistema reconhece e bloqueia  o processo de reserva
+Então o sistema deve retornar a mensagem do erro ocorrido bloqueando a reserva.
+
+Dado que o usuário aluno/professor queira reservar um exemplar
+Quando a bibliotecária consulta a possibilidade de reservá-lo
+E o exemplar já está reservado
+Então o sistema deve retornar a mensagem de erro informando que este exemplar já foi reservado.
 	
-
-
 Módulo de empréstimo(Caio)
-Como [perfil]
-Quero [objetivo]
-Para [valor]
-
-
-como aluno
-quero consultar um livro
-para realizar um empréstimo
-
 1-
-Como usuário bibliotecária
-Quero realizar o empréstimo de um exemplar para um usuário que não tenha penalidades
-Para aplicar as restrições de prazo e quantidade de livros
+Como bibliotecária
+Quero realizar o empréstimo de um exemplar 
+Para garantir o controle dos livros emprestados
 
 Cenários:
 Dado que o usuário, está sem penalidades, que impeçam o empréstimo
@@ -67,27 +263,25 @@ Quando a bibliotecária acessar para cadastrar o empréstimo
 Então o sistema deve ofertar a possibilidade de procurar o livro por ISBN
 
 2-
-Como usuário bibliotecária
+Como bibliotecária
 Quero abater as multas de atraso do usuário bloqueado
-Para que o usuário consiga apagar as penalidades e 
+Para que o usuário volte a emprestar livros.
 
 Cenários:
-
-
 3-
-Como usuário bibliotecária
-Quero cancelar o empréstimo de um exemplar que foi confirmado para um usuário
-Para, caso aconteça um erro durante (Livro errado / aluno) o empréstimo, seja possível cancelar.
+Como bibliotecária
+Quero cancelar o empréstimo de um exemplar
+Para que caso ocorra uma falha no empréstimo, seja possível cancelar.
 
 Cenários:
 Dado que seja necessário o cancelamento de um empréstimo
 Quando apertar o botão de cancelar
-Então o sistema deve automaticamente retornar o livro disponível, e avisar sobre o cancelamento do empréstimo
+Então o sistema deve retornar o livro como disponível, e avisar sobre o cancelamento do empréstimo.
 
 4-
-Como usuário aluno
+Como aluno
 Quero procurar livros para saber se estão disponíveis na biblioteca
-Para o aluno ter a condição de saber se o exemplar está disponível ou não.
+Para o aluno ter a condição de saber se o exemplar está disponível, sem ir na biblioteca
 
 Cenários:
 Dado que o aluno / professor esteja em “Empréstimo”
@@ -96,7 +290,7 @@ Então o sistema deve ofertar categorias para realizar o filtro. Exemplo: Curso,
 
 
 5-
-Como usuário bibliotecária
+Como bibliotecária
 Quero realizar a pesquisa de usuários pelo campo de e-mail
 Para facilitar o cadastro na página de empréstimo
 
@@ -120,21 +314,44 @@ Para organizar os horários e ver se preciso estender o tempo de empréstimo
 Quando consultar os livros que ele tem emprestado
 Então o sistema deve informar o dia que cada livro deve ser entrega e o nome do livro
 
-2-Dado que o aluno/professor tenha devolução atrasado
+2-Dado que o aluno/professor tenha devolução atrasada
 Quando consultar os livros que ele tem emprestado
-Então o sistema o informa sobre a devolução atrasada,por quantas dias esta atrasada e sua devida multa
+Então o sistema o informa sobre a devolução atrasada,por quantas dias está atrasada e sua devida multa
+
+3-Dado que o aluno/professor tenha varias multa em uma devolução atrasada
+Quando consultar essa devolução atrasada
+Então mostrar em qual dia ele acumulou qual multa,e mostrar o total no final
 
 Como bibliotecária
 Quero ver se tem devoluções em atraso em geral
-Para lembrar tal usuario de devolver seu livro e barra-lo de pegar outro
+Para lembrar tal usuário de devolver seu livro e barra-lo de pegar outro
 
 1-Dado que tenha devoluções atrasadas
-Quando consultar emprestimos em andamento
-Então mostrar emprestimos que passaram do limite e o nome do usuario,alem de sua multa acumulada
+Quando consultar empréstimos em andamento
+Então mostrar empréstimos que passaram do limite e o nome do usuário,além de sua multa acumulada
+
+2-Dado que a bibliotecária queira ver um usuário específico
+Quando colocar o nome dele na barra de pesquisa
+Entao mostrar todos os empréstimos daquele usuário
+
+3-Dado que a bibliotecária queira mais informações sobre o empréstimo
+Quando clicar em um dos empréstimos
+Entao mostrar mais informações sobre esse empréstimo
+
+Como bibliotecária
+Quero remover a multa de um empréstimo,pois já foi pago
+Para não confundir depois e pensar que o cliente ainda precisa pagar a multa
+
+1-Dado que a bibliotecária queira remover uma multa
+Quando acessar a devolução atrasada e colocar a multa como paga
+Então o sistema deve remover a multa do empréstimo
+
+2-Dado que o usuário tenha várias multa e pagou uma específica
+Quando a bibliotecária confirma essa única multa como paga
+Então tirar somente a multa dessa devolução atrasada
 
 
 Módulo de histórico(gabriel)
-
 História de Usuário
 
 Como Aluno/Professor
