@@ -533,61 +533,102 @@
         </div>
 
         <!-- EMPRÉSTIMO -->
-        <!-- FIX: adicionada div#emprestimo com class="modulo" que estava faltando -->
         <div id="emprestimo" class="modulo">
             <section class="card">
                 <h2>1. Identificar Usuário</h2>
                 <div class="grid-form">
                     <div class="input-group">
                         <label>E-mail ou Matrícula</label>
-                        <input type="text" id="inputEmailEmprestimo" placeholder="Ex: amauri@gmail.com ou 202300123" onkeydown="if(event.key==='Enter') buscarUsuarioEmprestimo()">
+                        <input type="text" id="inputEmailEmprestimo" placeholder="Ex: exemplo@gmail.com ou 202300123" onkeydown="if(event.key==='Enter') buscarUsuarioEmprestimo()">
                     </div>
                     <div class="input-group">
                         <label>Tipo de Vínculo</label>
                         <select id="tipoVinculoEmprestimo">
                             <option value="aluno">Aluno (Limite 2 livros / 7 dias)</option>
                             <option value="professor">Professor (Limite 5 livros / 15 dias)</option>
-                            <option value="funcionario">Funcionário (Limite 3 livros / 10 dias)</option>
                         </select>
                     </div>
                     <button class="btn btn-primary" onclick="buscarUsuarioEmprestimo()">Buscar</button>
                 </div>
                 <div id="alertaMultaEmprestimo" class="alert-penalty" style="display:none;">
-                    <span>⚠️ <strong>Atenção:</strong> Usuário <strong id="nomeUsuarioMulta"></strong> possui multa pendente de <strong>R$ 5,00</strong>.</span>
-                    <button class="btn btn-danger">Abater Multa / Pagar</button>
+                    <span>⚠️ <strong>Atenção:</strong> Usuário <strong id="nomeUsuarioMulta"></strong> possui multa pendente de <strong>R$ 8,00</strong>. Quite antes de emprestar.</span>
+                    <button id="btnPagarMultaEmprestimo" class="btn btn-danger" onclick="abrirPagamentoQREmprestimo()">Abater Multa / Pagar</button>
+                </div>
+                <div id="alertaMultaPagaEmprestimo" class="alert-penalty" style="display:none;border-color:#32a041;background:#1b2e1e;color:#73e68b;">
+                    <span>✅ Multa quitada! Empréstimo liberado para <strong id="nomeUsuarioMultaPaga"></strong>.</span>
+                </div>
+                <div id="alertaLimiteEmprestimo" class="alert-box alert-error" style="display:none; margin-top: 1rem;">
+                    <span>🚫 <strong>Limite Atingido:</strong> O usuário <strong id="nomeUsuarioLimite"></strong> já possui 2 empréstimos em aberto e não pode retirar mais livros.</span>
                 </div>
             </section>
 
             <section class="card">
-                <h2>2. Selecionar Exemplares</h2>
+                <h2>2. Selecionar Exemplar</h2>
                 <div class="grid-form">
                     <div class="input-group">
                         <label>ISBN ou Título</label>
-                        <input type="text" placeholder="Digite o ISBN ou nome do livro...">
+                        <input type="text" id="searchLivroEmprestimo" placeholder="Digite o ISBN ou nome do livro..." onkeyup="filtrarLivrosEmprestimo()">
                     </div>
                     <div class="input-group">
                         <label>Filtrar por Categoria</label>
-                        <select>
-                            <option>Todas as Áreas</option>
-                            <option>Informática</option>
+                        <select id="categoriaFiltroEmprestimo" onchange="filtrarLivrosEmprestimo()">
+                            <option value="">Todas as Áreas</option>
+                            <option value="Informática">Informática</option>
+                            <option value="Matemática">Matemática</option>
+                            <option value="Gestão">Gestão</option>
                         </select>
                     </div>
-                    <button class="btn btn-outline">Pesquisar</button>
+                    <button class="btn btn-outline" onclick="filtrarLivrosEmprestimo()">Pesquisar</button>
                 </div>
                 <table>
                     <thead>
-                        <tr><th>Título</th><th>ISBN</th><th>Status</th><th>Ação</th></tr>
+                        <tr><th>Título</th><th>Autor</th><th>ISBN</th><th>Categoria</th><th>Status</th><th>Ação</th></tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="tbodyLivrosEmprestimo">
+                        <tr data-titulo="Engenharia de Software" data-categoria="Informática">
                             <td>Engenharia de Software</td>
-                            <td>978-85-333...</td>
+                            <td>Ian Sommerville</td>
+                            <td>978-85-333-0761-2</td>
+                            <td>Informática</td>
                             <td><span class="badge badge-success">Disponível</span></td>
-                            <!-- FIX: botão estava em <td> solto fora de tabela, agora corretamente dentro da tabela -->
-                            <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 11px;" onclick="prepararEmprestimo('Professor')">Selecionar</button></td>
+                            <td><button class="btn btn-outline btn-selecionar-livro" style="padding:5px 12px;font-size:11px;" onclick="selecionarLivroEmprestimo(this, 'Engenharia de Software', '978-85-333-0761-2', 'Ian Sommerville')">Selecionar</button></td>
+                        </tr>
+                        <tr data-titulo="Cálculo Diferencial e Integral" data-categoria="Matemática">
+                            <td>Cálculo Diferencial e Integral</td>
+                            <td>James Stewart</td>
+                            <td>978-85-221-0583-5</td>
+                            <td>Matemática</td>
+                            <td><span class="badge badge-success">Disponível</span></td>
+                            <td><button class="btn btn-outline btn-selecionar-livro" style="padding:5px 12px;font-size:11px;" onclick="selecionarLivroEmprestimo(this, 'Cálculo Diferencial e Integral', '978-85-221-0583-5', 'James Stewart')">Selecionar</button></td>
+                        </tr>
+                        <tr data-titulo="Clean Code" data-categoria="Informática">
+                            <td>Clean Code</td>
+                            <td>Robert C. Martin</td>
+                            <td>978-85-508-0048-5</td>
+                            <td>Informática</td>
+                            <td><span class="badge badge-success">Disponível</span></td>
+                            <td><button class="btn btn-outline btn-selecionar-livro" style="padding:5px 12px;font-size:11px;" onclick="selecionarLivroEmprestimo(this, 'Clean Code', '978-85-508-0048-5', 'Robert C. Martin')">Selecionar</button></td>
+                        </tr>
+                        <tr data-titulo="Administração: Teoria e Prática" data-categoria="Gestão">
+                            <td>Administração: Teoria e Prática</td>
+                            <td>Stephen Robbins</td>
+                            <td>978-85-430-0987-1</td>
+                            <td>Gestão</td>
+                            <td><span class="badge badge-success">Disponível</span></td>
+                            <td><button class="btn btn-outline btn-selecionar-livro" style="padding:5px 12px;font-size:11px;" onclick="selecionarLivroEmprestimo(this, 'Administração: Teoria e Prática', '978-85-430-0987-1', 'Stephen Robbins')">Selecionar</button></td>
                         </tr>
                     </tbody>
                 </table>
+
+                <div id="livroSelecionadoBox" style="display:none; margin-top:14px; padding:12px 16px; background:#1b2e1e; border:1px solid var(--ifpr-green); border-radius:6px; color:#73e68b; font-size:0.9rem;">
+                    📗 <strong>Selecionado:</strong> <span id="livroSelecionadoNome"></span>
+                </div>
+
+                <div class="footer-actions" style="margin-top:14px;">
+                    <button id="btnConfirmarEmprestimo" class="btn btn-primary" onclick="abrirModalEmprestimo()" disabled style="opacity:0.5;cursor:not-allowed;" title="Selecione um livro e identifique o usuário">
+                        ✅ Confirmar Empréstimo
+                    </button>
+                </div>
             </section>
         </div>
 
@@ -788,7 +829,7 @@
                 <div class="grid-form">
                     <div class="input-group">
                         <label>E-mail ou Matrícula do Aluno</label>
-                        <input type="text" id="inputReservaUsuario" placeholder="Ex: amauri@gmail.com ou 202300123" onkeydown="if(event.key==='Enter') buscarUsuarioReserva()">
+                        <input type="text" id="inputReservaUsuario" placeholder="Ex: exemplo@gmail.com ou 202300123" onkeydown="if(event.key==='Enter') buscarUsuarioReserva()">
                     </div>
                     <div class="input-group">
                         <label>Tipo de Vínculo</label>
@@ -836,14 +877,14 @@
                 <div class="grid-form">
                     <div class="input-group">
                         <label>Pesquisar Usuário (E-mail ou Matrícula)</label>
-                        <input type="text" id="searchDevolucao" placeholder="Ex: amauri@gmail.com ou 202300123">
+                        <input type="text" id="searchDevolucao" placeholder="Ex: exemplo@gmail.com ou 202300123">
                     </div>
                     <div></div>
-                    <button class="btn btn-primary">Buscar Empréstimos</button>
+                    <button class="btn btn-primary" onclick="buscarUsuarioDevolucao()">Buscar Empréstimos</button>
                 </div>
             </section>
 
-            <section class="card card-red">
+            <section id="secaoAtraso" class="card card-red" style="display:none;">
                 <h2>Livros em Atraso / Multas</h2>
                 <table>
                     <thead>
@@ -855,17 +896,36 @@
                             <td>06/04/2026</td>
                             <td>8 dias</td>
                             <td><strong>R$ 8,00</strong></td>
-                            <!-- FIX: botão estava em <td> solto fora de tabela -->
                             <td>
-                                <button class="btn btn-danger" onclick="prepararDevolucao(8)">Confirmar Devolução</button>
-                                <button class="btn btn-outline" onclick="abrirPagamentoQR(8.00, 'Cálculo Diferencial I')">Quitar Multa</button>
+                                <button id="btnConfirmarDevolucao" class="btn btn-danger" onclick="prepararDevolucao(8)" disabled style="opacity:0.5;cursor:not-allowed;" title="Quite a multa antes de confirmar">Confirmar Devolução</button>
+                                <button id="btnQuitarMulta" class="btn btn-outline" onclick="abrirPagamentoQR(8.00, 'Cálculo Diferencial I')">Quitar Multa</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
-            <section class="card">
+            <section id="secaoNoPrazo" class="card" style="display:none;">
+                <h2>Livros para Devolução</h2>
+                <table>
+                    <thead>
+                        <tr><th>Livro</th><th>Data Esperada</th><th>Dias Atraso</th><th>Multa Acumulada</th><th>Ação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Engenharia de Software</td>
+                            <td>29/04/2026</td>
+                            <td>—</td>
+                            <td><strong>R$ 0,00</strong></td>
+                            <td>
+                                <button class="btn btn-primary" onclick="prepararDevolucaoRicardo()">Confirmar Devolução</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="secaoMultasDetalhadas" class="card" style="display:none;">
                 <h2>Informações de Multas Detalhadas</h2>
                 <table style="font-size: 0.85rem;">
                     <thead>
@@ -939,7 +999,7 @@
         <div id="detalhes-devolucao" style="font-size: 0.9rem; line-height: 1.6;"></div>
         <div class="footer-actions">
             <button class="btn btn-outline" onclick="fecharModal('modalConfirmaDevolucao')">Voltar</button>
-            <button class="btn btn-danger" onclick="finalizarAcao('Devolução processada!')">Confirmar Recebimento</button>
+            <button id="btnConfirmarRecebimento" class="btn btn-danger" onclick="finalizarAcao('Devolução processada!')">Confirmar Recebimento</button>
         </div>
     </div>
 </div>
@@ -1189,27 +1249,143 @@ function confirmarCadastroLivro() {
 
 /* ===== DADOS DE USUÁRIOS (simulados) ===== */
 const usuariosCadastrados = {
-    'amauri@gmail.com': { nome: 'Amauri', tipo: 'aluno', matricula: '202300042', temMulta: true, limiteAtingido: true },
-    '202300042':        { nome: 'Amauri', tipo: 'aluno', matricula: '202300042', temMulta: true, limiteAtingido: true },
+    'amauri@gmail.com': { nome: 'Amauri', email: 'amauri@gmail.com', tipo: 'aluno', matricula: '202300042', temMulta: true, limiteAtingido: false },
+    '202300042':        { nome: 'Amauri', email: 'amauri@gmail.com', tipo: 'aluno', matricula: '202300042', temMulta: true, limiteAtingido: false },
+    'ricardo@gmail.com':{ nome: 'Ricardo Oliveira', email: 'ricardo@gmail.com', tipo: 'professor', matricula: '202300099', temMulta: false, limiteAtingido: false },
+    '202300099':        { nome: 'Ricardo Oliveira', email: 'ricardo@gmail.com', tipo: 'professor', matricula: '202300099', temMulta: false, limiteAtingido: false },
+    'gabriel@gmail.com':{ nome: 'Gabriel', email: 'gabriel@gmail.com', tipo: 'aluno', matricula: '202300077', temMulta: false, limiteAtingido: true },
+    '202300077':        { nome: 'Gabriel', email: 'gabriel@gmail.com', tipo: 'aluno', matricula: '202300077', temMulta: false, limiteAtingido: true },
 };
+
+/* ===== ESTADO DO EMPRÉSTIMO ===== */
+let usuarioAtualEmprestimo = null;
+let livroSelecionado = null;
+let multaEmprestimoPaga = false;
 
 /* ===== BUSCA NO EMPRÉSTIMO ===== */
 function buscarUsuarioEmprestimo() {
     const valor  = document.getElementById('inputEmailEmprestimo').value.trim().toLowerCase();
-    const alerta = document.getElementById('alertaMultaEmprestimo');
+    const alertaMulta  = document.getElementById('alertaMultaEmprestimo');
+    const alertaPaga   = document.getElementById('alertaMultaPagaEmprestimo');
+    const alertaLimite = document.getElementById('alertaLimiteEmprestimo');
     const nomeEl = document.getElementById('nomeUsuarioMulta');
+    const nomeEl2 = document.getElementById('nomeUsuarioLimite');
     const select = document.getElementById('tipoVinculoEmprestimo');
 
-    const usuario = usuariosCadastrados[valor];
+    // Reset
+    alertaMulta.style.display  = 'none';
+    alertaPaga.style.display   = 'none';
+    alertaLimite.style.display = 'none';
+    multaEmprestimoPaga = false;
+    usuarioAtualEmprestimo = null;
+    livroSelecionado = null;
+    document.getElementById('livroSelecionadoBox').style.display = 'none';
+    document.querySelectorAll('.btn-selecionar-livro').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-outline');
+        b.innerText = 'Selecionar';
+    });
+    atualizarBtnConfirmarEmprestimo();
 
+    const usuario = usuariosCadastrados[valor];
     if (usuario) {
-        nomeEl.innerText = usuario.nome;
-        // Ajusta automaticamente o tipo de vínculo
+        usuarioAtualEmprestimo = usuario;
         select.value = usuario.tipo;
-        alerta.style.display = usuario.temMulta ? 'flex' : 'none';
-    } else {
-        alerta.style.display = 'none';
+
+        if (usuario.limiteAtingido) {
+            nomeEl2.innerText = usuario.nome;
+            alertaLimite.style.display = 'flex';
+        } else if (usuario.temMulta && !multaEmprestimoPaga) {
+            nomeEl.innerText = usuario.nome;
+            alertaMulta.style.display = 'flex';
+        }
     }
+}
+
+function abrirPagamentoQREmprestimo() {
+    abrirPagamentoQR(8.00, 'Cálculo Diferencial I', true);
+}
+
+function selecionarLivroEmprestimo(btn, titulo, isbn, autor) {
+    // Desmarca todos
+    document.querySelectorAll('.btn-selecionar-livro').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-outline');
+        b.innerText = 'Selecionar';
+    });
+    // Marca o clicado
+    btn.classList.remove('btn-outline');
+    btn.classList.add('btn-primary');
+    btn.innerText = '✔ Selecionado';
+
+    livroSelecionado = { titulo, isbn, autor };
+    document.getElementById('livroSelecionadoNome').innerText = titulo + ' — ' + autor;
+    document.getElementById('livroSelecionadoBox').style.display = 'block';
+
+    atualizarBtnConfirmarEmprestimo();
+}
+
+function atualizarBtnConfirmarEmprestimo() {
+    const btn = document.getElementById('btnConfirmarEmprestimo');
+    if (!btn) return;
+
+    const usuarioBuscado = usuarioAtualEmprestimo;
+    const livroOk = livroSelecionado !== null;
+    const usuarioOk = usuarioBuscado !== null;
+    const semBloqueio = usuarioOk && !usuarioBuscado.limiteAtingido;
+    const multaOk = !usuarioBuscado || !usuarioBuscado.temMulta || multaEmprestimoPaga;
+
+    const liberado = livroOk && usuarioOk && semBloqueio && multaOk;
+    btn.disabled = !liberado;
+    btn.style.opacity = liberado ? '1' : '0.5';
+    btn.style.cursor  = liberado ? 'pointer' : 'not-allowed';
+    btn.title = !usuarioOk ? 'Identifique o usuário primeiro'
+              : !semBloqueio ? 'Usuário atingiu o limite de empréstimos'
+              : !multaOk ? 'Quite a multa pendente antes de emprestar'
+              : !livroOk ? 'Selecione um exemplar'
+              : '';
+}
+
+function abrirModalEmprestimo() {
+    if (!usuarioAtualEmprestimo || !livroSelecionado) return;
+    const usuario = usuarioAtualEmprestimo;
+    const livro   = livroSelecionado;
+    const tipo    = usuario.tipo === 'professor' ? 'Professor' : 'Aluno';
+    const prazo   = usuario.tipo === 'professor' ? 15 : 7;
+    const hoje    = new Date();
+    const dataDev = new Date();
+    dataDev.setDate(hoje.getDate() + prazo);
+
+    const html = `
+        <p><strong>Livro:</strong> ${livro.titulo}</p>
+        <p><strong>ISBN:</strong> ${livro.isbn}</p>
+        <p><strong>Autor:</strong> ${livro.autor}</p>
+        <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
+        <p><strong>Usuário:</strong> ${usuario.nome} (${tipo})</p>
+        <p><strong>E-mail:</strong> ${usuario.email}</p>
+        <p><strong>Matrícula:</strong> ${usuario.matricula}</p>
+        <p><strong>Data de Devolução:</strong> <span style="color:var(--ifpr-green);font-weight:bold;">${dataDev.toLocaleDateString('pt-BR')}</span></p>
+        <p><small>*Prazo de ${prazo} dias conforme regulamento.</small></p>
+    `;
+    document.getElementById('detalhes-emprestimo').innerHTML = html;
+    abrirModal('modalConfirmaEmprestimo');
+}
+
+function filtrarLivrosEmprestimo() {
+    const busca = document.getElementById('searchLivroEmprestimo').value.toLowerCase();
+    const cat   = document.getElementById('categoriaFiltroEmprestimo').value;
+    document.querySelectorAll('#tbodyLivrosEmprestimo tr').forEach(tr => {
+        const titulo = tr.getAttribute('data-titulo') || '';
+        const catRow = tr.getAttribute('data-categoria') || '';
+        const matchBusca = titulo.toLowerCase().includes(busca);
+        const matchCat   = cat === '' || catRow === cat;
+        tr.style.display = (matchBusca && matchCat) ? '' : 'none';
+    });
+}
+
+function prepararEmprestimo(tipoUsuario) {
+    // mantida por compatibilidade mas não usada diretamente mais
+    abrirModalEmprestimo();
 }
 
 /* ===== BUSCA NA RESERVA ===== */
@@ -1231,7 +1407,10 @@ function buscarUsuarioReserva() {
 }
 
 /* ===== QR CODE PIX ===== */
-function abrirPagamentoQR(valor, livro) {
+let pagamentoContexto = 'devolucao'; // 'devolucao' ou 'emprestimo'
+
+function abrirPagamentoQR(valor, livro, paraEmprestimo) {
+    pagamentoContexto = paraEmprestimo ? 'emprestimo' : 'devolucao';
     document.getElementById('qrValorExibido').innerText = 'R$ ' + valor.toFixed(2).replace('.', ',');
     document.getElementById('qrLivroNome').innerText = 'Livro: ' + livro;
 
@@ -1310,9 +1489,35 @@ function copiarPix() {
     }
 }
 
+let multaQuitada = false;
+
 function simularPagamentoPix() {
     fecharModal('modalPagamentoQR');
-    // Pequeno delay para dar feedback visual
+
+    if (pagamentoContexto === 'emprestimo') {
+        // Contexto: pagamento na tela de empréstimo
+        multaEmprestimoPaga = true;
+        if (usuarioAtualEmprestimo) usuarioAtualEmprestimo.temMulta = false;
+
+        document.getElementById('alertaMultaEmprestimo').style.display = 'none';
+        const alertaPaga = document.getElementById('alertaMultaPagaEmprestimo');
+        document.getElementById('nomeUsuarioMultaPaga').innerText = usuarioAtualEmprestimo ? usuarioAtualEmprestimo.nome : '';
+        alertaPaga.style.display = 'flex';
+        atualizarBtnConfirmarEmprestimo();
+    } else {
+        // Contexto: pagamento na tela de devolução
+        multaQuitada = true;
+        const btnTabela = document.getElementById('btnConfirmarDevolucao');
+        if (btnTabela) {
+            btnTabela.disabled = false;
+            btnTabela.style.opacity = '1';
+            btnTabela.style.cursor = 'pointer';
+            btnTabela.removeAttribute('title');
+        }
+        const btnQuitar = document.getElementById('btnQuitarMulta');
+        if (btnQuitar) btnQuitar.style.display = 'none';
+    }
+
     setTimeout(() => {
         const el = document.createElement('div');
         el.innerHTML = `<div style="position:fixed;top:24px;right:24px;background:#1b2e1e;border:1px solid var(--ifpr-green);color:#73e68b;padding:14px 20px;border-radius:8px;z-index:9999;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.4);animation:modalIn .2s ease;">
@@ -1356,9 +1561,66 @@ function prepararDevolucao(atrasoDias) {
         <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
         <p><strong>Status:</strong> <span class="badge ${atrasoDias > 0 ? 'badge-error' : 'badge-success'}">${atrasoDias > 0 ? 'Em Atraso' : 'No Prazo'}</span></p>
         ${atrasoDias > 0 ? `<p style="color:#ff8c8c;"><strong>Dias de Atraso:</strong> ${atrasoDias} dias</p>
-        <p style="color:#ff8c8c;"><strong>Multa Gerada:</strong> R$ ${multa.toFixed(2)}</p>` : '<p>Sem pendências financeiras.</p>'}
+        <p style="color:#ff8c8c;"><strong>Multa Gerada:</strong> R$ ${multa.toFixed(2)}</p>
+        <p><strong>Situação da Multa:</strong> ${multaQuitada ? '<span class="badge badge-success">✅ Pago</span>' : '<span class="badge badge-error">Pendente</span>'}</p>` : '<p>Sem pendências financeiras.</p>'}
     `;
     document.getElementById('detalhes-devolucao').innerHTML = html;
+
+    // Controla o botão "Confirmar Recebimento" no modal
+    const btnRecebimento = document.getElementById('btnConfirmarRecebimento');
+    if (btnRecebimento) {
+        if (atrasoDias === 0 || multaQuitada) {
+            btnRecebimento.disabled = false;
+            btnRecebimento.style.opacity = '1';
+            btnRecebimento.style.cursor = 'pointer';
+        } else {
+            btnRecebimento.disabled = true;
+            btnRecebimento.style.opacity = '0.5';
+            btnRecebimento.style.cursor = 'not-allowed';
+        }
+    }
+
+    abrirModal('modalConfirmaDevolucao');
+}
+
+/* ===== BUSCA NA DEVOLUÇÃO ===== */
+function buscarUsuarioDevolucao() {
+    const valor = document.getElementById('searchDevolucao').value.trim().toLowerCase();
+    const secaoAtraso = document.getElementById('secaoAtraso');
+    const secaoNoPrazo = document.getElementById('secaoNoPrazo');
+    const secaoMultas = document.getElementById('secaoMultasDetalhadas');
+
+    // Oculta tudo primeiro
+    secaoAtraso.style.display = 'none';
+    secaoNoPrazo.style.display = 'none';
+    secaoMultas.style.display = 'none';
+
+    if (valor === 'amauri@gmail.com' || valor === '202300042') {
+        secaoAtraso.style.display = 'block';
+        secaoMultas.style.display = 'block';
+    } else if (valor === 'ricardo@gmail.com' || valor === '202300099') {
+        secaoNoPrazo.style.display = 'block';
+    } else if (valor !== '') {
+        alert('Usuário não encontrado.');
+    }
+}
+
+function prepararDevolucaoRicardo() {
+    const html = `
+        <p><strong>Livro:</strong> Engenharia de Software</p>
+        <p><strong>ISBN:</strong> 978-85-333-0761-2</p>
+        <hr style="border:0;border-top:1px solid #333;margin:10px 0;">
+        <p><strong>Usuário:</strong> Ricardo Oliveira (Professor)</p>
+        <p><strong>Status:</strong> <span class="badge badge-success">No Prazo</span></p>
+        <p>Sem pendências financeiras.</p>
+    `;
+    document.getElementById('detalhes-devolucao').innerHTML = html;
+    const btnRecebimento = document.getElementById('btnConfirmarRecebimento');
+    if (btnRecebimento) {
+        btnRecebimento.disabled = false;
+        btnRecebimento.style.opacity = '1';
+        btnRecebimento.style.cursor = 'pointer';
+    }
     abrirModal('modalConfirmaDevolucao');
 }
 
@@ -1371,77 +1633,6 @@ function prepararReserva() {
             <strong>Posição na Fila:</strong> 3º lugar
         </div>
         <p style="margin-top:10px;"><small>Você será notificado por e-mail quando o exemplar estiver disponível.</small></p>
-    `;
-    document.getElementById('detalhes-reserva').innerHTML = html;
-    abrirModal('modalConfirmaReserva');
-}
-
-/* ===== BUSCA NAS TABELAS ===== */
-document.addEventListener('DOMContentLoaded', function () {    document.getElementById("searchUsuarioPerfil").addEventListener("keyup", function () {
-        let filtro = this.value.toLowerCase();
-        document.querySelectorAll("#tbodyUsuarios tr").forEach(linha => {
-            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
-        });
-    });
-
-    document.getElementById("searchLivro").addEventListener("keyup", function () {
-        let filtro = this.value.toLowerCase();
-        document.querySelectorAll("#tbodyLivros tr").forEach(linha => {
-            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
-        });
-    });
-
-    document.getElementById("searchExemplar").addEventListener("keyup", function () {
-        let filtro = this.value.toLowerCase();
-        document.querySelectorAll("#tbodyExemplares tr").forEach(linha => {
-            linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? "" : "none";
-        });
-    });
-});
-
-function prepararEmprestimo(tipoUsuario) {
-    tipoUsuario = tipoUsuario || 'Aluno';
-    const hoje = new Date();
-    let prazo = tipoUsuario === 'Professor' ? 15 : 7;
-    const dataDevolucao = new Date();
-    dataDevolucao.setDate(hoje.getDate() + prazo);
-
-    const html = `
-        <p><strong>Livro:</strong> Engenharia de Software</p>
-        <p><strong>ISBN:</strong> 978-85-333-0761-2</p>
-        <p><strong>Autor:</strong> Ian Sommerville</p>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
-        <p><strong>Usuário:</strong> Ricardo Oliveira (${tipoUsuario})</p>
-        <p><strong>Data de Devolução:</strong> <span style="color: var(--ifpr-green); font-weight: bold;">${dataDevolucao.toLocaleDateString('pt-BR')}</span></p>
-        <p><small>*Prazo de ${prazo} dias aplicado conforme regulamento.</small></p>
-    `;
-    document.getElementById('detalhes-emprestimo').innerHTML = html;
-    abrirModal('modalConfirmaEmprestimo');
-}
-
-function prepararDevolucao(atrasoDias) {
-    const multa = atrasoDias * 1.00;
-    const html = `
-        <p><strong>Livro:</strong> Cálculo Diferencial I</p>
-        <p><strong>ISBN:</strong> 978-85-216-1111-0</p>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
-        <p><strong>Status:</strong> <span class="badge ${atrasoDias > 0 ? 'badge-error' : 'badge-success'}">${atrasoDias > 0 ? 'Em Atraso' : 'No Prazo'}</span></p>
-        ${atrasoDias > 0 ? `<p style="color: #ff8c8c;"><strong>Dias de Atraso:</strong> ${atrasoDias} dias</p>
-        <p style="color: #ff8c8c;"><strong>Multa Gerada:</strong> R$ ${multa.toFixed(2)}</p>` : '<p>Sem pendências financeiras.</p>'}
-    `;
-    document.getElementById('detalhes-devolucao').innerHTML = html;
-    abrirModal('modalConfirmaDevolucao');
-}
-
-function prepararReserva() {
-    const html = `
-        <p><strong>Livro:</strong> Clean Code</p>
-        <p><strong>Autor:</strong> Robert C. Martin</p>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
-        <div style="background: #332b00; border: 1px solid #f1c40f; padding: 10px; border-radius: 4px; color: #f1c40f;">
-            <strong>Posição na Fila:</strong> 3º lugar
-        </div>
-        <p style="margin-top: 10px;"><small>Você será notificado por e-mail quando o exemplar estiver disponível.</small></p>
     `;
     document.getElementById('detalhes-reserva').innerHTML = html;
     abrirModal('modalConfirmaReserva');
