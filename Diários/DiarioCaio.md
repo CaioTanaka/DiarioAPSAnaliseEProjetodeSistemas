@@ -1,6 +1,6 @@
-- Diário Pessoal - Análise e Projeto de Sistemas
+#*Diário Pessoal - Análise e Projeto de Sistemas*
 
-- Aprendizados
+##*Aprendizados*
 
 No primeiro trimestre, com a matéria de Análise e Projeto de Sistemas, o meu aprendizado consistiu em:
 
@@ -19,7 +19,7 @@ Uma experiência com o trabalho em equipe, como se estivéssemos em um time de d
 
 Aprendi sobre o funcionamento de uma biblioteca, suas regras de negócios, módulos necessários, atores, funções, penalidades.
 
-- Dificuldades
+##*Dificuldades*
 
 No primeiro trimestre da matéria, consegui perceber as seguintes dificuldades minhas e da equipe: 
 
