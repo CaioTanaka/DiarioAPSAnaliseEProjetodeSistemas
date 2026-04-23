@@ -3,7 +3,7 @@
 
 **Aula 11/02**  
 Participei da formação do grupo APSystems junto. Nessa aula, aprendi sobre o conceito de APS, soft skills, habilidades técnicas, a relevância de cada uma delas e o significado de ecossistema.  
- Além disso, compreendi que tanto a prática quanto a teoria são fundamentais.
+ Além disso, compreendi que tanto a prática quanto a teoria são fundamentais para a aprendizagem dos alunos.
 
 **Aula 25/02**  
 Aprendi sobre os ciclos de vida do desenvolvimento de software, bem como os diferentes modelos de SDLC.
