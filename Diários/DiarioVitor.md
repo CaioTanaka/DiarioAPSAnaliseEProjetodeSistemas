@@ -34,6 +34,6 @@ O grupo demonstrou organização e eficiência na execução das atividades prop
 O primeiro questionário não foi entregue devido a um problema de saúde do líder do grupo.
 
 ## **Dificuldades Encontradas**
-Refinar as perguntas sem as informações que seriam obtidas no primeiro questionário.
-Fazer as entrevistas com Júlia, Rosa e Ana.Algumas vezes, as entrevistadas não tinham respostas e recomendavam direcionar as perguntas para as outras 2.
-Elaborar histórias de usuário.
+Refinar as perguntas sem as informações que seriam obtidas no primeiro questionário,
+Fazer as entrevistas com Júlia, Rosa e Ana.Algumas vezes, as entrevistadas não tinham respostas e recomendavam direcionar as perguntas para as outras 2
+e Elaborar histórias de usuário.
