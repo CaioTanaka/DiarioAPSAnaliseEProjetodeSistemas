@@ -35,5 +35,5 @@ O primeiro questionário não foi entregue devido a um problema de saúde do lí
 
 ## **Dificuldades Encontradas**
 Refinar as perguntas sem as informações que seriam obtidas no primeiro questionário,
-Fazer as entrevistas com Júlia, Rosa e Ana.Algumas vezes, as entrevistadas não tinham respostas e recomendavam direcionar as perguntas para as outras 2
-e Elaborar histórias de usuário.
+fazer as entrevistas com Júlia, Rosa e Ana,pois lgumas vezes, as entrevistadas não tinham respostas e recomendavam direcionar as perguntas para as outras duas,
+e elaborar histórias de usuário.
