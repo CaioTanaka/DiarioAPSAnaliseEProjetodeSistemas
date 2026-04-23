@@ -1,4 +1,3 @@
-# APS--Diario-2026
 ## Amauri Rafael Antunes Rosa Silidonio
 
 ## Aula 1 e Aula 2 - Primeiras duas semanas de aula (Não compareci as aulas)
