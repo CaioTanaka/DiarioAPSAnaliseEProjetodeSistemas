@@ -1,4 +1,6 @@
-Diário Pessoal - Análise e Projeto de Sistemas
+- Diário Pessoal - Análise e Projeto de Sistemas
+
+- Aprendizados
 
 No primeiro trimestre, com a matéria de Análise e Projeto de Sistemas, o meu aprendizado consistiu em:
 
@@ -17,7 +19,7 @@ Uma experiência com o trabalho em equipe, como se estivéssemos em um time de d
 
 Aprendi sobre o funcionamento de uma biblioteca, suas regras de negócios, módulos necessários, atores, funções, penalidades.
 
-Dificuldades
+- Dificuldades
 
 No primeiro trimestre da matéria, consegui perceber as seguintes dificuldades minhas e da equipe: 
 
@@ -28,15 +30,5 @@ Além disso, outra dificuldade foi entender como fazer as entregas parciais e co
 Perda da 1ª atividade, no caso, a entrevista assíncrona dificultou de modo considerável o resto da atividade, foi perdido documentos, e perguntas que poderiam ter sido feitas no início, o que impactou o desenvolvimento das atividades seguintes.
 
 O perfil da “Rosa”, também causou dificuldades, por termos endereçado várias perguntas na segunda atividade, e termos obtido respostas que não foram tão assertivas, por causa do perfil de não gostar de perguntas diretas, resultando na segunda entrevista assíncrona mediano / ruim.
-
-
-
-
-
-
-
-
-
-
 
 
