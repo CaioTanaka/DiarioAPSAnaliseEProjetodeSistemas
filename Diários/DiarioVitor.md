@@ -1,5 +1,4 @@
-# **Diario Individual APS**
-## **Aluno:Vitor Margonar**
+# **Aluno:Vitor Margonar**
 
 ## **Aula 11/02**
 Participei da formação do grupo APSystems junto. Nessa aula, aprendi o que é APS, softskills, habilidades técnicas, qual dos dois é melhor e o que é ecossistema.
